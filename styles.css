@@ -1,4 +1,6 @@
-/* Reset */
+/* ============================= */
+/* RESET AND GLOBAL STYLES */
+/* ============================= */
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +24,9 @@ img {
   display: block;
 }
 
-/* Buttons */
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
 .btn {
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
@@ -63,11 +67,14 @@ img {
   color: #008000;
 }
 
-/* Header & Nav */
+/* ============================= */
+/* HEADER AND NAVIGATION */
+/* ============================= */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: rgba(0,0,0,0.6);
 }
 
 .nav.container {
@@ -75,7 +82,6 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgba(0,0,0,0.6);
   color: #fff;
 }
 
@@ -112,15 +118,20 @@ img {
   color: #fff;
 }
 
-/* Hero Section */
+/* ============================= */
+/* HERO SECTION */
+/* ============================= */
 .hero {
   position: relative;
-  height: 90vh;
+  height: 60vh;
+  min-height: 400px;
+  max-height: 600px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
+  text-align: center;
 }
 
 .hero-slideshow img {
@@ -145,26 +156,25 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.35);
   z-index: 2;
 }
 
 .hero-content {
   position: relative;
   z-index: 3;
-  text-align: center;
-  max-width: 800px;
+  max-width: 700px;
   padding: 0 20px;
 }
 
 .hero-content h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 .hero-content p.lead {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .hero-content .ctas {
@@ -172,14 +182,16 @@ img {
 }
 
 .hero-content .small-intro {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
-/* Sections */
+/* ============================= */
+/* GENERAL SECTIONS */
 .section {
-  padding: 4rem 0;
+  padding: 4rem 2rem;
 }
 
+/* Section Titles */
 .section-title {
   text-align: center;
   margin-bottom: 2rem;
@@ -187,7 +199,8 @@ img {
   color: #008000;
 }
 
-/* Safari Grid */
+/* ============================= */
+/* SAFARI GRID */
 .safari-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -233,7 +246,8 @@ img {
   border-top: 1px solid #eee;
 }
 
-/* Destinations Grid */
+/* ============================= */
+/* DESTINATIONS */
 .dest-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -247,7 +261,8 @@ img {
   border-radius: 10px;
 }
 
-/* Booking Form */
+/* ============================= */
+/* BOOKING FORM */
 .booking-form {
   background: #fff;
   padding: 2rem;
@@ -281,7 +296,8 @@ img {
   margin-top: 1rem;
 }
 
-/* Why Choose Us */
+/* ============================= */
+/* WHY CHOOSE US */
 .why-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -297,7 +313,8 @@ img {
   font-weight: bold;
 }
 
-/* Gallery Grid */
+/* ============================= */
+/* GALLERY */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -311,12 +328,21 @@ img {
   border-radius: 10px;
 }
 
-/* Footer */
+/* ============================= */
+/* REVIEWS */
+.reviews-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* ============================= */
+/* FOOTER */
 .site-footer {
   background: #222;
   color: #fff;
   text-align: center;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
 }
 
 .wa-float {
@@ -327,7 +353,8 @@ img {
   z-index: 100;
 }
 
-/* Responsive */
+/* ============================= */
+/* RESPONSIVE */
 @media(max-width:768px) {
   .nav-links {
     display: none;
@@ -350,5 +377,13 @@ img {
 
   .booking-form .row.two {
     flex-direction: column;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content p.lead {
+    font-size: 0.9rem;
   }
 }
