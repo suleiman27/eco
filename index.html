@@ -5,237 +5,308 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EcoQuest Safari</title>
   <meta name="description" content="Unforgettable safaris in Kenya tailored by local experts. Book Masai Mara, Amboseli, Tsavo and beach + safari packages.">
-  <meta property="og:title" content="Safari Tours & Travel">
-  <meta property="og:description" content="Unforgettable safaris in Kenya — tailored by local experts.">
-  <meta property="og:image" content="hero-image.jpg">
-  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root {
+      --green: #0c4b3b;
+      --gold: #c79a2b;
+      --muted: #6b6b6b;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:#222;background:#fbfbfb}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+
+    /* Navigation */
+    .site-header .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{font-weight:800;font-size:1.2rem}
+    .brand .accent{color:var(--gold)}
+    .nav-links{list-style:none;display:flex;gap:12px;margin:0;padding:0}
+    .nav-links a{text-decoration:none;color:inherit;font-weight:600}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .btn{padding:10px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--green);color:#fff}
+    .btn-secondary{background:#fff;border:2px solid var(--green);color:var(--green)}
+    .btn-outline{background:transparent;border:1px solid var(--green);color:var(--green)}
+
+    /* Hero */
+    .hero{height:70vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-overlay{position:absolute;left:0;right:0;top:0;bottom:0;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35));z-index:1}
+    .hero-content{position:relative;color:white;z-index:2;padding:0 20px}
+    .hero h1{font-size:2rem;margin:0 0 12px}
+    .lead{opacity:0.95;margin-bottom:16px}
+    .ctas{display:flex;gap:12px}
+    .small-intro{margin-top:14px;opacity:0.95}
+
+    /* Hero Slideshow */
+    .hero-slideshow{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
+    .hero-slideshow .slide{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;opacity:0;transition:opacity 1s ease-in-out}
+    .hero-slideshow .slide.active{opacity:1}
+
+    /* Sections */
+    .section{padding:50px 0}
+    .section-head{display:flex;align-items:center;justify-content:space-between}
+    .filters{display:flex;gap:10px;align-items:center}
+    .filters select,.filters input{padding:8px;border-radius:8px;border:1px solid #ddd}
+
+    /* Packages */
+    .packages-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:20px}
+    .package{background:#fff;border-radius:10px;padding:12px;box-shadow:0 6px 20px rgba(12,75,59,0.06)}
+    .package img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .package h3{margin:10px 0}
+    .package .meta{font-size:.9rem;color:var(--muted)}
+
+    /* Destinations */
+    .dest-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+    .dest-card{background:linear-gradient(180deg,var(--green),#0a3b2f);color:#fff;padding:16px;border-radius:10px;text-align:center;cursor:pointer}
+
+    /* Booking Form */
+    .booking-form{display:grid;gap:12px;background:#fff;padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .booking-form input, .booking-form select, .booking-form textarea{padding:10px;border-radius:8px;border:1px solid #ddd}
+    .row.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .form-actions{display:flex;gap:10px}
+
+    /* Why Choose Us */
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .why-card{background:#fff;padding:16px;border-radius:10px;text-align:center}
+
+    /* Gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+    .gallery-grid img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+
+    /* Blog */
+    .blog-list{list-style:none;padding:0}
+
+    /* About */
+    .about-grid{display:flex;gap:20px;align-items:center}
+    .about-img{width:260px;height:260px;object-fit:cover;border-radius:10px}
+
+    /* Reviews */
+    .reviews-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+
+    /* Footer & WhatsApp */
+    .small{text-align:center;color:var(--muted)}
+    .site-footer{background:#0f2d24;color:#fff;padding:18px}
+    .wa-float{position:fixed;right:18px;bottom:18px;background:#25d366;color:#fff;padding:14px;border-radius:50%;text-decoration:none;font-size:20px;box-shadow:0 6px 20px rgba(0,0,0,0.15)}
+
+    /* Modal */
+    .modal{position:fixed;left:0;right:0;top:0;bottom:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6)}
+    .modal .modal-content{background:#fff;padding:18px;border-radius:10px;max-width:800px;width:90%;position:relative}
+    .modal .modal-close{position:absolute;right:12px;top:8px;border:0;background:none;font-size:18px}
+
+    /* Responsive */
+    @media(max-width:800px){
+      .nav-links{display:none;position:absolute;left:0;right:0;top:64px;background:#fff;flex-direction:column;padding:10px}
+      .nav-links.show{display:flex}
+      .hero h1{font-size:1.4rem}
+      .row.two{grid-template-columns:1fr}
+      .about-grid{flex-direction:column}
+    }
+  </style>
 </head>
 <body>
 
-  <header class="site-header">
-    <nav class="nav container">
-      <div class="brand">Safari <span class="accent">Tours</span></div>
-      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#destinations">Destinations</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="nav-actions">
-        <button class="btn btn-outline" id="lang-toggle">EN</button>
+<header class="site-header">
+  <nav class="nav container">
+    <div class="brand">Safari <span class="accent">Tours</span></div>
+    <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn btn-outline" id="lang-toggle">EN</button>
+      <a class="btn btn-primary" href="#booking">Book Your Safari</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Slideshow -->
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-slideshow">
+      <img src="images/image1.jpeg" class="slide active" alt="Safari Image 1">
+      <img src="images/image5.jpeg" class="slide" alt="Safari Image 5">
+      <img src="images/image6.jpeg" class="slide" alt="Safari Image 6">
+    </div>
+    <div class="hero-content container">
+      <h1>Unforgettable Safaris in Kenya — Tailored by Local Experts</h1>
+      <p class="lead">Experience the Big Five, majestic elephants, and the Great Migration — comfort, safety and local knowledge.</p>
+      <div class="ctas">
         <a class="btn btn-primary" href="#booking">Book Your Safari</a>
+        <button class="btn btn-secondary" id="quote-btn">Get a Free Quote</button>
       </div>
-    </nav>
+      <p class="small-intro">We are a licensed Kenyan tour operator with experienced guides and 24/7 support.</p>
+    </div>
+  </section>
+</header>
 
-    <!-- Hero Section with slideshow -->
-    <section id="home" class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-slideshow">
-        <img src="images/image1.jpeg" alt="Safari Image 1" class="slide active">
-        <img src="images/image5.jpeg" alt="Safari Image 5" class="slide">
-        <img src="images/image6.jpeg" alt="Safari Image 6" class="slide">
+<main>
+  <!-- Packages Section -->
+  <section id="packages" class="section container">
+    <div class="section-head">
+      <h2>Safari Packages</h2>
+      <div class="filters">
+        <select id="filter-budget"><option value="all">All Budgets</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="luxury">Luxury</option></select>
+        <select id="filter-duration"><option value="all">All Durations</option><option value="2">2 Days</option><option value="3">3 Days</option><option value="7">7 Days</option></select>
+        <select id="filter-destination"><option value="all">All Destinations</option><option value="Masai Mara">Masai Mara</option><option value="Amboseli">Amboseli</option><option value="Tsavo">Tsavo</option><option value="Diani">Diani</option></select>
+        <input id="search-pack" placeholder="Search packages..." />
       </div>
-      <div class="hero-content container">
-        <h1>Unforgettable Safaris in Kenya — Tailored by Local Experts</h1>
-        <p class="lead">Experience the Big Five, majestic elephants, and the Great Migration — comfort, safety and local knowledge.</p>
-        <div class="ctas">
-          <a class="btn btn-primary" href="#booking">Book Your Safari</a>
-          <button class="btn btn-secondary" id="quote-btn">Get a Free Quote</button>
-        </div>
-        <p class="small-intro">We are a licensed Kenyan tour operator with experienced guides and 24/7 support.</p>
-      </div>
-    </section>
-  </header>
+    </div>
+    <div id="packages-grid" class="packages-grid">
+      <!-- Dynamic packages loaded by script.js -->
+    </div>
+  </section>
 
-  <main>
-    <!-- Packages (dynamic) -->
-    <section id="packages" class="section container">
-      <div class="section-head">
-        <h2>Safari Packages</h2>
-        <div class="filters">
-          <select id="filter-budget"><option value="all">All Budgets</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="luxury">Luxury</option></select>
-          <select id="filter-duration"><option value="all">All Durations</option><option value="2">2 Days</option><option value="3">3 Days</option><option value="7">7 Days</option></select>
-          <select id="filter-destination"><option value="all">All Destinations</option><option value="Masai Mara">Masai Mara</option><option value="Amboseli">Amboseli</option><option value="Tsavo">Tsavo</option><option value="Diani">Diani</option></select>
-          <input id="search-pack" placeholder="Search packages..." />
-        </div>
-      </div>
+  <!-- Destinations -->
+  <section id="destinations" class="section container">
+    <h2>Popular Destinations</h2>
+    <div class="dest-cards" id="dest-cards">
+      <!-- Dynamic destination cards -->
+    </div>
+  </section>
 
-      <div id="packages-grid" class="packages-grid">
-        <!-- packages inserted by JS -->
+  <!-- Booking Form -->
+  <section id="booking" class="section container">
+    <h2>Book Your Safari / Inquiry</h2>
+    <form id="booking-form" class="booking-form">
+      <div class="row two">
+        <input name="name" type="text" placeholder="Full Name" required>
+        <input name="email" type="email" placeholder="Email Address" required>
       </div>
-    </section>
-
-    <!-- Destinations overview -->
-    <section id="destinations" class="section container">
-      <h2>Popular Destinations</h2>
-      <div class="dest-cards" id="dest-cards">
-        <!-- dynamic preview cards -->
+      <div class="row two">
+        <input name="phone" type="tel" placeholder="Phone / WhatsApp" required>
+        <input name="travellers" type="number" min="1" placeholder="Number of travellers" required>
       </div>
-    </section>
-
-    <!-- Booking / Inquiry Form -->
-    <section id="booking" class="section container">
-      <h2>Book Your Safari / Inquiry</h2>
-      <form id="booking-form" class="booking-form">
-        <div class="row two">
-          <input name="name" type="text" placeholder="Full Name" required>
-          <input name="email" type="email" placeholder="Email Address" required>
-        </div>
-        <div class="row two">
-          <input name="phone" type="tel" placeholder="Phone / WhatsApp" required>
-          <input name="travellers" type="number" min="1" placeholder="Number of travellers" required>
-        </div>
-        <input name="ages" type="text" placeholder="Ages (e.g., 34, 28, 6)">
-        <div class="row two">
-          <label>Travel Dates</label>
-          <input name="travelDate" type="date" required>
-          <select name="budget" required>
-            <option value="">Preferred Budget</option>
-            <option value="budget">Budget</option>
-            <option value="mid">Mid-range</option>
-            <option value="luxury">Luxury</option>
-          </select>
-        </div>
-        <select name="destination" required>
-          <option value="">Preferred Destination</option>
-          <option>Masai Mara</option>
-          <option>Amboseli</option>
-          <option>Tsavo East</option>
-          <option>Tsavo West</option>
-          <option>Lake Nakuru</option>
-          <option>Samburu</option>
-          <option>Diani + Safari</option>
-          <option>Nairobi National Park</option>
+      <input name="ages" type="text" placeholder="Ages (e.g., 34,28,6)">
+      <div class="row two">
+        <label>Travel Dates</label>
+        <input name="travelDate" type="date" required>
+        <select name="budget" required>
+          <option value="">Preferred Budget</option>
+          <option value="budget">Budget</option>
+          <option value="mid">Mid-range</option>
+          <option value="luxury">Luxury</option>
         </select>
-        <textarea name="notes" placeholder="Special Requests (optional)"></textarea>
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Submit Inquiry</button>
-          <button type="button" class="btn btn-outline" id="quick-estimate">Get Quick Estimate</button>
-        </div>
-      </form>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section id="why-us" class="section container">
-      <h2>Why Choose Us</h2>
-      <div class="why-grid">
-        <div class="why-card">Licensed Tour Operator / KWS Certified</div>
-        <div class="why-card">Experienced Guides</div>
-        <div class="why-card">Local Knowledge</div>
-        <div class="why-card">Custom Itineraries</div>
-        <div class="why-card">Fast Responses (24/7)</div>
-        <div class="why-card">Transparent Pricing</div>
       </div>
-    </section>
-
-    <!-- Gallery -->
-    <section id="gallery" class="section container">
-      <h2>Gallery</h2>
-      <div class="gallery-grid" id="gallery-grid">
-        <!-- images added by JS -->
+      <select name="destination" required>
+        <option value="">Preferred Destination</option>
+        <option>Masai Mara</option>
+        <option>Amboseli</option>
+        <option>Tsavo East</option>
+        <option>Tsavo West</option>
+        <option>Lake Nakuru</option>
+        <option>Samburu</option>
+        <option>Diani + Safari</option>
+        <option>Nairobi National Park</option>
+      </select>
+      <textarea name="notes" placeholder="Special Requests (optional)"></textarea>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+        <button type="button" class="btn btn-outline" id="quick-estimate">Get Quick Estimate</button>
       </div>
-    </section>
+    </form>
+  </section>
 
-    <!-- Blog / Tips -->
-    <section id="blog" class="section container">
-      <h2>Blog & Travel Tips</h2>
-      <ul class="blog-list" id="blog-list"></ul>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section container">
-      <h2>About Us</h2>
-      <div class="about-grid">
-        <img src="guide.jpg" alt="Guide" class="about-img">
-        <div>
-          <h3>Who We Are</h3>
-          <p>We are licensed Kenyan tour operators with years of experience guiding guests through Kenya's amazing parks.</p>
-          <h4>Mission & Values</h4>
-          <p>Authenticity, safety, conservation and local empowerment.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Reviews & Testimonials -->
-    <section id="reviews" class="section container">
-      <h2>Reviews & Testimonials</h2>
-      <div id="reviews-list" class="reviews-list">
-        <!-- placeholders for embedded Google/Facebook/TripAdvisor, WhatsApp screenshots -->
-      </div>
-    </section>
-
-    <!-- Terms & Privacy quick links -->
-    <section class="section container small">
-      <a href="terms.html">Terms & Conditions</a> | <a href="privacy.html">Privacy Policy</a>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div>© <span id="year"></span> Safari Tours & Travel</div>
-      <div> <a href="mailto:info@safaritours.com">info@safaritours.com</a> • +254 700 000000</div>
+  <!-- Why Choose Us -->
+  <section id="why-us" class="section container">
+    <h2>Why Choose Us</h2>
+    <div class="why-grid">
+      <div class="why-card">Licensed Tour Operator / KWS Certified</div>
+      <div class="why-card">Experienced Guides</div>
+      <div class="why-card">Local Knowledge</div>
+      <div class="why-card">Custom Itineraries</div>
+      <div class="why-card">Fast Responses (24/7)</div>
+      <div class="why-card">Transparent Pricing</div>
     </div>
-  </footer>
+  </section>
 
-  <!-- Floating WhatsApp chat -->
-  <a id="wa-float" class="wa-float" href="https://wa.me/254700000000?text=Hi%20I'm%20interested%20in%20a%20safari" target="_blank" aria-label="Chat on WhatsApp">💬</a>
-
-  <!-- Modals -->
-  <div id="itinerary-modal" class="modal" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="modal-close">✕</button>
-      <div id="itinerary-body"></div>
+  <!-- Gallery -->
+  <section id="gallery" class="section container">
+    <h2>Gallery</h2>
+    <div class="gallery-grid" id="gallery-grid">
+      <img src="images/image16.jpeg" alt="Gallery Image 1">
+      <img src="images/image17.jpeg" alt="Gallery Image 2">
+      <img src="images/image18.jpeg" alt="Gallery Image 3">
+      <img src="images/image19.jpeg" alt="Gallery Image 4">
+      <img src="images/image20.jpeg" alt="Gallery Image 5">
+      <img src="images/image21.jpeg" alt="Gallery Image 6">
+      <img src="images/image22.jpeg" alt="Gallery Image 7">
+      <img src="images/image23.jpeg" alt="Gallery Image 8">
+      <img src="images/image24.jpeg" alt="Gallery Image 9">
+      <img src="images/image25.jpeg" alt="Gallery Image 10">
+      <img src="images/image26.jpeg" alt="Gallery Image 11">
     </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section container">
+    <h2>About Us</h2>
+    <div class="about-grid">
+      <img src="images/guide.jpg" alt="Guide" class="about-img">
+      <div>
+        <h3>Who We Are</h3>
+        <p>We are licensed Kenyan tour operators with years of experience guiding guests through Kenya's amazing parks.</p>
+        <h4>Mission & Values</h4>
+        <p>Authenticity, safety, conservation and local empowerment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="section container">
+    <h2>Reviews & Testimonials</h2>
+    <div id="reviews-list" class="reviews-list">
+      <img src="images/image36.jpeg" alt="Happy tourists 1">
+      <img src="images/image37.jpeg" alt="Happy tourists 2">
+      <img src="images/image38.jpeg" alt="Happy tourists 3">
+    </div>
+  </section>
+
+  <!-- Terms & Privacy -->
+  <section class="section container small">
+    <a href="terms.html">Terms & Conditions</a> | <a href="privacy.html">Privacy Policy</a>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>© <span id="year"></span> EcoQuest Safari</div>
+    <div><a href="mailto:info@safaritours.com">info@safaritours.com</a> • +254 700 000000</div>
   </div>
+</footer>
 
-  <!-- Hero Slideshow Script -->
-  <script>
-    const slides = document.querySelectorAll('.hero-slideshow .slide');
-    let current = 0;
+<!-- WhatsApp Float -->
+<a id="wa-float" class="wa-float" href="https://wa.me/254700000000?text=Hi%20I'm%20interested%20in%20a%20safari" target="_blank" aria-label="Chat on WhatsApp">💬</a>
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
+<!-- Modal -->
+<div id="itinerary-modal" class="modal" aria-hidden="true">
+  <div class="modal-content">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div id="itinerary-body"></div>
+  </div>
+</div>
 
-    function nextSlide() {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    }
+<script>
+  // Hero Slideshow
+  const slides = document.querySelectorAll('.hero-slideshow .slide');
+  let current = 0;
+  function showSlide(index) {
+    slides.forEach((slide,i)=>slide.classList.toggle('active',i===index));
+  }
+  function nextSlide() {
+    current=(current+1)%slides.length;
+    showSlide(current);
+  }
+  setInterval(nextSlide,4000);
 
-    setInterval(nextSlide, 4000);
-  </script>
+  // Year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script src="script.js"></script>
 
-  <!-- Gallery Images Script -->
-  <script>
-    const galleryImages = [
-      "image1.jpeg","image2.jpeg","image3.jpeg","image4.jpeg","image5.jpeg",
-      "image6.jpeg","image7.jpeg","image8.jpeg","image9.jpeg","image10.jpeg",
-      "image11.jpeg","image12.jpeg","image13.jpeg","image14.jpeg","image15.jpeg",
-      "image16.jpeg","image17.jpeg","image18.jpeg","image19.jpeg","image20.jpeg",
-      "image21.jpeg","image22.jpeg","image23.jpeg","image24.jpeg","image25.jpeg",
-      "image26.jpeg","image27.jpeg","image28.jpeg","image29.jpeg","image30.jpeg",
-      "image31.jpeg","image32.jpeg","image33.jpeg","image34.jpeg","image35.jpeg",
-      "image36.jpeg","image37.jpeg","image38.jpeg"
-    ];
-
-    const galleryGrid = document.getElementById("gallery-grid");
-
-    galleryImages.forEach(img => {
-      const div = document.createElement("div");
-      div.classList.add("gallery-item");
-      div.innerHTML = `<img src="images/${img}" alt="${img}">`;
-      galleryGrid.appendChild(div);
-    });
-  </script>
-
-  <!-- Your external JS file -->
-  <script src="script.js"></script>
 </body>
 </html>
