@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EcoQuest Safari</title>
+  <meta name="description" content="Unforgettable safaris in Kenya tailored by local experts. Book Masai Mara, Amboseli, Tsavo and beach + safari packages.">
+  <meta property="og:title" content="Safari Tours & Travel">
+  <meta property="og:description" content="Unforgettable safaris in Kenya — tailored by local experts.">
+  <meta property="og:image" content="hero-image.jpg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <div class="brand">Safari <span class="accent">Tours</span></div>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-outline" id="lang-toggle">EN</button>
+        <a class="btn btn-primary" href="#booking">Book Your Safari</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section with slideshow -->
+    <section id="home" class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-slideshow">
+        <img src="images/image1.jpeg" alt="Safari Image 1" class="slide active">
+        <img src="images/image5.jpeg" alt="Safari Image 5" class="slide">
+        <img src="images/image6.jpeg" alt="Safari Image 6" class="slide">
+      </div>
+      <div class="hero-content container">
+        <h1>Unforgettable Safaris in Kenya — Tailored by Local Experts</h1>
+        <p class="lead">Experience the Big Five, majestic elephants, and the Great Migration — comfort, safety and local knowledge.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#booking">Book Your Safari</a>
+          <button class="btn btn-secondary" id="quote-btn">Get a Free Quote</button>
+        </div>
+        <p class="small-intro">We are a licensed Kenyan tour operator with experienced guides and 24/7 support.</p>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <!-- Packages (dynamic) -->
+    <section id="packages" class="section container">
+      <div class="section-head">
+        <h2>Safari Packages</h2>
+        <div class="filters">
+          <select id="filter-budget"><option value="all">All Budgets</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="luxury">Luxury</option></select>
+          <select id="filter-duration"><option value="all">All Durations</option><option value="2">2 Days</option><option value="3">3 Days</option><option value="7">7 Days</option></select>
+          <select id="filter-destination"><option value="all">All Destinations</option><option value="Masai Mara">Masai Mara</option><option value="Amboseli">Amboseli</option><option value="Tsavo">Tsavo</option><option value="Diani">Diani</option></select>
+          <input id="search-pack" placeholder="Search packages..." />
+        </div>
+      </div>
+
+      <div id="packages-grid" class="packages-grid">
+        <!-- packages inserted by JS -->
+      </div>
+    </section>
+
+    <!-- Destinations overview -->
+    <section id="destinations" class="section container">
+      <h2>Popular Destinations</h2>
+      <div class="dest-cards" id="dest-cards">
+        <!-- dynamic preview cards -->
+      </div>
+    </section>
+
+    <!-- Booking / Inquiry Form -->
+    <section id="booking" class="section container">
+      <h2>Book Your Safari / Inquiry</h2>
+      <form id="booking-form" class="booking-form">
+        <div class="row two">
+          <input name="name" type="text" placeholder="Full Name" required>
+          <input name="email" type="email" placeholder="Email Address" required>
+        </div>
+        <div class="row two">
+          <input name="phone" type="tel" placeholder="Phone / WhatsApp" required>
+          <input name="travellers" type="number" min="1" placeholder="Number of travellers" required>
+        </div>
+        <input name="ages" type="text" placeholder="Ages (e.g., 34, 28, 6)">
+        <div class="row two">
+          <label>Travel Dates</label>
+          <input name="travelDate" type="date" required>
+          <select name="budget" required>
+            <option value="">Preferred Budget</option>
+            <option value="budget">Budget</option>
+            <option value="mid">Mid-range</option>
+            <option value="luxury">Luxury</option>
+          </select>
+        </div>
+        <select name="destination" required>
+          <option value="">Preferred Destination</option>
+          <option>Masai Mara</option>
+          <option>Amboseli</option>
+          <option>Tsavo East</option>
+          <option>Tsavo West</option>
+          <option>Lake Nakuru</option>
+          <option>Samburu</option>
+          <option>Diani + Safari</option>
+          <option>Nairobi National Park</option>
+        </select>
+        <textarea name="notes" placeholder="Special Requests (optional)"></textarea>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+          <button type="button" class="btn btn-outline" id="quick-estimate">Get Quick Estimate</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="section container">
+      <h2>Why Choose Us</h2>
+      <div class="why-grid">
+        <div class="why-card">Licensed Tour Operator / KWS Certified</div>
+        <div class="why-card">Experienced Guides</div>
+        <div class="why-card">Local Knowledge</div>
+        <div class="why-card">Custom Itineraries</div>
+        <div class="why-card">Fast Responses (24/7)</div>
+        <div class="why-card">Transparent Pricing</div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section container">
+      <h2>Gallery</h2>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- images added by JS -->
+      </div>
+    </section>
+
+    <!-- Blog / Tips -->
+    <section id="blog" class="section container">
+      <h2>Blog & Travel Tips</h2>
+      <ul class="blog-list" id="blog-list"></ul>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section container">
+      <h2>About Us</h2>
+      <div class="about-grid">
+        <img src="guide.jpg" alt="Guide" class="about-img">
+        <div>
+          <h3>Who We Are</h3>
+          <p>We are licensed Kenyan tour operators with years of experience guiding guests through Kenya's amazing parks.</p>
+          <h4>Mission & Values</h4>
+          <p>Authenticity, safety, conservation and local empowerment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews & Testimonials -->
+    <section id="reviews" class="section container">
+      <h2>Reviews & Testimonials</h2>
+      <div id="reviews-list" class="reviews-list">
+        <!-- placeholders for embedded Google/Facebook/TripAdvisor, WhatsApp screenshots -->
+      </div>
+    </section>
+
+    <!-- Terms & Privacy quick links -->
+    <section class="section container small">
+      <a href="terms.html">Terms & Conditions</a> | <a href="privacy.html">Privacy Policy</a>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="year"></span> Safari Tours & Travel</div>
+      <div> <a href="mailto:info@safaritours.com">info@safaritours.com</a> • +254 700 000000</div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp chat -->
+  <a id="wa-float" class="wa-float" href="https://wa.me/254700000000?text=Hi%20I'm%20interested%20in%20a%20safari" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+
+  <!-- Modals -->
+  <div id="itinerary-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div id="itinerary-body"></div>
+    </div>
+  </div>
+
+  <!-- Hero Slideshow Script -->
+  <script>
+    const slides = document.querySelectorAll('.hero-slideshow .slide');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    setInterval(nextSlide, 4000);
+  </script>
+
+  <!-- Gallery Images Script -->
+  <script>
+    const galleryImages = [
+      "image1.jpeg","image2.jpeg","image3.jpeg","image4.jpeg","image5.jpeg",
+      "image6.jpeg","image7.jpeg","image8.jpeg","image9.jpeg","image10.jpeg",
+      "image11.jpeg","image12.jpeg","image13.jpeg","image14.jpeg","image15.jpeg",
+      "image16.jpeg","image17.jpeg","image18.jpeg","image19.jpeg","image20.jpeg",
+      "image21.jpeg","image22.jpeg","image23.jpeg","image24.jpeg","image25.jpeg",
+      "image26.jpeg","image27.jpeg","image28.jpeg","image29.jpeg","image30.jpeg",
+      "image31.jpeg","image32.jpeg","image33.jpeg","image34.jpeg","image35.jpeg",
+      "image36.jpeg","image37.jpeg","image38.jpeg"
+    ];
+
+    const galleryGrid = document.getElementById("gallery-grid");
+
+    galleryImages.forEach(img => {
+      const div = document.createElement("div");
+      div.classList.add("gallery-item");
+      div.innerHTML = `<img src="images/${img}" alt="${img}">`;
+      galleryGrid.appendChild(div);
+    });
+  </script>
+
+  <!-- Your external JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
