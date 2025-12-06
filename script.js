@@ -1,11 +1,10 @@
-// Hero Slideshow
-const slides = document.querySelectorAll('.hero-slideshow img');
+// Hero slideshow
+const slides = document.querySelectorAll('.hero-slideshow .slide');
 let currentSlide = 0;
 
 function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-  });
+  slides.forEach(slide => slide.classList.remove('active'));
+  slides[index].classList.add('active');
 }
 
 function nextSlide() {
@@ -13,9 +12,9 @@ function nextSlide() {
   showSlide(currentSlide);
 }
 
-setInterval(nextSlide, 5000);
+setInterval(nextSlide, 5000); // Change image every 5 seconds
 
-// Mobile Navigation Toggle
+// Toggle mobile menu
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
 
@@ -23,27 +22,5 @@ navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('show');
 });
 
-// Quick Estimate / Modal (example)
-const estimateBtn = document.getElementById('quick-estimate');
-const itineraryModal = document.getElementById('itinerary-modal');
-const modalClose = document.getElementById('modal-close');
-
-estimateBtn.addEventListener('click', () => {
-  itineraryModal.style.display = 'block';
-  itineraryModal.setAttribute('aria-hidden', 'false');
-});
-
-modalClose.addEventListener('click', () => {
-  itineraryModal.style.display = 'none';
-  itineraryModal.setAttribute('aria-hidden', 'true');
-});
-
-window.addEventListener('click', (e) => {
-  if(e.target === itineraryModal){
-    itineraryModal.style.display = 'none';
-    itineraryModal.setAttribute('aria-hidden', 'true');
-  }
-});
-
-// Footer Year
+// Set footer year dynamically
 document.getElementById('year').textContent = new Date().getFullYear();
