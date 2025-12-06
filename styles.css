@@ -134,6 +134,17 @@ img {
   text-align: center;
 }
 
+/* FIXED HERO-SLIDESHOW */
+.hero-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
 .hero-slideshow img {
   position: absolute;
   top: 0;
@@ -143,7 +154,6 @@ img {
   object-fit: cover;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  z-index: 1;
 }
 
 .hero-slideshow img.active {
@@ -355,6 +365,7 @@ img {
 
 /* ============================= */
 /* RESPONSIVE */
+/* ============================= */
 @media(max-width:768px) {
   .nav-links {
     display: none;
