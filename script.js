@@ -1,7 +1,6 @@
-// Toggle mobile nav
+// Mobile nav toggle
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
-
 navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('show');
   navToggle.setAttribute('aria-expanded', navLinks.classList.contains('show'));
@@ -10,17 +9,22 @@ navToggle.addEventListener('click', () => {
 // Hero slideshow
 const slides = document.querySelectorAll('.hero-slideshow .slide');
 let currentSlide = 0;
-setInterval(() => {
+
+function showNextSlide() {
   slides[currentSlide].classList.remove('active');
   currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add('active');
-}, 5000);
+}
 
-// Booking citizenship toggle
+window.addEventListener('load', () => {
+  slides[currentSlide].classList.add('active');
+  setInterval(showNextSlide, 5000);
+});
+
+// Citizenship toggle
 const citizenship = document.getElementById('citizenship');
 const idNumber = document.getElementById('idNumber');
 const passportNumber = document.getElementById('passportNumber');
-
 citizenship.addEventListener('change', () => {
   if (citizenship.value === 'citizen') {
     idNumber.style.display = 'block';
@@ -50,10 +54,5 @@ galleryItems.forEach(item => {
     modalImg.alt = item.alt;
   });
 });
-
-modalClose.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-modal.addEventListener('click', e => {
-  if(e.target === modal) modal.style.display = 'none';
-});
+modalClose.addEventListener('click', () => modal.style.display = 'none');
+modal.addEventListener('click', e => { if(e.target===modal) modal.style.display='none'; });
