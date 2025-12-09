@@ -381,19 +381,45 @@ blockquote {
 /* ========================
    WHATSAPP FLOAT
 ======================== */
-.float{
-	position:fixed;
-	width:100px;
-	height:100px;
-	bottom:100px;
-	right:100px;
-	background-color:#25d366;
-	color:#FFF;
-	border-radius:100px;
-	text-align:center;
-  font-size:100px;
-	box-shadow: 2px 2px 3px #999;
-  z-index:100;
+/* WhatsApp Floating Button */
+.wa-float {
+  position: fixed;
+  width: 55px;       /* slightly smaller */
+  height: 55px;
+  bottom: 25px;      /* closer to edge but not too much */
+  right: 25px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 28px;
+  box-shadow: 2px 2px 5px #999;
+  z-index: 1000;
+  transition: transform 0.2s;
+}
+
+.wa-float:hover {
+  transform: scale(1.1); /* slight grow on hover */
+}
+
+.wa-float .my-float {
+  margin-top: 13px; /* vertically center the icon */
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+  .wa-float {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .wa-float .my-float {
+    margin-top: 10px;
+  }
+}
+
 }
 
 .my-float{
