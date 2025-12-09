@@ -1,513 +1,387 @@
-/* ================= RESET ================= */
+/* -------------------- RESET & BASE -------------------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 body {
+  font-family: 'Arial', sans-serif;
   line-height: 1.6;
-  color: #222;
-  background-color: #fdfdfd;
+  background: #fdfcf8;
+  color: #333;
   scroll-behavior: smooth;
 }
-
+h1, h2, h3, h4 {
+  margin-bottom: 0.5em;
+}
 a {
   text-decoration: none;
   color: inherit;
 }
-
-ul {
-  list-style: none;
-}
-
 img {
   max-width: 100%;
   display: block;
 }
-
-/* ================= HEADER / NAV ================= */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  z-index: 999;
-  padding: 10px 0;
-  transition: all 0.3s ease;
-}
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.container {
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.brand {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #1b3a57;
+/* -------------------- HEADER / NAV -------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8em 0;
+}
+.brand {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.brand .accent {
+  color: #1f7a1f;
+}
 .nav-links {
+  list-style: none;
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 1em;
 }
-
-.nav-links li a, .dropdown-btn {
-  font-size: 0.95rem;
-  padding: 6px 12px;
-  color: #1b3a57;
-  transition: all 0.2s ease;
+.nav-links li {
+  position: relative;
 }
-
-.nav-links li a:hover, .dropdown-btn:hover {
-  color: #fff;
-  background-color: #1b3a57;
-  border-radius: 5px;
+.nav-links a, .nav-links button {
+  padding: 0.5em 0.8em;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.95em;
 }
-
+.nav-links a:hover, .nav-links button:hover {
+  color: #1f7a1f;
+}
 .nav-actions .btn {
-  padding: 6px 12px;
-  font-size: 0.9rem;
+  margin-left: 1em;
 }
 
-.nav-toggle {
-  display: none;
-  font-size: 1.3rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-@media (max-width: 900px) {
-  .nav-links {
-    position: fixed;
-    top: 50px;
-    left: -100%;
-    width: 100%;
-    height: calc(100vh - 50px);
-    flex-direction: column;
-    background-color: rgba(27, 58, 87, 0.95);
-    gap: 20px;
-    padding-top: 30px;
-    transition: left 0.3s ease;
-  }
-  .nav-links.active {
-    left: 0;
-  }
-  .nav-toggle {
-    display: block;
-    color: #1b3a57;
-  }
-  .nav-links li a, .dropdown-btn {
-    color: #fff;
-    font-size: 1.1rem;
-  }
-}
-
-/* ================= DROPDOWN ================= */
-.dropdown {
-  position: relative;
-}
-
+/* -------------------- DROPDOWNS -------------------- */
 .dropdown-menu, .sub-menu {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  background-color: #1b3a57;
-  color: #fff;
-  min-width: 200px;
-  border-radius: 5px;
   display: none;
-  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 180px;
   z-index: 1000;
+  padding: 0.5em 0;
 }
-
-.dropdown-menu li button, .sub-menu li button {
-  background: none;
-  border: none;
-  color: #fff;
-  text-align: left;
-  padding: 8px 12px;
+.dropdown-menu li, .sub-menu li {
+  list-style: none;
+}
+.dropdown-menu button, .sub-menu button {
   width: 100%;
+  padding: 0.5em 1em;
+  text-align: left;
+  border: none;
+  background: none;
   cursor: pointer;
+  font-size: 0.95em;
+}
+.dropdown-menu button:hover, .sub-menu button:hover {
+  background: #1f7a1f;
+  color: #fff;
+  border-radius: 4px;
 }
 
-.dropdown-menu li button:hover, .sub-menu li button:hover {
-  background-color: #2c4e70;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: flex;
-}
-
-.sub-menu {
-  left: 100%;
-  top: 0;
-}
-
-/* ================= HERO ================= */
+/* -------------------- HERO -------------------- */
 .hero {
-  position: relative;
   height: 90vh;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
+  text-align: center;
   overflow: hidden;
 }
-
 .hero-slideshow img {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 90vh;
+  object-fit: cover;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
-
 .hero-slideshow img.active {
   opacity: 1;
 }
-
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
+  top:0; left:0;
   width: 100%;
   height: 100%;
-  background: rgba(27, 58, 87, 0.35);
+  background: rgba(0,0,0,0.3);
 }
-
 .hero-content {
   position: relative;
-  text-align: center;
-  color: #fff;
-  z-index: 10;
+  z-index: 2;
 }
-
-.hero-content h1 {
-  font-size: 2.2rem;
-  margin-bottom: 15px;
+.hero h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
 }
-
-.hero-content p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+.hero .lead {
+  font-size: 1.2em;
+  margin-bottom: 1em;
 }
-
 .ctas .btn {
-  margin: 5px;
-  border-radius: 25px;
-  transition: all 0.3s ease;
+  margin: 0 0.5em;
 }
 
-/* ================= SECTIONS ================= */
+/* -------------------- SECTIONS -------------------- */
 .section {
-  padding: 80px 20px;
+  padding: 4em 0;
 }
-
 .section-title {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 40px;
-  color: #1b3a57;
+  font-size: 2em;
+  margin-bottom: 2em;
+  color: #1f7a1f;
 }
 
-/* ================= PACKAGES ================= */
+/* -------------------- PACKAGES / CARDS -------------------- */
 .safari-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 2em;
 }
-
 .safari-card {
-  background-color: #fff;
-  border-radius: 12px;
+  background: #fff;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .safari-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
-
 .safari-card img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
 }
-
 .safari-card h3 {
-  font-size: 1.2rem;
-  margin: 10px;
+  margin: 0.5em 1em;
 }
-
 .safari-card p {
-  font-size: 0.95rem;
-  margin: 0 10px 15px 10px;
-  color: #555;
+  margin: 0 1em 1em;
+  font-size: 0.9em;
 }
 
-/* ================= DESTINATIONS ================= */
+/* -------------------- DESTINATIONS -------------------- */
 .dest-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 20px;
-}
-
-.dest-card {
+  gap: 1.5em;
   text-align: center;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  background-color: #fff;
 }
-
-.dest-card:hover {
-  transform: translateY(-8px);
-}
-
-.dest-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-}
-
 .dest-card h4 {
-  margin: 10px 0;
-  color: #1b3a57;
-  font-weight: 600;
+  margin-top: 0.5em;
+  font-size: 1.1em;
 }
 
-/* ================= GALLERY ================= */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-  gap: 10px;
-}
-
-.gallery-item {
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover {
-  transform: scale(1.05);
-}
-
-/* ================= BOOKING FORM ================= */
-.booking-form {
-  background: #f5f5f5;
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 900px;
-  margin: 0 auto;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
-}
-
-.booking-form textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-.booking-form .row.two {
-  display: flex;
-  gap: 15px;
-}
-
-.booking-form .row.two input,
-.booking-form .row.two select {
-  flex: 1;
-}
-
-.booking-form .form-actions {
-  text-align: center;
-}
-
-.booking-form .btn {
-  border-radius: 25px;
-  padding: 10px 25px;
-}
-
-/* ================= WHY CHOOSE US ================= */
+/* -------------------- WHY CHOOSE US -------------------- */
 .choose-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 2em;
 }
-
 .choose-card {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  background: #f0f9f0;
+  border-radius: 8px;
+  padding: 1.5em;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
 }
 
-.choose-card:hover {
-  transform: translateY(-8px);
-}
-
-/* ================= ABOUT US ================= */
+/* -------------------- ABOUT US -------------------- */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  grid-template-columns: 1fr 2fr;
+  gap: 2em;
   align-items: center;
 }
-
 .about-img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 8px;
   object-fit: cover;
 }
 
-.about-grid div h3 {
-  color: #1b3a57;
-  margin-bottom: 10px;
+/* -------------------- BOOKING FORM -------------------- */
+.booking-form {
+  background: #f0f9f0;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
 }
-
-.about-grid div p {
-  color: #555;
-  margin-bottom: 10px;
+.booking-form input, 
+.booking-form select, 
+.booking-form textarea {
+  width: 100%;
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 0.95em;
 }
-
-/* ================= REVIEWS ================= */
-.reviews-list blockquote {
-  background-color: #f5f5f5;
-  padding: 15px 20px;
-  border-left: 5px solid #1b3a57;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  font-style: italic;
+.booking-form textarea {
+  min-height: 100px;
 }
-
-/* ================= FOOTER ================= */
-.site-footer {
-  background-color: #1b3a57;
+.booking-form .row.two {
+  display: flex;
+  gap: 1em;
+}
+.booking-form .row.two input, .booking-form .row.two select {
+  flex: 1;
+}
+.booking-form .btn-primary {
+  background: #1f7a1f;
   color: #fff;
+  border: none;
+  padding: 0.8em 1.5em;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.booking-form .btn-primary:hover {
+  background: #145a14;
+}
+
+/* -------------------- REVIEWS -------------------- */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-style: italic;
+  font-size: 0.95em;
+}
+
+/* -------------------- FOOTER -------------------- */
+.site-footer {
+  background: #333;
+  color: #fff;
+  padding: 2em 0;
   text-align: center;
-  padding: 25px 20px;
 }
-
 .site-footer a {
-  color: #fdd835;
+  color: #1f7a1f;
 }
 
-/* ================= WHATSAPP FLOAT ================= */
+/* -------------------- WHATSAPP FLOAT -------------------- */
 .wa-float {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: #25d366;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
   color: #fff;
-  padding: 12px 15px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  padding: 0.8em 1em;
+  border-radius: 50px;
+  font-size: 1.3em;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   z-index: 1000;
-  transition: transform 0.3s ease;
 }
 
-.wa-float:hover {
-  transform: scale(1.1);
+/* -------------------- GALLERY -------------------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 1em;
 }
-
-/* ================= MODALS ================= */
+.gallery-item {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
 .img-modal {
   display: none;
   position: fixed;
-  top:0;
-  left:0;
+  top:0; left:0;
   width:100%;
   height:100%;
-  background-color: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.8);
   justify-content: center;
   align-items: center;
-  z-index: 10000;
+  z-index: 2000;
 }
-
 .img-modal img {
   max-width: 90%;
   max-height: 80%;
-  border-radius: 12px;
+  border-radius: 8px;
 }
-
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 25px;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
+  top:20px;
+  right:20px;
+  font-size: 1.5em;
+  color:#fff;
+  background:none;
+  border:none;
+  cursor:pointer;
 }
 
-/* ================= FADE-IN ANIMATIONS ================= */
+/* -------------------- BUTTONS -------------------- */
+.btn {
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.btn-primary {
+  background: #1f7a1f;
+  color: #fff;
+  border: none;
+}
+.btn-primary:hover {
+  background: #145a14;
+}
+.btn-outline {
+  border: 1px solid #1f7a1f;
+  color: #1f7a1f;
+  background: none;
+}
+.btn-outline:hover {
+  background: #1f7a1f;
+  color: #fff;
+}
+
+/* -------------------- ANIMATIONS -------------------- */
 .fade-in, .fade-in-up {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 1s forwards;
 }
-
-.fade-in-up {
-  animation-delay: 0.3s;
-}
-
+.fade-in-up:nth-child(1){animation-delay:0.2s;}
+.fade-in-up:nth-child(2){animation-delay:0.4s;}
+.fade-in-up:nth-child(3){animation-delay:0.6s;}
+.fade-in-up:nth-child(4){animation-delay:0.8s;}
 @keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ================= DARK MODE ================= */
-body.dark-mode {
-  background-color: #121212;
-  color: #ddd;
-}
-
-body.dark-mode .site-header {
-  background-color: rgba(18,18,18,0.95);
-}
-
-body.dark-mode .safari-card,
-body.dark-mode .dest-card,
-body.dark-mode .choose-card,
-body.dark-mode .booking-form,
-body.dark-mode .reviews-list blockquote {
-  background-color: #1e1e1e;
-  color: #ddd;
-}
-
-body.dark-mode a, body.dark-mode .nav-links li a {
-  color: #ddd;
-}
-
-body.dark-mode .nav-links li a:hover, body.dark-mode .dropdown-menu li button:hover {
-  background-color: #444;
+  to {opacity:1; transform: translateY(0);}
 }
