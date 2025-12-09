@@ -3,9 +3,7 @@ const slides = document.querySelectorAll('.hero-slideshow .slide');
 let currentSlide = 0;
 
 function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-  });
+  slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
 }
 
 function nextSlide() {
@@ -13,8 +11,8 @@ function nextSlide() {
   showSlide(currentSlide);
 }
 
-setInterval(nextSlide, 5000);
 showSlide(currentSlide);
+setInterval(nextSlide, 5000);
 
 // ===== DROPDOWN =====
 document.querySelectorAll('.dropdown').forEach(dropdown => {
@@ -23,20 +21,18 @@ document.querySelectorAll('.dropdown').forEach(dropdown => {
 
   btn.addEventListener('click', e => {
     e.preventDefault();
+    menu.classList.toggle('show');
     // Close other dropdowns
     document.querySelectorAll('.dropdown-menu').forEach(m => {
       if(m !== menu) m.classList.remove('show');
     });
-    menu.classList.toggle('show');
   });
 });
 
 // Close dropdown if clicked outside
 document.addEventListener('click', e => {
   if(!e.target.closest('.dropdown')) {
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-      menu.classList.remove('show');
-    });
+    document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.remove('show'));
   }
 });
 
