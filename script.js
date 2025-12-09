@@ -1,152 +1,157 @@
-/* -----------------------------------------------------------
-   DARK MODE TOGGLE
------------------------------------------------------------ */
-const darkToggle = document.getElementById("dark-mode-toggle");
-darkToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  darkToggle.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
-});
+// =============================
+// HERO SLIDESHOW
+// =============================
+const slides = document.querySelectorAll('.hero-slideshow .slide');
+let currentSlide = 0;
 
-/* -----------------------------------------------------------
-   FADE-IN ON SCROLL
------------------------------------------------------------ */
-const faders = document.querySelectorAll(".fade-in, .fade-in-up");
-const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.style.opacity = i === index ? 1 : 0;
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+showSlide(currentSlide);
+setInterval(nextSlide, 4000); // Change slide every 4 seconds
+
+// =============================
+// FADE-IN ON SCROLL
+// =============================
+const faders = document.querySelectorAll('.fade-in, .fade-in-up');
+
+const appearOptions = {
+  threshold: 0.2,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
-    entry.target.classList.add("visible");
-    observer.unobserve(entry.target);
+    entry.target.classList.add('visible');
+    appearOnScroll.unobserve(entry.target);
   });
 }, appearOptions);
 
-faders.forEach(fader => appearOnScroll.observe(fader));
-
-/* -----------------------------------------------------------
-   HERO SLIDESHOW
------------------------------------------------------------ */
-let slideIndex = 0;
-const slides = document.querySelectorAll(".hero-slideshow img");
-
-function showSlides() {
-  slides.forEach((slide, i) => slide.style.display = "none");
-  slideIndex++;
-  if (slideIndex > slides.length) slideIndex = 1;
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 6000);
-}
-showSlides();
-
-/* -----------------------------------------------------------
-   GALLERY MODAL
------------------------------------------------------------ */
-const galleryImages = document.querySelectorAll(".gallery-item");
-const modal = document.getElementById("img-modal");
-const modalImg = document.getElementById("modal-img");
-const modalClose = document.getElementById("modal-close");
-
-galleryImages.forEach(img => {
-  img.addEventListener("click", () => {
-    modal.style.display = "flex";
-    modalImg.src = img.src;
-  });
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
 });
 
-modalClose.addEventListener("click", () => {
-  modal.style.display = "none";
+// =============================
+// NAV TOGGLE FOR MOBILE
+// =============================
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle.addEventListener('click', () => {
+  const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+  navToggle.setAttribute('aria-expanded', !expanded);
+  navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
 });
 
-modal.addEventListener("click", (e) => {
-  if(e.target === modal) modal.style.display = "none";
-});
+// =============================
+// SEQUENTIAL DROPDOWN (PACKAGES -> VENUE -> DAYS)
+// =============================
+const dropdownBtn = document.querySelector('.dropdown-btn');
+const dropdownMenu = document.querySelector('.dropdown-menu');
 
-/* -----------------------------------------------------------
-   HEADER SHADOW ON SCROLL
------------------------------------------------------------ */
-const header = document.querySelector(".site-header");
-window.addEventListener("scroll", () => {
-  if(window.scrollY > 50) header.classList.add("header-shadow");
-  else header.classList.remove("header-shadow");
-});
-
-/* -----------------------------------------------------------
-   SMOOTH SCROLL FOR LINKS
------------------------------------------------------------ */
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", (e) => {
-    if(link.hash !== "") {
-      e.preventDefault();
-      const target = document.querySelector(link.hash);
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  });
-});
-
-/* -----------------------------------------------------------
-   WHATSAPP PULSE
------------------------------------------------------------ */
-const waBtn = document.querySelector(".wa-float");
-setInterval(() => {
-  waBtn.classList.toggle("pulse");
-}, 1200);
-
-/* -----------------------------------------------------------
-   PARALLAX SCROLL EFFECT
------------------------------------------------------------ */
-window.addEventListener("scroll", () => {
-  const parallaxElements = document.querySelectorAll(".parallax");
-  parallaxElements.forEach(el => {
-    const speed = 0.5; // adjust parallax speed
-    const offset = window.scrollY * speed;
-    el.style.backgroundPositionY = `-${offset}px`;
-  });
-});
-
-/* -----------------------------------------------------------
-   NAV TOGGLE (MOBILE)
------------------------------------------------------------ */
-const navToggle = document.getElementById("nav-toggle");
-const navLinks = document.getElementById("nav-links");
-navToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
-});
-
-/* -----------------------------------------------------------
-   SEQUENTIAL DROPDOWN: VENUE -> DAYS
------------------------------------------------------------ */
-const venueButtons = document.querySelectorAll("#venue-menu li button");
-const daysMenu = document.getElementById("days-menu");
-
-// Define days for each venue
-const venueDays = {
-  "amboseli": ["1 Day", "2 Days", "3 Days"],
-  "maasai-mara": ["1 Day", "2 Days", "3 Days", "4 Days"],
-  "tsavo": ["1 Day", "2 Days", "3 Days", "5 Days"],
-  "samburu": ["1 Day", "2 Days", "3 Days"],
-  "diani": ["1 Day", "2 Days", "3 Days", "5 Days"],
-  "nairobi-np": ["Half Day", "Full Day"]
+// Define venues and days
+const packagesData = {
+  "Amboseli": ["1 Day", "2 Days", "3 Days"],
+  "Maasai Mara": ["1 Day", "2 Days", "3 Days"],
+  "Tsavo East": ["1 Day", "2 Days", "3 Days"],
+  "Tsavo West": ["1 Day", "2 Days", "3 Days"],
+  "Lake Nakuru": ["1 Day", "2 Days", "3 Days"],
+  "Samburu": ["1 Day", "2 Days", "3 Days"],
+  "Diani + Safari": ["1 Day", "2 Days", "3 Days"],
+  "Nairobi NP": ["1 Day", "2 Days", "3 Days"]
 };
 
-venueButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const venue = btn.parentElement.dataset.venue;
-    // Clear previous days
-    daysMenu.innerHTML = "";
-    venueDays[venue].forEach(day => {
-      const li = document.createElement("li");
-      const b = document.createElement("button");
-      b.textContent = day;
-      li.appendChild(b);
-      daysMenu.appendChild(li);
-    });
-    // Show sub-menu
-    daysMenu.style.display = "block";
+// Clear menu and populate venues
+function populateVenues() {
+  dropdownMenu.innerHTML = '';
+  Object.keys(packagesData).forEach(venue => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.textContent = venue + ' ➤';
+    btn.addEventListener('click', () => populateDays(venue));
+    li.appendChild(btn);
+    dropdownMenu.appendChild(li);
+  });
+}
+
+// Populate days when a venue is clicked
+function populateDays(venue) {
+  const subMenu = document.createElement('ul');
+  subMenu.classList.add('sub-menu');
+  packagesData[venue].forEach(day => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.textContent = day;
+    li.appendChild(btn);
+    subMenu.appendChild(li);
+  });
+  // Remove existing sub-menu if any
+  const existing = dropdownMenu.querySelector('.sub-menu');
+  if (existing) existing.remove();
+  dropdownMenu.appendChild(subMenu);
+  subMenu.classList.add('show');
+}
+
+// Initialize dropdown on hover
+dropdownBtn.addEventListener('mouseenter', populateVenues);
+
+// =============================
+// DARK MODE TOGGLE
+// =============================
+const langToggle = document.getElementById('lang-toggle');
+langToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  langToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : 'EN';
+});
+
+// =============================
+// WHATSAPP FLOATING BUTTON EFFECT
+// =============================
+const waFloat = document.getElementById('wa-float');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 200) {
+    waFloat.style.bottom = '20px';
+    waFloat.style.opacity = 1;
+  } else {
+    waFloat.style.bottom = '-60px';
+    waFloat.style.opacity = 0;
+  }
+});
+
+// =============================
+// GALLERY MODAL
+// =============================
+const galleryItems = document.querySelectorAll('.gallery-item');
+const modal = document.getElementById('img-modal');
+const modalImg = document.getElementById('modal-img');
+const modalClose = document.getElementById('modal-close');
+
+galleryItems.forEach(item => {
+  item.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    modalImg.src = item.src;
+    modalImg.alt = item.alt;
   });
 });
 
-// Hide sub-menu when clicking outside
-document.addEventListener("click", (e) => {
-  if(!e.target.closest(".dropdown")) {
-    daysMenu.style.display = "none";
-  }
+modalClose.addEventListener('click', () => {
+  modal.style.display = 'none';
 });
+
+modal.addEventListener('click', e => {
+  if (e.target === modal) modal.style.display = 'none';
+});
+
+// =============================
+// CURRENT YEAR IN FOOTER
+// =============================
+document.getElementById('year').textContent = new Date().getFullYear();
