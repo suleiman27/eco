@@ -1,58 +1,84 @@
-// Mobile nav toggle
-const navToggle = document.getElementById('nav-toggle');
-const navLinks = document.getElementById('nav-links');
-navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-  navToggle.setAttribute('aria-expanded', navLinks.classList.contains('show'));
-});
+/* ------------------------------------
+   MOBILE NAVIGATION TOGGLE
+------------------------------------ */
+const menuIcon = document.querySelector(".menu-icon");
+const navMenu = document.querySelector("nav ul");
 
-// Hero slideshow
-const slides = document.querySelectorAll('.hero-slideshow .slide');
-let currentSlide = 0;
-
-function showNextSlide() {
-  slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + 1) % slides.length;
-  slides[currentSlide].classList.add('active');
+if (menuIcon) {
+  menuIcon.addEventListener("click", () => {
+    navMenu.classList.toggle("open");
+  });
 }
 
-window.addEventListener('load', () => {
-  slides[currentSlide].classList.add('active');
-  setInterval(showNextSlide, 5000);
+/* ------------------------------------
+   IMAGE LIGHTBOX (Gallery Popup)
+------------------------------------ */
+const galleryImages = document.querySelectorAll(".gallery img");
+
+galleryImages.forEach(img => {
+  img.addEventListener("click", () => openLightbox(img.src));
 });
 
-// Citizenship toggle
-const citizenship = document.getElementById('citizenship');
-const idNumber = document.getElementById('idNumber');
-const passportNumber = document.getElementById('passportNumber');
-citizenship.addEventListener('change', () => {
-  if (citizenship.value === 'citizen') {
-    idNumber.style.display = 'block';
-    passportNumber.style.display = 'none';
-  } else if (citizenship.value === 'non-citizen') {
-    passportNumber.style.display = 'block';
-    idNumber.style.display = 'none';
-  } else {
-    idNumber.style.display = 'none';
-    passportNumber.style.display = 'none';
-  }
+function openLightbox(src) {
+  const lightbox = document.createElement("div");
+  lightbox.classList.add("lightbox");
+
+  lightbox.innerHTML = `
+    <div class="lightbox-content">
+        <img src="${src}">
+    </div>
+  `;
+
+  document.body.appendChild(lightbox);
+
+  // Close on click
+  lightbox.addEventListener("click", () => lightbox.remove());
+}
+
+/* ------------------------------------
+   FADE-IN SCROLL ANIMATIONS
+------------------------------------ */
+const faders = document.querySelectorAll(".fade-in");
+
+const appearOptions = {
+  threshold: 0.3,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("appear");
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
 });
 
-// Dynamic year
-document.getElementById('year').textContent = new Date().getFullYear();
+/* ------------------------------------
+   SMOOTH SCROLL FOR NAV LINKS
+------------------------------------ */
+const navLinks = document.querySelectorAll("nav ul li a");
 
-// Gallery modal
-const galleryItems = document.querySelectorAll('.gallery-item');
-const modal = document.getElementById('img-modal');
-const modalImg = document.getElementById('modal-img');
-const modalClose = document.getElementById('modal-close');
-
-galleryItems.forEach(item => {
-  item.addEventListener('click', () => {
-    modal.style.display = 'flex';
-    modalImg.src = item.src;
-    modalImg.alt = item.alt;
+navLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    if (link.hash !== "") {
+      e.preventDefault();
+      const target = document.querySelector(link.hash);
+      target.scrollIntoView({ behavior: "smooth" });
+    }
   });
 });
-modalClose.addEventListener('click', () => modal.style.display = 'none');
-modal.addEventListener('click', e => { if(e.target===modal) modal.style.display='none'; });
+
+/* ------------------------------------
+   WHATSAPP BUTTON FLOAT ANIMATION
+------------------------------------ */
+const whatsapp = document.querySelector(".whatsapp-float");
+
+if (whatsapp) {
+  setInterval(() => {
+    whatsapp.classList.toggle("pulse");
+  }, 1500);
+}
