@@ -1,119 +1,152 @@
-/* --------------------------------------------------
+/* -----------------------------------------------------------
    DARK MODE TOGGLE
--------------------------------------------------- */
-const themeToggle = document.getElementById("themeToggle");
-const body = document.body;
-
-// Load saved mode
-if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark-mode");
-  themeToggle.textContent = "☀️"; // Sun icon
-}
-
-// Toggle theme
-themeToggle.addEventListener("click", () => {
-  body.classList.toggle("dark-mode");
-
-  if (body.classList.contains("dark-mode")) {
-    themeToggle.textContent = "☀️";
-    localStorage.setItem("theme", "dark");
-  } else {
-    themeToggle.textContent = "🌙";
-    localStorage.setItem("theme", "light");
-  }
+----------------------------------------------------------- */
+const darkToggle = document.getElementById("dark-mode-toggle");
+darkToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  darkToggle.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
 });
 
-/* --------------------------------------------------
+/* -----------------------------------------------------------
    FADE-IN ON SCROLL
--------------------------------------------------- */
-const faders = document.querySelectorAll(".fade-in");
-
-const appearOptions = {
-  threshold: 0.2,
-  rootMargin: "0px 0px -20px 0px"
-};
-
+----------------------------------------------------------- */
+const faders = document.querySelectorAll(".fade-in, .fade-in-up");
+const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
 const appearOnScroll = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
-
-    entry.target.classList.add("appear");
+    entry.target.classList.add("visible");
     observer.unobserve(entry.target);
   });
 }, appearOptions);
 
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
-});
+faders.forEach(fader => appearOnScroll.observe(fader));
 
-/* --------------------------------------------------
-   HERO SLIDESHOW AUTO FIX (PREVENT HANGING)
--------------------------------------------------- */
+/* -----------------------------------------------------------
+   HERO SLIDESHOW
+----------------------------------------------------------- */
 let slideIndex = 0;
-const slides = document.querySelector(".slides");
-const totalSlides = slides.children.length;
+const slides = document.querySelectorAll(".hero-slideshow img");
 
-function autoSlide() {
+function showSlides() {
+  slides.forEach((slide, i) => slide.style.display = "none");
   slideIndex++;
-  if (slideIndex > totalSlides - 1) slideIndex = 0;
-
-  slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+  if (slideIndex > slides.length) slideIndex = 1;
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 6000);
 }
+showSlides();
 
-setInterval(autoSlide, 6000);
-
-/* --------------------------------------------------
-   LIGHTBOX FOR GALLERY IMAGES
--------------------------------------------------- */
-const galleryImages = document.querySelectorAll(".gallery img");
+/* -----------------------------------------------------------
+   GALLERY MODAL
+----------------------------------------------------------- */
+const galleryImages = document.querySelectorAll(".gallery-item");
+const modal = document.getElementById("img-modal");
+const modalImg = document.getElementById("modal-img");
+const modalClose = document.getElementById("modal-close");
 
 galleryImages.forEach(img => {
   img.addEventListener("click", () => {
-    const lightbox = document.createElement("div");
-    lightbox.className = "lightbox";
-
-    const largeImg = document.createElement("img");
-    largeImg.src = img.src;
-    lightbox.appendChild(largeImg);
-
-    document.body.appendChild(lightbox);
-
-    // Close when clicked
-    lightbox.addEventListener("click", () => {
-      lightbox.remove();
-    });
+    modal.style.display = "flex";
+    modalImg.src = img.src;
   });
 });
 
-/* --------------------------------------------------
-   HEADER SHADOW ON SCROLL
--------------------------------------------------- */
-window.addEventListener("scroll", () => {
-  const header = document.querySelector("header");
-  if (window.scrollY > 50) {
-    header.classList.add("header-shadow");
-  } else {
-    header.classList.remove("header-shadow");
-  }
+modalClose.addEventListener("click", () => {
+  modal.style.display = "none";
 });
 
-/* --------------------------------------------------
-   SMOOTH SCROLL FOR MENU LINKS
--------------------------------------------------- */
+modal.addEventListener("click", (e) => {
+  if(e.target === modal) modal.style.display = "none";
+});
+
+/* -----------------------------------------------------------
+   HEADER SHADOW ON SCROLL
+----------------------------------------------------------- */
+const header = document.querySelector(".site-header");
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 50) header.classList.add("header-shadow");
+  else header.classList.remove("header-shadow");
+});
+
+/* -----------------------------------------------------------
+   SMOOTH SCROLL FOR LINKS
+----------------------------------------------------------- */
 document.querySelectorAll("nav a").forEach(link => {
   link.addEventListener("click", (e) => {
-    if (link.hash !== "") {
+    if(link.hash !== "") {
       e.preventDefault();
-      const section = document.querySelector(link.hash);
-      section.scrollIntoView({ behavior: "smooth" });
+      const target = document.querySelector(link.hash);
+      target.scrollIntoView({ behavior: "smooth" });
     }
   });
 });
 
-/* --------------------------------------------------
-   WHATSAPP PULSE EFFECT
--------------------------------------------------- */
-const whatsappButton = document.querySelector(".whatsapp-float");
+/* -----------------------------------------------------------
+   WHATSAPP PULSE
+----------------------------------------------------------- */
+const waBtn = document.querySelector(".wa-float");
 setInterval(() => {
-  whatsappButton.classList.toggle("pulse");
+  waBtn.classList.toggle("pulse");
 }, 1200);
+
+/* -----------------------------------------------------------
+   PARALLAX SCROLL EFFECT
+----------------------------------------------------------- */
+window.addEventListener("scroll", () => {
+  const parallaxElements = document.querySelectorAll(".parallax");
+  parallaxElements.forEach(el => {
+    const speed = 0.5; // adjust parallax speed
+    const offset = window.scrollY * speed;
+    el.style.backgroundPositionY = `-${offset}px`;
+  });
+});
+
+/* -----------------------------------------------------------
+   NAV TOGGLE (MOBILE)
+----------------------------------------------------------- */
+const navToggle = document.getElementById("nav-toggle");
+const navLinks = document.getElementById("nav-links");
+navToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
+
+/* -----------------------------------------------------------
+   SEQUENTIAL DROPDOWN: VENUE -> DAYS
+----------------------------------------------------------- */
+const venueButtons = document.querySelectorAll("#venue-menu li button");
+const daysMenu = document.getElementById("days-menu");
+
+// Define days for each venue
+const venueDays = {
+  "amboseli": ["1 Day", "2 Days", "3 Days"],
+  "maasai-mara": ["1 Day", "2 Days", "3 Days", "4 Days"],
+  "tsavo": ["1 Day", "2 Days", "3 Days", "5 Days"],
+  "samburu": ["1 Day", "2 Days", "3 Days"],
+  "diani": ["1 Day", "2 Days", "3 Days", "5 Days"],
+  "nairobi-np": ["Half Day", "Full Day"]
+};
+
+venueButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const venue = btn.parentElement.dataset.venue;
+    // Clear previous days
+    daysMenu.innerHTML = "";
+    venueDays[venue].forEach(day => {
+      const li = document.createElement("li");
+      const b = document.createElement("button");
+      b.textContent = day;
+      li.appendChild(b);
+      daysMenu.appendChild(li);
+    });
+    // Show sub-menu
+    daysMenu.style.display = "block";
+  });
+});
+
+// Hide sub-menu when clicking outside
+document.addEventListener("click", (e) => {
+  if(!e.target.closest(".dropdown")) {
+    daysMenu.style.display = "none";
+  }
+});
