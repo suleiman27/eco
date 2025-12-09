@@ -1,333 +1,240 @@
-/* -----------------------------------------------------------
-   RESET
------------------------------------------------------------ */
+/* ============================= */
+/* RESET & BASE STYLES           */
+/* ============================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', Arial, sans-serif;
 }
 
 body {
-  background: #fefefe;
-  color: #1a1a1a;
-  transition: background 0.3s, color 0.3s;
-  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #222;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 img {
   max-width: 100%;
   display: block;
-  user-select: none;
 }
 
-/* -----------------------------------------------------------
-   DARK MODE
------------------------------------------------------------ */
-body.dark-mode {
-  background: #0f0f0f;
-  color: #e6e6e6;
-}
-
-body.dark-mode .site-header {
-  background: rgba(20, 20, 20, 0.85);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.7);
-}
-
-body.dark-mode a,
-body.dark-mode .nav-links li button,
-body.dark-mode .nav-links li a {
-  color: #e6e6e6;
-}
-
-body.dark-mode .safari-card {
-  background: #1c1c1c;
-}
-
-body.dark-mode .dropdown-menu,
-body.dark-mode .sub-menu {
-  background: #222;
-}
-
-body.dark-mode footer {
-  background: #111;
-}
-
-/* -----------------------------------------------------------
-   CONTAINER
------------------------------------------------------------ */
+/* ============================= */
+/* CONTAINER & GRID              */
+/* ============================= */
 .container {
   width: 90%;
-  max-width: 1250px;
-  margin: auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* -----------------------------------------------------------
-   HEADER
------------------------------------------------------------ */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.row.two > * {
+  flex: 1 1 calc(50% - 1rem);
+}
+
+/* ============================= */
+/* HEADER / NAVIGATION           */
+/* ============================= */
 .site-header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
+  background: rgba(255,255,255,0.95);
+  z-index: 999;
   width: 100%;
-  padding: 12px 0;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-  z-index: 9999;
-  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 70px;
 }
 
-/* BRAND */
 .brand {
-  font-size: 26px;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: #0a3d2e;
-}
-.accent {
-  color: #e4b10e;
 }
 
-/* NAV LINKS */
+.brand .accent {
+  color: #008000;
+}
+
 .nav-links {
   display: flex;
-  gap: 22px;
   list-style: none;
   align-items: center;
+  gap: 1.5rem;
 }
 
-.nav-links li a,
-.nav-links li button {
-  text-decoration: none;
-  color: #222;
-  font-weight: 600;
-  font-size: 16px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.nav-links li a:hover,
-.nav-links li button:hover {
-  color: #e4b10e;
-}
-
-/* -----------------------------------------------------------
-   DROPDOWNS
------------------------------------------------------------ */
-.dropdown {
+.nav-links li {
   position: relative;
 }
 
-.dropdown-btn {
+.nav-links a,
+.nav-links button {
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-actions {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 
-.arrow {
-  margin-left: 5px;
-  font-size: 13px;
-}
-
-/* Dropdown Menu */
-.dropdown-menu {
+/* ============================= */
+/* DROPDOWN / SEQUENTIAL MENU    */
+/* ============================= */
+.dropdown-menu,
+.sub-menu {
   position: absolute;
-  top: 35px;
+  top: 100%;
   left: 0;
-  background: white;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-  border-radius: 6px;
-  padding: 10px 0;
+  background: #fff;
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   display: none;
-  min-width: 180px;
-  list-style: none;
-  z-index: 9900;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  z-index: 100;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu li {
-  padding: 8px 16px;
+.dropdown-menu li,
+.sub-menu li {
+  padding: 0.5rem 1rem;
 }
 
 .dropdown-menu li button {
   width: 100%;
   text-align: left;
-  font-size: 15px;
-  cursor: pointer;
+  font-weight: 500;
+}
+
+.sub-menu li button {
+  font-size: 0.95rem;
+}
+
+.dropdown:hover .dropdown-menu {
   display: flex;
-  justify-content: space-between;
 }
 
-.dropdown-menu li button:hover {
-  background: #f3f3f3;
-  border-radius: 4px;
+.dropdown-menu li:hover + .sub-menu,
+.sub-menu.show {
+  display: flex;
 }
 
-/* Submenu */
-.sub-menu {
-  position: absolute;
-  top: 0;
-  left: 180px;
-  background: #fff;
-  padding: 10px 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  display: none;
-  border-radius: 6px;
-  min-width: 170px;
-}
-
-.sub-menu li button:hover {
-  background: #f0f0f0;
-}
-
-/* -----------------------------------------------------------
-   HEADER BUTTONS
------------------------------------------------------------ */
-.btn-primary {
-  background: #e4b10e;
-  padding: 10px 18px;
-  border-radius: 6px;
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.btn-primary:hover {
-  background: #c99a08;
-}
-
-.btn-secondary {
-  padding: 10px 20px;
-  background: #ffffffbb;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.dark-toggle {
-  background: none;
-  border: 2px solid #333;
-  padding: 6px 10px;
-  border-radius: 50%;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* -----------------------------------------------------------
-   HERO SECTION
------------------------------------------------------------ */
+/* ============================= */
+/* HERO / SLIDESHOW / PARALLAX   */
+/* ============================= */
 .hero {
-  margin-top: 75px;
-  height: 78vh;
   position: relative;
+  height: 90vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-slideshow {
-  width: 300%;
-  display: flex;
+  position: absolute;
+  width: 100%;
   height: 100%;
-  animation: slideShow 18s infinite;
 }
 
-.hero-slideshow img {
+.hero-slideshow .slide {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-@keyframes slideShow {
-  0%,25% { transform: translateX(0%);}
-  33%,58% { transform: translateX(-100%);}
-  66%,91% { transform: translateX(-200%);}
-  100% { transform: translateX(-300%);}
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 .hero-overlay {
   position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.45);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 1;
 }
 
 .hero-content {
-  position: absolute;
-  bottom: 12%;
-  color: white;
-  max-width: 650px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
 }
 
 .hero-content h1 {
-  font-size: 42px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  animation: fadeInUp 1s ease forwards;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-.hero-content .lead {
-  font-size: 20px;
-  margin-bottom: 20px;
-  animation: fadeInUp 1.2s ease forwards;
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
-.ctas {
-  display: flex;
-  gap: 15px;
-  animation: fadeInUp 1.4s ease forwards;
+.ctas .btn {
+  margin: 0 0.5rem;
 }
 
-/* Parallax effect */
-.parallax {
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-}
-
-/* -----------------------------------------------------------
-   SECTIONS
------------------------------------------------------------ */
+/* ============================= */
+/* SECTIONS                       */
+/* ============================= */
 .section {
-  padding: 70px 0;
+  padding: 6rem 0 4rem 0;
 }
 
 .section-title {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  animation: fadeInUp 1s ease forwards;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
-/* -----------------------------------------------------------
-   SAFARI CARDS
------------------------------------------------------------ */
+/* ============================= */
+/* SAFARI GRID CARDS             */
+/* ============================= */
 .safari-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(270px,1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
 }
 
 .safari-card {
-  background: #f8f8f8;
+  background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  transition: 0.3s;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  transform: translateY(0);
-  animation: fadeInUp 1s ease forwards;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.safari-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
 .safari-card img {
@@ -336,205 +243,241 @@ body.dark-mode footer {
   object-fit: cover;
 }
 
-.safari-card:hover {
-  transform: translateY(-10px) scale(1.03);
+.safari-card h3 {
+  padding: 1rem;
+  font-size: 1.2rem;
 }
 
-/* -----------------------------------------------------------
-   DESTINATIONS
------------------------------------------------------------ */
+.safari-card p {
+  padding: 0 1rem 1rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* ============================= */
+/* DESTINATIONS CARDS             */
+/* ============================= */
 .dest-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
 }
 
 .dest-card img {
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
+  border-radius: 12px;
+  height: 150px;
   object-fit: cover;
-  transition: 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .dest-card img:hover {
   transform: scale(1.05);
 }
 
-/* -----------------------------------------------------------
-   BOOKING FORM
------------------------------------------------------------ */
+/* ============================= */
+/* WHY CHOOSE US GRID             */
+/* ============================= */
+.choose-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.choose-card {
+  background: #fff;
+  padding: 2rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.choose-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ============================= */
+/* ABOUT US                        */
+/* ============================= */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.about-img {
+  border-radius: 12px;
+}
+
+/* ============================= */
+/* BOOKING FORM                   */
+/* ============================= */
 .booking-form input,
 .booking-form select,
 .booking-form textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  transition: border-color 0.3s;
+  font-size: 1rem;
 }
 
-.booking-form input:focus,
-.booking-form select:focus,
-.booking-form textarea:focus {
-  border-color: #e4b10e;
-  outline: none;
+.booking-form button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 8px;
+  background: #008000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
 }
 
-.row.two {
-  display: flex;
-  gap: 20px;
+.booking-form button:hover {
+  background: #006400;
 }
 
-.row.two input,
-.row.two select {
-  flex: 1;
-}
-
-/* -----------------------------------------------------------
-   GALLERY
------------------------------------------------------------ */
+/* ============================= */
+/* GALLERY GRID                   */
+/* ============================= */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
 }
 
 .gallery-item {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .gallery-item:hover {
   transform: scale(1.05);
 }
 
-/* -----------------------------------------------------------
-   MODAL
------------------------------------------------------------ */
-.img-modal {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.85);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+/* ============================= */
+/* REVIEWS                         */
+/* ============================= */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-style: italic;
 }
 
-.img-modal img {
-  width: 70%;
-  max-width: 800px;
-  border-radius: 10px;
-}
-
-#modal-close {
-  position:absolute;
-  top:30px; right:30px;
-  font-size:24px;
-  background:none;
-  border:none;
-  color:white;
-  cursor:pointer;
-}
-
-/* -----------------------------------------------------------
-   FOOTER
------------------------------------------------------------ */
+/* ============================= */
+/* FOOTER                          */
+/* ============================= */
 .site-footer {
-  background: #0a3d2e;
-  color: white;
+  background: #222;
+  color: #fff;
+  padding: 2rem 0;
   text-align: center;
-  padding: 25px 0;
 }
 
-/* -----------------------------------------------------------
-   WHATSAPP FLOAT
------------------------------------------------------------ */
-.wa-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background: #25d366;
-  color: white;
-  border-radius: 50%;
-  font-size: 34px;
-  text-align: center;
-  line-height: 60px;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  z-index: 9999;
+/* ============================= */
+/* BUTTONS & NAV ACTIONS          */
+/* ============================= */
+.btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
 }
 
-/* -----------------------------------------------------------
-   ANIMATIONS
------------------------------------------------------------ */
-@keyframes fadeInUp {
-  0% {opacity:0; transform: translateY(20px);}
-  100% {opacity:1; transform: translateY(0);}
+.btn-primary {
+  background: #008000;
+  color: #fff;
 }
 
-.fade-in {
+.btn-primary:hover {
+  background: #006400;
+}
+
+.btn-outline {
+  border: 2px solid #008000;
+  color: #008000;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: #008000;
+  color: #fff;
+}
+
+/* ============================= */
+/* FADE-IN ANIMATIONS             */
+/* ============================= */
+.fade-in,
+.fade-in-up {
   opacity: 0;
-  transform: translateY(25px);
-  transition: all 1s ease;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.fade-in.visible {
-  opacity:1;
+.fade-in.visible,
+.fade-in-up.visible {
+  opacity: 1;
   transform: translateY(0);
 }
 
-/* -----------------------------------------------------------
-   MOBILE RESPONSIVE
------------------------------------------------------------ */
-@media (max-width:768px) {
+/* ============================= */
+/* DARK MODE                      */
+/* ============================= */
+body.dark-mode {
+  background-color: #111;
+  color: #eee;
+}
+
+body.dark-mode .site-header {
+  background: rgba(0,0,0,0.85);
+}
+
+body.dark-mode .safari-card,
+body.dark-mode .choose-card,
+body.dark-mode .about-grid,
+body.dark-mode .dest-card img {
+  background: #222;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+}
+
+body.dark-mode .btn-primary {
+  background: #0f0;
+  color: #111;
+}
+
+body.dark-mode .btn-outline {
+  border-color: #0f0;
+  color: #0f0;
+}
+
+/* ============================= */
+/* RESPONSIVE                     */
+/* ============================= */
+@media(max-width: 768px) {
   .nav-links {
-    display:none;
-    position:absolute;
-    top:72px; right:0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
     background: #fff;
-    width:220px;
-    padding:20px;
-    flex-direction: column;
-    gap:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    position: absolute;
+    top: 70px;
+    width: 100%;
   }
 
-  .nav-links.show {
-    display:flex;
+  .nav-links li {
+    padding: 0.5rem 1rem;
   }
 
-  #nav-toggle {
-    font-size:28px;
-    background:none;
-    border:none;
-    cursor:pointer;
+  .nav-toggle {
+    display: block;
   }
 
-  .hero {
-    height: 60vh;
-  }
-
-  .row.two {
-    flex-direction: column;
-  }
-
-  .dropdown-menu {
-    left:0;
-    top:35px;
-  }
-
-  .sub-menu {
-    left:100%;
-    top:0;
+  .about-grid {
+    grid-template-columns: 1fr;
   }
 }
