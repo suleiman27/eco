@@ -1,115 +1,109 @@
-// ==========================
-// DROPDOWN: VENUES -> DAYS
-// ==========================
-const dropdownBtn = document.querySelector(".dropdown-btn");
-const dropdownMenu = document.getElementById("venue-menu");
-const daysMenu = document.getElementById("days-menu");
+// ================= NAV TOGGLE =================
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
+// ================= HERO SLIDESHOW =================
+const slides = document.querySelectorAll('.hero-slideshow .slide');
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.style.opacity = i === index ? '1' : '0';
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+showSlide(currentSlide);
+setInterval(nextSlide, 5000);
+
+// ================= DROPDOWN SEQUENTIAL =================
+const venueMenuItems = document.querySelectorAll('#venue-menu li button');
+const daysMenu = document.getElementById('days-menu');
 
 // Define days for each venue
 const venueDays = {
-  "amboseli": ["1 Day Amboseli", "2 Days Amboseli", "3 Days Amboseli"],
-  "maasai-mara": ["1 Day Maasai Mara", "2 Days Maasai Mara", "3 Days Maasai Mara"],
-  "tsavo": ["1 Day Tsavo", "2 Days Tsavo", "3 Days Tsavo"],
-  "samburu": ["1 Day Samburu", "2 Days Samburu", "3 Days Samburu"],
-  "diani": ["1 Day Diani", "2 Days Diani", "3 Days Diani"],
-  "nairobi-np": ["1 Day Nairobi NP", "2 Days Nairobi NP", "3 Days Nairobi NP"]
+  'amboseli': ['1 Day Safari', '2 Days Safari', '3 Days Safari'],
+  'maasai-mara': ['1 Day Safari', '2 Days Safari', '3 Days Safari'],
+  'tsavo': ['1 Day Safari', '2 Days Safari', '3 Days Safari'],
+  'samburu': ['1 Day Safari', '2 Days Safari', '3 Days Safari'],
+  'diani': ['1 Day Beach + Safari', '2 Days Beach + Safari', '3 Days Beach + Safari'],
+  'nairobi-np': ['1 Day Safari', '2 Days Safari']
 };
 
-// Toggle venue menu
-dropdownBtn.addEventListener("click", e => {
-  e.preventDefault();
-  dropdownMenu.classList.toggle("active");
-  daysMenu.classList.remove("active");
-});
-
-// Populate days dynamically
-dropdownMenu.querySelectorAll("li").forEach(li => {
-  li.addEventListener("click", () => {
-    const venue = li.dataset.venue;
-    daysMenu.innerHTML = "";
+venueMenuItems.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const venue = btn.parentElement.getAttribute('data-venue');
+    daysMenu.innerHTML = '';
     venueDays[venue].forEach(day => {
-      const liDay = document.createElement("li");
-      const btn = document.createElement("button");
-      btn.textContent = day;
-      liDay.appendChild(btn);
-      daysMenu.appendChild(liDay);
+      const li = document.createElement('li');
+      const button = document.createElement('button');
+      button.textContent = day;
+      li.appendChild(button);
+      daysMenu.appendChild(li);
     });
-    daysMenu.classList.add("active");
+    daysMenu.style.display = 'flex';
   });
 });
 
-// Close dropdowns if click outside
-document.addEventListener("click", e => {
-  if (!dropdownBtn.contains(e.target) &&
-      !dropdownMenu.contains(e.target) &&
-      !daysMenu.contains(e.target)) {
-    dropdownMenu.classList.remove("active");
-    daysMenu.classList.remove("active");
+// Close days menu if clicked outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.dropdown')) {
+    daysMenu.style.display = 'none';
   }
 });
 
-// ==========================
-// HERO SLIDESHOW
-// ==========================
-let slideIndex = 0;
-const slides = document.querySelectorAll(".hero-slideshow .slide");
-function showSlides() {
-  slides.forEach((slide, i) => slide.style.opacity = 0);
-  slideIndex++;
-  if (slideIndex > slides.length) slideIndex = 1;
-  slides[slideIndex-1].style.opacity = 1;
-  setTimeout(showSlides, 4000);
-}
-showSlides();
-
-// ==========================
-// DARK MODE TOGGLE
-// ==========================
-const darkModeBtn = document.getElementById("dark-mode-toggle");
-darkModeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-});
-
-// ==========================
-// BOOKING FORM: Show ID/Passport based on citizenship
-// ==========================
-const citizenship = document.getElementById("citizenship");
-const idInput = document.getElementById("idNumber");
-const passportInput = document.getElementById("passportNumber");
-
-citizenship.addEventListener("change", () => {
-  if (citizenship.value === "citizen") {
-    idInput.style.display = "block";
-    passportInput.style.display = "none";
-  } else if (citizenship.value === "non-citizen") {
-    idInput.style.display = "none";
-    passportInput.style.display = "block";
-  } else {
-    idInput.style.display = "none";
-    passportInput.style.display = "none";
-  }
-});
-
-// ==========================
-// GALLERY MODAL
-// ==========================
-const galleryItems = document.querySelectorAll(".gallery-item");
-const modal = document.getElementById("img-modal");
-const modalImg = document.getElementById("modal-img");
-const modalClose = document.getElementById("modal-close");
+// ================= GALLERY MODAL =================
+const galleryItems = document.querySelectorAll('.gallery-item');
+const modal = document.getElementById('img-modal');
+const modalImg = document.getElementById('modal-img');
+const modalClose = document.getElementById('modal-close');
 
 galleryItems.forEach(item => {
-  item.addEventListener("click", () => {
-    modal.style.display = "flex";
+  item.addEventListener('click', () => {
+    modal.style.display = 'flex';
     modalImg.src = item.src;
   });
 });
 
-modalClose.addEventListener("click", () => {
-  modal.style.display = "none";
+modalClose.addEventListener('click', () => {
+  modal.style.display = 'none';
 });
 
-// ==========================
-// SET YEAR
-// ==========================
-document.getElementById("year").textContent = new Date().getFullYear();
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) modal.style.display = 'none';
+});
+
+// ================= DARK MODE =================
+const darkToggle = document.getElementById('dark-mode-toggle');
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});
+
+// ================= DYNAMIC BOOKING FORM =================
+const citizenship = document.getElementById('citizenship');
+const idNumber = document.getElementById('idNumber');
+const passportNumber = document.getElementById('passportNumber');
+
+citizenship.addEventListener('change', () => {
+  if (citizenship.value === 'citizen') {
+    idNumber.style.display = 'block';
+    passportNumber.style.display = 'none';
+  } else if (citizenship.value === 'non-citizen') {
+    passportNumber.style.display = 'block';
+    idNumber.style.display = 'none';
+  } else {
+    idNumber.style.display = 'none';
+    passportNumber.style.display = 'none';
+  }
+});
+
+// ================= CURRENT YEAR =================
+document.getElementById('year').textContent = new Date().getFullYear();
