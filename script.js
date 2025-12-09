@@ -17,32 +17,27 @@ setInterval(nextSlide, 5000);
 showSlide(currentSlide);
 
 // ===== DROPDOWN =====
-const dropdowns = document.querySelectorAll('.dropdown');
-
-dropdowns.forEach(dropdown => {
+document.querySelectorAll('.dropdown').forEach(dropdown => {
   const btn = dropdown.querySelector('.dropdown-btn');
   const menu = dropdown.querySelector('.dropdown-menu');
 
   btn.addEventListener('click', e => {
     e.preventDefault();
+    // Close other dropdowns
+    document.querySelectorAll('.dropdown-menu').forEach(m => {
+      if(m !== menu) m.classList.remove('show');
+    });
     menu.classList.toggle('show');
-  });
-
-  // Close when mouse leaves (desktop)
-  dropdown.addEventListener('mouseleave', () => {
-    menu.classList.remove('show');
   });
 });
 
 // Close dropdown if clicked outside
 document.addEventListener('click', e => {
-  dropdowns.forEach(dropdown => {
-    const menu = dropdown.querySelector('.dropdown-menu');
-    const btn = dropdown.querySelector('.dropdown-btn');
-    if (!dropdown.contains(e.target)) {
+  if(!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
       menu.classList.remove('show');
-    }
-  });
+    });
+  }
 });
 
 // ===== MOBILE NAV =====
