@@ -53,6 +53,7 @@ body {
   color: #fff;
   padding: 0.5rem 1rem;
   display: block;
+  cursor: pointer;
 }
 
 .nav-toggle {
@@ -343,42 +344,9 @@ body {
   .nav-toggle {
     display: block;
   }
- /* ========================
-   DROPDOWNS
-======================== */
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #0b4d22; /* darker green */
-  padding: 0.5rem 0;
-  border-radius: 4px;
-  min-width: 180px;
-  z-index: 1000;
-}
-
-.dropdown-menu li {
-  padding: 0;
-}
-
-.dropdown-menu button {
-  width: 100%;
-  padding: 0.5rem 1rem;
-  text-align: left;
-  background: none;
-  border: none;
-  color: #e6f5ea;
-  cursor: pointer;
-}
-
-.dropdown-menu button:hover {
-  background: #1a7031;
-  color: #fff;
-}
-
+  .dropdown-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
 }
