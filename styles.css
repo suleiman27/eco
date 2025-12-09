@@ -1,46 +1,62 @@
-/* ===== Reset ===== */
+/* ========================
+   GLOBAL RESET & BASE
+========================= */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background-color: #eaf4ea;
-  color: #1f3d1f;
+  font-family: 'Arial', sans-serif;
   line-height: 1.6;
+  color: #222;
+  background-color: #f7fdf5; /* light greenish */
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* ===== HEADER / NAV ===== */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ========================
+   HEADER & NAV
+========================= */
 .site-header {
-  width: 100%;
-  background-color: #3a6b3a;
+  background-color: #3a7d44;
   color: #fff;
-  position: fixed;
+  position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 1000;
 }
 
-.nav.container {
+.nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  justify-content: space-between;
+  padding: 1rem 0;
 }
 
 .brand {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .brand .accent {
-  color: #a1dba1;
+  color: #d4ffb2;
 }
 
 .nav-links {
-  list-style: none;
   display: flex;
+  list-style: none;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -49,55 +65,15 @@ body {
 }
 
 .nav-links a,
-.dropdown-btn {
-  text-decoration: none;
+.nav-links button {
   color: #fff;
-  padding: 0.5rem 1rem;
-  display: block;
-}
-
-.nav-toggle {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
   border: none;
-  color: #fff;
+  background: none;
   cursor: pointer;
 }
 
-/* ===== DROPDOWN ===== */
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #2d562d;
-  min-width: 180px;
-  border-radius: 4px;
-  overflow: hidden;
-  z-index: 10;
-}
-
-.dropdown-menu li button {
-  background: none;
-  border: none;
-  width: 100%;
-  text-align: left;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.dropdown-menu li button:hover {
-  background-color: #1f3d1f;
-  color: #a1dba1;
-}
-
-.dropdown-menu.show {
-  display: block;
-}
-
-/* ===== NAV ACTIONS ===== */
 .nav-actions {
   display: flex;
   gap: 0.5rem;
@@ -108,16 +84,17 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
-  background-color: #6fae6f;
-  color: #fff;
+  background-color: #d4ffb2;
+  color: #3a7d44;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #558055;
+  background-color: #b0e17b;
 }
 
 .btn-outline {
@@ -128,20 +105,57 @@ body {
 
 .btn-outline:hover {
   background-color: #fff;
-  color: #3a6b3a;
+  color: #3a7d44;
 }
 
-/* ===== HERO ===== */
+/* ========================
+   DROPDOWN MENU
+========================= */
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.arrow {
+  font-size: 0.7rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  background-color: #4e8b5e;
+  border-radius: 0 0 4px 4px;
+  min-width: 160px;
+  z-index: 100;
+}
+
+.dropdown-menu li button {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  text-align: left;
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* ========================
+   HERO SLIDESHOW
+========================= */
 .hero {
-  margin-top: 70px;
   position: relative;
-  height: 80vh;
+  height: 70vh;
   overflow: hidden;
 }
 
 .hero-slideshow img {
   width: 100%;
-  height: 80vh;
+  height: 70vh;
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -159,16 +173,17 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(58, 107, 58, 0.4);
+  height: 70vh;
+  background-color: rgba(0,0,0,0.35);
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #fff;
-  padding: 1rem;
+  text-align: center;
 }
 
 .hero-content h1 {
@@ -178,7 +193,7 @@ body {
 
 .hero-content p.lead {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .ctas {
@@ -188,167 +203,234 @@ body {
   flex-wrap: wrap;
 }
 
-/* ===== SECTIONS ===== */
+/* ========================
+   SECTIONS
+========================= */
 .section {
-  padding: 3rem 1rem;
+  padding: 4rem 0;
 }
 
 .section-title {
-  text-align: center;
-  margin-bottom: 2rem;
   font-size: 2rem;
-  color: #1f3d1f;
+  margin-bottom: 2rem;
+  color: #3a7d44;
 }
 
+/* ========================
+   SAFARI CARDS
+========================= */
 .safari-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
 }
 
 .safari-card {
-  background-color: #f0f9f0;
-  padding: 1rem;
+  background-color: #e6f2e8;
   border-radius: 8px;
-  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.safari-card:hover {
+  transform: translateY(-5px);
 }
 
 .safari-card img {
   width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  height: 180px;
+  object-fit: cover;
 }
 
-/* ===== DESTINATIONS ===== */
+.safari-card h3 {
+  margin: 0.5rem 1rem;
+  color: #2f5c36;
+}
+
+.safari-card p {
+  margin: 0 1rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* ========================
+   DESTINATION CARDS
+========================= */
 .dest-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
 }
 
 .dest-card {
-  background-color: #d6ead6;
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
+  background-color: #e6f2e8;
 }
 
 .dest-card img {
   width: 100%;
-  object-fit: cover;
   height: 150px;
+  object-fit: cover;
 }
 
-/* ===== WHY CHOOSE US ===== */
+.dest-card h4 {
+  padding: 0.5rem;
+  color: #2f5c36;
+}
+
+/* ========================
+   WHY CHOOSE US
+========================= */
 .choose-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
 }
 
 .choose-card {
-  background-color: #c3e6c3;
-  padding: 1rem;
+  background-color: #e6f2e8;
   border-radius: 8px;
+  padding: 1rem;
   text-align: center;
 }
 
-/* ===== ABOUT & BOOKING HALF SCREEN ===== */
-.half-section {
-  max-width: 50%;
-  margin: auto;
+.choose-card h3 {
+  color: #3a7d44;
+  margin-bottom: 0.5rem;
 }
 
-.about-grid, .booking-form {
+/* ========================
+   ABOUT & HALF-SECTIONS
+========================= */
+.half-section .about-grid {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
 }
 
 .about-img {
   width: 100%;
+  max-width: 400px;
   border-radius: 8px;
-  object-fit: cover;
 }
 
-/* ===== BOOKING FORM ===== */
+/* ========================
+   BOOKING FORM
+========================= */
 .booking-form {
-  background-color: #f0f9f0;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #e6f2e8;
+  padding: 2rem;
   border-radius: 8px;
 }
 
 .booking-form .row.two {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
 .booking-form input,
 .booking-form select,
 .booking-form textarea {
-  width: 100%;
   padding: 0.5rem;
   border-radius: 4px;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
+  flex: 1;
 }
 
 .booking-form textarea {
   resize: vertical;
 }
 
-.form-actions {
-  text-align: center;
+/* ========================
+   REVIEWS
+========================= */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-/* ===== FOOTER ===== */
-.site-footer {
-  background-color: #3a6b3a;
-  color: #fff;
+.reviews-list blockquote {
+  background-color: #e6f2e8;
   padding: 1rem;
+  border-radius: 8px;
+  font-style: italic;
+  color: #2f5c36;
+}
+
+/* ========================
+   FOOTER
+========================= */
+.site-footer {
+  background-color: #3a7d44;
+  color: #fff;
+  padding: 1rem 0;
   text-align: center;
 }
 
-/* ===== WHATSAPP FLOATING BUTTON ===== */
+/* ========================
+   WHATSAPP FLOAT
+========================= */
 .wa-float {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  font-size: 2rem;
   background-color: #25d366;
   color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-size: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  padding: 0.5rem 0.6rem;
+  border-radius: 50%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width: 1024px) {
-  .half-section {
-    max-width: 90%;
-  }
+.wa-float:hover {
+  transform: scale(1.1);
 }
 
-@media(max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    gap: 0;
-    background-color: #2d562d;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-    border-radius: 4px;
-    overflow: hidden;
-  }
+/* ========================
+   DARK MODE
+========================= */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
 
-  .nav-links.show {
-    display: flex !important;
-  }
+body.dark-mode .site-header {
+  background-color: #222;
+}
 
-  .nav-toggle {
-    display: block;
-  }
+body.dark-mode .nav-links a,
+body.dark-mode .nav-links button {
+  color: #f0f0f0;
+}
+
+body.dark-mode .dropdown-menu {
+  background-color: #333;
+}
+
+body.dark-mode .safari-card,
+body.dark-mode .dest-card,
+body.dark-mode .choose-card,
+body.dark-mode .booking-form,
+body.dark-mode .reviews-list blockquote {
+  background-color: #2b2b2b;
+  color: #f0f0f0;
+}
+
+body.dark-mode .btn-primary {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+body.dark-mode .btn-outline {
+  border-color: #f0f0f0;
+  color: #f0f0f0;
 }
