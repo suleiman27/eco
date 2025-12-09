@@ -46,7 +46,7 @@ img {
 
 .brand {
   font-size: 1.6rem;
-  color: #e6f5ea; /* light greenish text */
+  color: #e6f5ea;
   font-weight: bold;
 }
 
@@ -78,15 +78,22 @@ img {
   color: #b5f0a0;
 }
 
+/* ========================
+   DROPDOWNS
+======================== */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background: #0b4d22;
+  background: #0b4d22; /* darker green */
   padding: 0.5rem 0;
   border-radius: 4px;
-  min-width: 150px;
+  min-width: 180px;
   z-index: 1000;
 }
 
@@ -95,4 +102,145 @@ img {
 }
 
 .dropdown-menu button {
-  width: 
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #e6f5ea;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background: #1a7031;
+  color: #fff;
+}
+
+/* ========================
+   HERO
+======================== */
+.hero {
+  position: relative;
+  margin-top: 70px; /* header height */
+  overflow: hidden;
+}
+
+.hero-slideshow img {
+  width: 100%;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 70, 30, 0.3);
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+}
+
+/* ========================
+   SECTIONS
+======================== */
+.section {
+  padding: 4rem 2rem;
+}
+
+/* About Us and Booking split */
+.about-grid, .booking-form {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.about-grid img {
+  width: 48%;
+  border-radius: 8px;
+}
+
+.about-grid div {
+  width: 48%;
+}
+
+.booking-form {
+  gap: 2rem;
+}
+
+.booking-form .row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.booking-form .row.two input,
+.booking-form .row.two select {
+  width: 48%;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #1a7031;
+}
+
+.booking-form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #1a7031;
+}
+
+.form-actions button {
+  background-color: #1a7031;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-actions button:hover {
+  background-color: #0b4d22;
+}
+
+/* ========================
+   GREEN BUTTONS
+======================== */
+.btn-primary {
+  background-color: #1a7031;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background-color: #0b4d22;
+}
+
+.btn-outline {
+  border: 1px solid #e6f5ea;
+  color: #e6f5ea;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.btn-outline:hover {
+  background-color: #1a7031;
+  color: #fff;
+}
+
+/* ========================
+   FOOTER
+======================== */
+.site-footer {
+  background-color: #0b4d22;
+  color: #e6f5ea;
+  padding: 2rem;
+  text-align: center;
+}
