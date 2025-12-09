@@ -1,79 +1,73 @@
-// ==========================
-// MOBILE NAV TOGGLE
-// ==========================
-const navToggle = document.getElementById('nav-toggle');
-const navLinks = document.getElementById('nav-links');
-
-navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
-
-// ==========================
-// DROPDOWNS (Packages & Destinations)
-// ==========================
+// ========================
+// NAV DROPDOWN FUNCTIONALITY
+// ========================
 document.querySelectorAll('.dropdown').forEach(drop => {
   const btn = drop.querySelector('.dropdown-btn');
   const menu = drop.querySelector('.dropdown-menu');
 
-  // Open/close on click
+  // Toggle dropdown on click
   btn.addEventListener('click', e => {
     e.preventDefault();
-    menu.classList.toggle('show');
-    btn.classList.toggle('active');
-
-    // Close other dropdowns
-    document.querySelectorAll('.dropdown-btn').forEach(otherBtn => {
-      if(otherBtn !== btn) {
-        otherBtn.classList.remove('active');
-        const otherMenu = otherBtn.nextElementSibling;
-        if(otherMenu) otherMenu.classList.remove('show');
-      }
+    // Close any other open dropdowns
+    document.querySelectorAll('.dropdown-menu').forEach(m => {
+      if (m !== menu) m.style.display = 'none';
     });
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   });
 
-  // Close dropdown when cursor leaves dropdown area
+  // Close dropdown when mouse leaves the dropdown area
   drop.addEventListener('mouseleave', () => {
-    menu.classList.remove('show');
-    btn.classList.remove('active');
+    menu.style.display = 'none';
   });
 });
 
-// ==========================
+// ========================
 // DARK MODE TOGGLE
-// ==========================
+// ========================
 const darkToggle = document.getElementById('dark-mode-toggle');
 darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
+  document.body.classList.toggle('dark-mode');
 });
 
-// ==========================
-// HERO SLIDESHOW
-// ==========================
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-
-function showSlides() {
-  slides.forEach(slide => slide.classList.remove('active'));
-  slides[slideIndex].classList.add('active');
-  slideIndex = (slideIndex + 1) % slides.length;
+// Optional: Add dark mode styles dynamically
+const style = document.createElement('style');
+style.innerHTML = `
+.dark-mode {
+  background-color: #0b4d22 !important;
+  color: #e6f5ea !important;
 }
+.dark-mode .site-header {
+  background: #061f10 !important;
+}
+.dark-mode .btn-primary {
+  background-color: #b5f0a0 !important;
+  color: #0b4d22 !important;
+}
+.dark-mode .dropdown-menu {
+  background-color: #1a7031 !important;
+}
+.dark-mode .safari-card, .dark-mode .dest-card {
+  background-color: #154d29 !important;
+  color: #e6f5ea !important;
+}
+`;
+document.head.appendChild(style);
 
-setInterval(showSlides, 4000);
-showSlides();
-
-// ==========================
-// BOOKING FORM: Show ID or Passport based on Citizenship
-// ==========================
+// ========================
+// BOOKING FORM CITIZENSHIP TOGGLE
+// ========================
 const citizenship = document.getElementById('citizenship');
 const idNumber = document.getElementById('idNumber');
 const passportNumber = document.getElementById('passportNumber');
 
 citizenship.addEventListener('change', () => {
-  if(citizenship.value === 'citizen') {
+  if (citizenship.value === 'citizen') {
     idNumber.style.display = 'block';
     passportNumber.style.display = 'none';
-  } else if(citizenship.value === 'non-citizen') {
+    passportNumber.value = '';
+  } else if (citizenship.value === 'non-citizen') {
     idNumber.style.display = 'none';
+    idNumber.value = '';
     passportNumber.style.display = 'block';
   } else {
     idNumber.style.display = 'none';
@@ -81,39 +75,26 @@ citizenship.addEventListener('change', () => {
   }
 });
 
-// ==========================
-// GALLERY MODAL
-// ==========================
-const galleryItems = document.querySelectorAll('.gallery-item');
-const modal = document.getElementById('img-modal');
-const modalImg = document.getElementById('modal-img');
-const modalClose = document.getElementById('modal-close');
+// ========================
+// HERO SLIDESHOW
+// ========================
+let slides = document.querySelectorAll('.hero-slideshow .slide');
+let currentSlide = 0;
 
-galleryItems.forEach(item => {
-  item.addEventListener('click', () => {
-    modal.style.display = 'flex';
-    modalImg.src = item.src;
-    modalImg.alt = item.alt;
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.style.display = i === index ? 'block' : 'none';
   });
-});
+}
 
-modalClose.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
+showSlide(currentSlide);
 
-modal.addEventListener('click', e => {
-  if(e.target === modal) modal.style.display = 'none';
-});
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}, 5000); // 5 seconds per slide
 
-// ==========================
-// AUTO YEAR IN FOOTER
-// ==========================
+// ========================
+// UPDATE YEAR IN FOOTER
+// ========================
 document.getElementById('year').textContent = new Date().getFullYear();
-
-// ==========================
-// OPTIONAL: WhatsApp Floating Button
-// ==========================
-const waFloat = document.getElementById('wa-float');
-waFloat.addEventListener('click', () => {
-  // opens WhatsApp in new tab (already handled by href)
-});
