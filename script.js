@@ -1,100 +1,84 @@
-// ========================
-// NAV DROPDOWN FUNCTIONALITY
-// ========================
-document.querySelectorAll('.dropdown').forEach(drop => {
-  const btn = drop.querySelector('.dropdown-btn');
-  const menu = drop.querySelector('.dropdown-menu');
+// ===== HERO SLIDESHOW =====
+const slides = document.querySelectorAll('.hero-slideshow .slide');
+let currentSlide = 0;
 
-  // Toggle dropdown on click
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+setInterval(nextSlide, 5000);
+showSlide(currentSlide);
+
+// ===== DROPDOWN =====
+const dropdowns = document.querySelectorAll('.dropdown');
+
+dropdowns.forEach(dropdown => {
+  const btn = dropdown.querySelector('.dropdown-btn');
+  const menu = dropdown.querySelector('.dropdown-menu');
+
   btn.addEventListener('click', e => {
     e.preventDefault();
-    // Close any other open dropdowns
-    document.querySelectorAll('.dropdown-menu').forEach(m => {
-      if (m !== menu) m.style.display = 'none';
-    });
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    menu.classList.toggle('show');
   });
 
-  // Close dropdown when mouse leaves the dropdown area
-  drop.addEventListener('mouseleave', () => {
-    menu.style.display = 'none';
+  // Close when mouse leaves (desktop)
+  dropdown.addEventListener('mouseleave', () => {
+    menu.classList.remove('show');
   });
 });
 
-// ========================
-// DARK MODE TOGGLE
-// ========================
+// Close dropdown if clicked outside
+document.addEventListener('click', e => {
+  dropdowns.forEach(dropdown => {
+    const menu = dropdown.querySelector('.dropdown-menu');
+    const btn = dropdown.querySelector('.dropdown-btn');
+    if (!dropdown.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+  });
+});
+
+// ===== MOBILE NAV =====
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
+// ===== DARK MODE =====
 const darkToggle = document.getElementById('dark-mode-toggle');
 darkToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
+  darkToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
 });
 
-// Optional: Add dark mode styles dynamically
-const style = document.createElement('style');
-style.innerHTML = `
-.dark-mode {
-  background-color: #0b4d22 !important;
-  color: #e6f5ea !important;
-}
-.dark-mode .site-header {
-  background: #061f10 !important;
-}
-.dark-mode .btn-primary {
-  background-color: #b5f0a0 !important;
-  color: #0b4d22 !important;
-}
-.dark-mode .dropdown-menu {
-  background-color: #1a7031 !important;
-}
-.dark-mode .safari-card, .dark-mode .dest-card {
-  background-color: #154d29 !important;
-  color: #e6f5ea !important;
-}
-`;
-document.head.appendChild(style);
-
-// ========================
-// BOOKING FORM CITIZENSHIP TOGGLE
-// ========================
+// ===== CITIZENSHIP FORM TOGGLE =====
 const citizenship = document.getElementById('citizenship');
 const idNumber = document.getElementById('idNumber');
 const passportNumber = document.getElementById('passportNumber');
 
 citizenship.addEventListener('change', () => {
-  if (citizenship.value === 'citizen') {
+  if(citizenship.value === 'citizen') {
     idNumber.style.display = 'block';
     passportNumber.style.display = 'none';
     passportNumber.value = '';
-  } else if (citizenship.value === 'non-citizen') {
+  } else if(citizenship.value === 'non-citizen') {
+    passportNumber.style.display = 'block';
     idNumber.style.display = 'none';
     idNumber.value = '';
-    passportNumber.style.display = 'block';
   } else {
     idNumber.style.display = 'none';
     passportNumber.style.display = 'none';
   }
 });
 
-// ========================
-// HERO SLIDESHOW
-// ========================
-let slides = document.querySelectorAll('.hero-slideshow .slide');
-let currentSlide = 0;
-
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.style.display = i === index ? 'block' : 'none';
-  });
-}
-
-showSlide(currentSlide);
-
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-}, 5000); // 5 seconds per slide
-
-// ========================
-// UPDATE YEAR IN FOOTER
-// ========================
+// ===== FOOTER YEAR =====
 document.getElementById('year').textContent = new Date().getFullYear();
