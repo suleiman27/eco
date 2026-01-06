@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #f0f7f2; /* light greenish */
+  background-color: #f3f3f3; /* grey instead of green */
   color: #1a1a1a;
   line-height: 1.6;
 }
@@ -28,14 +28,14 @@ img {
    HEADER / NAVIGATION
 ======================== */
 .site-header {
-  background-color: #2b6f4b; /* dark green */
+  background-color: #2f2f2f; /* dark grey */
   color: #fff;
   position: fixed;
   width: 100%;
   z-index: 1000;
   top: 0;
   left: 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .nav {
@@ -51,7 +51,7 @@ img {
 }
 
 .brand .accent {
-  color: #a4de02; /* light green accent */
+  color: #b0b0b0; /* neutral accent */
 }
 
 .nav-links {
@@ -73,27 +73,24 @@ img {
 }
 
 .nav-links a:hover, .dropdown-btn:hover {
-  background-color: #1f5a3d;
+  background-color: #444;
   border-radius: 5px;
 }
 
-/* Base dropdown styles */
+/* Dropdowns */
 .dropdown-menu, .submenu {
   display: none;
   position: absolute;
   list-style: none;
-  padding: 0;
-  margin: 0;
   background: #fff;
   border: 1px solid #ccc;
+  z-index: 9999;
 }
 
-/* Show dropdown on hover */
 .dropdown:hover > .dropdown-menu {
   display: block;
 }
 
-/* Submenu positioning */
 .dropdown-submenu {
   position: relative;
 }
@@ -103,14 +100,11 @@ img {
   left: 100%;
 }
 
-/* Show submenu on hover */
 .dropdown-submenu:hover > .submenu {
   display: block;
 }
 
-/* Buttons styling */
 .dropdown-menu button, .submenu button {
-  display: block;
   width: 100%;
   padding: 8px 12px;
   background: none;
@@ -120,55 +114,27 @@ img {
 }
 
 .dropdown-menu button:hover, .submenu button:hover {
-  background-color: #f0f0f0;
+  background-color: #eee;
 }
-
 
 /* ========================
    HERO
 ======================== */
 .hero {
   height: 80vh;
-  position: relative;
+  margin-top: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #fff;
-  margin-top: 70px; /* header offset */
-  overflow: hidden;
-}
-
-.hero-slideshow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-slideshow .slide {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.hero-slideshow .slide.active {
-  opacity: 1;
+  position: relative;
 }
 
 .hero-overlay {
+  background-color: rgba(0,0,0,0.55); /* neutral overlay */
   position: absolute;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(43, 111, 75, 0.5); /* dark overlay green */
+  inset: 0;
 }
 
 .hero-content {
@@ -176,22 +142,6 @@ img {
   z-index: 10;
   max-width: 800px;
   padding: 1rem;
-}
-
-.hero h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.hero p.lead {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-}
-
-.ctas {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
 }
 
 /* ========================
@@ -202,253 +152,109 @@ img {
 }
 
 /* ========================
-   Sultech Services Grid - Horizontal
+   SERVICES – FIT ONE SCREEN
 ======================== */
 .sultech-grid {
   display: flex;
-  flex-wrap: nowrap;           /* horizontal layout */
-  gap: 1.5rem;
-  overflow-x: auto;            /* scroll if too many cards */
-  padding-bottom: 1rem;        /* space for scroll */
-}
-
-.sultech-grid::-webkit-scrollbar {
-  display: none;               /* hide scrollbar */
+  justify-content: space-between;
+  gap: 1rem;
+  overflow: hidden; /* NO SCROLL */
 }
 
 .sultech-card {
-  background: #eaf2ea;
+  background: #e0e0e0;
   border-radius: 10px;
-  overflow: hidden;
   text-align: center;
-  min-width: 280px;            /* slightly wider card */
-  flex: 0 0 auto;              /* prevent shrinking */
+  flex: 1;
+  max-width: 220px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .sultech-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
 }
 
 .sultech-card img {
+  height: 130px;
   width: 100%;
-  height: 150px;               /* slightly taller image */
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
 
 /* ========================
-   Destinations Grid - Horizontal
+   DESTINATIONS
 ======================== */
 .dest-cards {
   display: flex;
-  flex-wrap: nowrap;           /* horizontal layout */
+  justify-content: space-between;
   gap: 1rem;
-  overflow-x: auto;            /* scroll if too many cards */
-  padding-bottom: 1rem;        /* space for scroll */
-}
-
-.dest-cards::-webkit-scrollbar {
-  display: none;               /* hide scrollbar */
 }
 
 .dest-card {
-  min-width: 200px;            /* slightly wider card */
-  flex: 0 0 auto;              /* prevent shrinking */
+  flex: 1;
+  max-width: 200px;
   text-align: center;
 }
 
 .dest-card img {
+  height: 130px;
   width: 100%;
-  height: 130px;               /* slightly taller image */
   object-fit: cover;
   border-radius: 8px;
 }
 
-/* Why Choose Us */
-.choose-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.choose-card {
-  background-color: #eaf2ea;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
 /* ========================
-   GALLERY
+   CARDS / SECTIONS
 ======================== */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  justify-items: center;
-}
-
-.gallery-item {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.gallery-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-/* ========================
-   ABOUT & BOOK FORM
-======================== */
-.half-section .about-grid,
-.half-section .booking-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.half-section .about-img {
-  flex: 1 1 45%;
-  border-radius: 10px;
-  height: auto;
-}
-
-.half-section div {
-  flex: 1 1 45%;
-}
-
-/* Booking Form */
-.booking-form {
-  background: #eaf2ea;
-  padding: 1.5rem;
-  border-radius: 10px;
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.booking-form button {
-  width: 100%;
-  padding: 0.75rem;
-  font-weight: bold;
-  background-color: #2b6f4b;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-}
-
-.booking-form button:hover {
-  background-color: #1f5a3d;
-}
-
-/* ========================
-   REVIEWS
-======================== */
-.reviews-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
+.choose-card,
+.booking-form,
 blockquote {
-  background-color: #eaf2ea;
-  padding: 1rem;
-  border-left: 5px solid #2b6f4b;
-  border-radius: 5px;
-  font-style: italic;
+  background: #e0e0e0;
 }
 
 /* ========================
    FOOTER
 ======================== */
 .site-footer {
-  background-color: #2b6f4b;
+  background-color: #2f2f2f;
   color: #fff;
   padding: 1rem 2rem;
   text-align: center;
-  margin-top: 2rem;
+}
+
+/* ========================
+   DARK MODE TOGGLE (SAFE)
+======================== */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
 }
 
 /* ========================
    WHATSAPP FLOAT
 ======================== */
-/* WhatsApp Floating Button */
 .wa-float {
   position: fixed;
-  width: 55px;       /* slightly smaller */
+  width: 55px;
   height: 55px;
-  bottom: 25px;      /* closer to edge but not too much */
+  bottom: 25px;
   right: 25px;
   background-color: #25d366;
-  color: #FFF;
+  color: #fff;
   border-radius: 50%;
-  text-align: center;
   font-size: 28px;
-  box-shadow: 2px 2px 5px #999;
-  z-index: 1000;
-  transition: transform 0.2s;
-}
-
-.wa-float:hover {
-  transform: scale(1.1); /* slight grow on hover */
-}
-
-.wa-float .my-float {
-  margin-top: 13px; /* vertically center the icon */
-}
-
-/* Mobile responsiveness */
-@media screen and (max-width: 600px) {
-  .wa-float {
-    width: 45px;
-    height: 45px;
-    font-size: 24px;
-    bottom: 20px;
-    right: 20px;
-  }
-  .wa-float .my-float {
-    margin-top: 10px;
-  
-}
-
-}
-
-.my-float{
-	margin-top:16px;
+  z-index: 10000;
 }
 
 /* ========================
-   MEDIA QUERIES
+   RESPONSIVE
 ======================== */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 1.5rem;
-  }
-
-  .hero p.lead {
-    font-size: 1rem;
-  }
-
-  .half-section .about-grid,
-  .half-section .booking-form {
-    flex-direction: column;
-  }
-
-  .half-section .about-img,
-  .half-section div {
-    flex: 1 1 100%;
+  .sultech-grid,
+  .dest-cards {
+    overflow-x: auto;
   }
 }
