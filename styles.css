@@ -5,11 +5,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background-color: #ededed; /* true neutral grey */
+  background-color: #ededed;
   color: #1e1e1e;
   line-height: 1.6;
 }
@@ -28,13 +28,13 @@ img {
    HEADER / NAVIGATION
 ======================== */
 .site-header {
-  background-color: #262626; /* charcoal */
-  color: #ffffff;
+  background-color: #262626;
+  color: #fff;
   position: fixed;
-  width: 100%;
-  z-index: 1000;
   top: 0;
   left: 0;
+  width: 100%;
+  z-index: 1000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
@@ -66,7 +66,7 @@ img {
 
 .nav-links a,
 .dropdown-btn {
-  color: #ffffff;
+  color: #fff;
   padding: 0.5rem 0.75rem;
 }
 
@@ -83,8 +83,8 @@ img {
 .submenu {
   display: none;
   position: absolute;
-  background: #ffffff;
-  border: 1px solid #cccccc;
+  background: #fff;
+  border: 1px solid #ccc;
   z-index: 9999;
 }
 
@@ -112,6 +112,7 @@ img {
   border: none;
   background: none;
   text-align: left;
+  cursor: pointer;
 }
 
 .dropdown-menu button:hover,
@@ -120,23 +121,43 @@ img {
 }
 
 /* ========================
-   HERO
+   HERO (SLIDESHOW FIXED)
 ======================== */
 .hero {
   height: 80vh;
   margin-top: 70px;
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
   text-align: center;
+  color: #fff;
+}
+
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slideshow .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slideshow .slide.active {
+  opacity: 1;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0,0,0,0.65); /* PURE dark overlay */
+  background-color: rgba(0,0,0,0.65);
 }
 
 .hero-content {
@@ -144,6 +165,15 @@ img {
   z-index: 10;
   max-width: 800px;
   padding: 1rem;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero p.lead {
+  font-size: 1.1rem;
 }
 
 /* ========================
@@ -154,7 +184,7 @@ img {
 }
 
 /* ========================
-   SERVICES – ONE SCREEN
+   SERVICES (ONE SCREEN)
 ======================== */
 .sultech-grid {
   display: flex;
@@ -207,12 +237,14 @@ img {
 }
 
 /* ========================
-   GENERIC CARDS
+   OTHER CARDS
 ======================== */
 .choose-card,
 .booking-form,
 blockquote {
   background: #dcdcdc;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
 /* ========================
@@ -220,35 +252,51 @@ blockquote {
 ======================== */
 .site-footer {
   background-color: #262626;
-  color: #ffffff;
+  color: #fff;
   padding: 1rem 2rem;
   text-align: center;
 }
 
 /* ========================
-   DARK MODE TOGGLE
+   DARK MODE TOGGLE (LARGER)
 ======================== */
 .dark-mode-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 99999;
+  font-size: 18px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: #3a3a3a;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
 /* ========================
-   WHATSAPP FLOAT
+   WHATSAPP FLOAT (LARGER)
 ======================== */
 .wa-float {
   position: fixed;
-  width: 55px;
-  height: 55px;
+  width: 65px;
+  height: 65px;
   bottom: 25px;
   right: 25px;
-  background-color: #25d366; /* WhatsApp brand (intentional) */
+  background-color: #25d366;
   color: #fff;
   border-radius: 50%;
-  font-size: 28px;
+  font-size: 32px;
   z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.wa-float:hover {
+  transform: scale(1.1);
 }
 
 /* ========================
@@ -258,5 +306,13 @@ blockquote {
   .sultech-grid,
   .dest-cards {
     overflow-x: auto;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero p.lead {
+    font-size: 1rem;
   }
 }
