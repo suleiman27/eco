@@ -77,72 +77,52 @@ img {
   border-radius: 5px;
 }
 
-/* Dropdown */
-.dropdown-menu {
+/* Base dropdown styles */
+.dropdown-menu, .submenu {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #2b6f4b;
   list-style: none;
-  padding: 0.5rem 0;
-  border-radius: 5px;
-  min-width: 150px;
-  z-index: 1000;
-}
-
-.dropdown-menu li button {
-  background: none;
-  border: none;
-  color: #fff;
-  width: 100%;
-  text-align: left;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.dropdown-menu li button:hover {
-  background-color: #1f5a3d;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #ccc;
 }
 
 /* Show dropdown on hover */
-.dropdown:hover .dropdown-menu {
+.dropdown:hover > .dropdown-menu {
   display: block;
 }
 
-.nav-actions {
-  display: flex;
-  gap: 1rem;
+/* Submenu positioning */
+.dropdown-submenu {
+  position: relative;
 }
 
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
+.submenu {
+  top: 0;
+  left: 100%;
 }
 
-.btn-primary {
-  background-color: #a4de02;
-  border: none;
-  color: #1a1a1a;
-  transition: 0.3s;
+/* Show submenu on hover */
+.dropdown-submenu:hover > .submenu {
+  display: block;
 }
 
-.btn-primary:hover {
-  background-color: #8acb00;
-}
-
-.btn-outline {
+/* Buttons styling */
+.dropdown-menu button, .submenu button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
   background: none;
-  border: 2px solid #fff;
-  color: #fff;
+  border: none;
+  text-align: left;
+  cursor: pointer;
 }
 
-.btn-outline:hover {
-  background-color: #1f5a3d;
-  border-color: #1f5a3d;
+.dropdown-menu button:hover, .submenu button:hover {
+  background-color: #f0f0f0;
 }
+
 
 /* ========================
    HERO
