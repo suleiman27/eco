@@ -201,14 +201,14 @@ img {
   padding: 4rem 2rem;
 }
 
-/* Safari Packages Grid */
-.safari-grid {
+/* Sultech Services Grid */
+.sultech-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 
-.safari-card {
+.sultech-card {
   background: #eaf2ea;
   border-radius: 10px;
   overflow: hidden;
@@ -217,12 +217,12 @@ img {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.safari-card:hover {
+.sultech-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.safari-card img {
+.sultech-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
