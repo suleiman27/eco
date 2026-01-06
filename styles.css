@@ -212,9 +212,8 @@ img {
   padding-bottom: 1rem;        /* space for scroll */
 }
 
-/* Optional: hide horizontal scrollbar */
 .sultech-grid::-webkit-scrollbar {
-  display: none;
+  display: none;               /* hide scrollbar */
 }
 
 .sultech-card {
@@ -222,7 +221,7 @@ img {
   border-radius: 10px;
   overflow: hidden;
   text-align: center;
-  min-width: 250px;            /* card width */
+  min-width: 280px;            /* slightly wider card */
   flex: 0 0 auto;              /* prevent shrinking */
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -234,7 +233,7 @@ img {
 
 .sultech-card img {
   width: 100%;
-  height: 120px;               /* smaller image */
+  height: 150px;               /* slightly taller image */
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
@@ -251,21 +250,22 @@ img {
 }
 
 .dest-cards::-webkit-scrollbar {
-  display: none;
+  display: none;               /* hide scrollbar */
 }
 
 .dest-card {
-  min-width: 180px;            /* card width */
+  min-width: 200px;            /* slightly wider card */
   flex: 0 0 auto;              /* prevent shrinking */
   text-align: center;
 }
 
 .dest-card img {
   width: 100%;
-  height: 100px;               /* smaller image */
+  height: 130px;               /* slightly taller image */
   object-fit: cover;
   border-radius: 8px;
 }
+
 
 
 /* Why Choose Us */
