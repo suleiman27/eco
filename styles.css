@@ -1,33 +1,33 @@
-/* ========================
-   RESET & BASE
-======================== */
+/* ======================== RESET & BASE ======================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Arial, sans-serif;
 }
+
 body {
   background: linear-gradient(180deg, #f4f9ff, #eaf2ff);
   color: #1e293b;
   line-height: 1.6;
 }
+
 body.dark-mode {
   background: #1c1c1c;
   color: #ededed;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 img {
   max-width: 100%;
   display: block;
 }
 
-/* ========================
-   HEADER / NAV
-======================== */
+/* ======================== HEADER / NAV ======================== */
 .site-header {
   background: linear-gradient(90deg, #0f4c75, #3282b8);
   position: fixed;
@@ -36,7 +36,10 @@ img {
   z-index: 1000;
   box-shadow: 0 4px 14px rgba(0,0,0,0.35);
 }
-body.dark-mode .site-header { background: #262626; }
+
+body.dark-mode .site-header {
+  background: #262626;
+}
 
 .nav {
   display: flex;
@@ -50,24 +53,32 @@ body.dark-mode .site-header { background: #262626; }
   font-weight: bold;
   color: #fff;
 }
-.brand .accent { color: #4fd1c5; }
-body.dark-mode .brand .accent { color: #9e9e9e; }
+
+.brand .accent {
+  color: #4fd1c5;
+}
+
+body.dark-mode .brand .accent {
+  color: #9e9e9e;
+}
 
 .nav-links {
   list-style: none;
   display: flex;
   gap: 1.5rem;
 }
-.nav-links a, .dropdown-btn {
+
+.nav-links a, .dropdown-btn, .submenu button {
   color: #fff;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
 }
-.nav-links a:hover, .dropdown-btn:hover { background: rgba(255,255,255,0.2); }
 
-/* ========================
-   DROPDOWNS
-======================== */
+.nav-links a:hover, .dropdown-btn:hover, .submenu button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ======================== DROPDOWNS ======================== */
 .dropdown-menu, .submenu {
   display: none;
   position: absolute;
@@ -77,40 +88,43 @@ body.dark-mode .brand .accent { color: #9e9e9e; }
   box-shadow: 0 10px 24px rgba(0,0,0,0.18);
   z-index: 9999;
 }
-body.dark-mode .dropdown-menu, body.dark-mode .submenu { background: #dcdcdc; }
 
-.dropdown:hover > .dropdown-menu { display: block; }
-
-.dropdown-submenu { position: relative; }
-.submenu { top: 0; left: 100%; }
-.dropdown-submenu:hover > .submenu { display: block; }
-
-.dropdown-menu button, .submenu button {
-  width: 100%;
-  padding: 10px 14px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  color: purple; /* PURPLE FOR LIGHT MODE */
+body.dark-mode .dropdown-menu, body.dark-mode .submenu {
+  background: #dcdcdc;
 }
-.dropdown-menu button:hover, .submenu button:hover { background: #eef4ff; }
-body.dark-mode .dropdown-menu button, body.dark-mode .submenu button { color: #1e293b; }
-body.dark-mode .dropdown-menu button:hover, body.dark-mode .submenu button:hover { background: #cfcfcf; }
 
-/* ========================
-   MOBILE MENU
-======================== */
+/* Purple details for light mode submenu */
+.dropdown-menu button, .submenu button {
+  color: purple;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.submenu {
+  top: 0;
+  left: 100%;
+}
+
+.dropdown-submenu:hover > .submenu {
+  display: block;
+}
+
+/* ======================== MOBILE MENU ======================== */
 #nav-toggle {
   display: none;
-  font-size: 28px;
+  font-size: 32px;
   background: none;
   border: none;
   color: #fff;
   cursor: pointer;
 }
+
 @media (max-width: 768px) {
-  #nav-toggle { display: block; }
+  #nav-toggle {
+    display: block;
+  }
   .nav-links {
     position: absolute;
     top: 100%;
@@ -123,80 +137,253 @@ body.dark-mode .dropdown-menu button:hover, body.dark-mode .submenu button:hover
     padding: 1.2rem 0;
     display: none;
   }
-  body.dark-mode .nav-links { background: #262626; }
-  .nav-links.active { display: flex; }
+  body.dark-mode .nav-links {
+    background: #262626;
+  }
+  .nav-links.active {
+    display: flex;
+  }
 }
 
-/* ========================
-   HERO + SLIDESHOW
-======================== */
-.hero { height: 80vh; margin-top: 80px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
-.hero-slideshow { position: absolute; inset: 0; z-index: 1; }
-.hero-slideshow .slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: heroSlide 15s infinite; }
-.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
-.hero-slideshow .slide:nth-child(2) { animation-delay: 5s; }
-.hero-slideshow .slide:nth-child(3) { animation-delay: 10s; }
-@keyframes heroSlide { 0% { opacity: 0; } 10% { opacity: 1; } 30% { opacity: 1; } 40% { opacity: 0; } 100% { opacity: 0; } }
+/* ======================== HERO ======================== */
+.hero {
+  height: 80vh;
+  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
 
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(rgba(15,76,117,0.6), rgba(0,0,0,0.7)); z-index: 2; }
-body.dark-mode .hero-overlay { background: rgba(0,0,0,0.65); }
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
 
-.hero-content { position: relative; z-index: 3; max-width: 850px; }
-.hero h1 { font-size: 2.3rem; margin-bottom: 1rem; }
-.hero p { font-size: 1.1rem; }
+.hero-slideshow .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
 
-/* ========================
-   SERVICES / CARDS
-======================== */
-.sultech-grid { display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap; }
-.sultech-card { background: #fff; border-radius: 14px; padding: 1rem; box-shadow: 0 6px 20px rgba(0,0,0,0.15); width: calc(20% - 0.8rem); text-align: center; transition: transform 0.3s; }
-body.dark-mode .sultech-card { background: #dcdcdc; }
-.sultech-card:hover { transform: translateY(-6px); }
-.sultech-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(15,76,117,0.6), rgba(0,0,0,0.7));
+  z-index: 2;
+}
 
-/* ========================
-   WHY CHOOSE US
-======================== */
-.choose-grid { display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap; }
-.choose-card { background: #fff; border-radius: 14px; padding: 1rem; box-shadow: 0 6px 20px rgba(0,0,0,0.15); width: calc(33.33% - 0.66rem); transition: transform 0.3s; }
-body.dark-mode .choose-card { background: #dcdcdc; }
-.choose-card:hover { transform: translateY(-6px); }
+body.dark-mode .hero-overlay {
+  background: rgba(0,0,0,0.65);
+}
 
-/* ========================
-   GALLERY
-======================== */
-.gallery-grid { display: flex; gap: 0.5rem; flex-wrap: nowrap; overflow-x: auto; padding: 1rem 0; }
-.gallery-grid img { flex: 0 0 auto; width: 180px; height: 120px; object-fit: cover; border-radius: 8px; }
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 850px;
+}
 
-/* ========================
-   ABOUT
-======================== */
-.about-grid { display: flex; gap: 1.5rem; align-items: center; }
-.about-img { width: 300px; height: 200px; object-fit: cover; border-radius: 14px; box-shadow: 0 6px 22px rgba(0,0,0,0.25); }
+/* ======================== SECTIONS ======================== */
+.section {
+  padding: 4rem 2rem;
+}
 
-/* ========================
-   BUTTONS
-======================== */
-#dark-mode-toggle { font-size: 24px; padding: 12px 20px; border-radius: 8px; background: #fff; color: #0f4c75; cursor: pointer; margin-right: 1rem; }
-body.dark-mode #dark-mode-toggle { background: #3a3a3a; color: #fff; }
-.float { position: fixed; width: 80px; height: 80px; bottom: 25px; right: 25px; background: #25d366; color: #fff; border-radius: 50%; font-size: 38px; display: flex; align-items: center; justify-content: center; z-index: 99999; }
+.section::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #0f4c75, #4fd1c5);
+  display: block;
+  margin: 2rem auto 0;
+  border-radius: 10px;
+}
 
-/* ========================
-   FOOTER
-======================== */
-.site-footer { background: #0f4c75; color: #fff; text-align: center; padding: 1.2rem; }
-body.dark-mode .site-footer { background: #262626; }
+body.dark-mode .section::after {
+  background: #9e9e9e;
+}
 
-/* ========================
-   RESPONSIVE
-======================== */
+/* ======================== SCROLL REVEAL ======================== */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.fade-in-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================== SERVICES / CARDS ======================== */
+.sultech-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sultech-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  flex: 1 1 calc(20% - 1rem); /* 5 cards per row */
+  max-width: calc(20% - 1rem);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.sultech-card img {
+  max-height: 130px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.sultech-card:hover {
+  transform: translateY(-6px);
+}
+
+body.dark-mode .sultech-card {
+  background: #dcdcdc;
+}
+
+/* ======================== WHY CHOOSE US ======================== */
+.choose-grid {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.choose-card {
+  flex: 1 1 calc(33% - 1rem);
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+body.dark-mode .choose-card {
+  background: #dcdcdc;
+}
+
+/* ======================== TESTIMONIALS ======================== */
+.testimonial {
+  display: none;
+  max-width: 700px;
+  margin: auto;
+}
+
+.testimonial.active {
+  display: block;
+}
+
+/* ======================== ABOUT ======================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.about-img {
+  max-width: 220px;
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+}
+
+/* ======================== BUTTONS ======================== */
+#dark-mode-toggle {
+  font-size: 24px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #fff;
+  color: #0f4c75;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+}
+
+body.dark-mode #dark-mode-toggle {
+  background: #3a3a3a;
+  color: #fff;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #0f4c75, #3282b8);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+/* ======================== WHATSAPP FLOAT ======================== */
+.float {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  bottom: 25px;
+  right: 25px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 38px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ======================== GALLERY ======================== */
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.gallery-item {
+  width: calc(33.33% - 0.5rem);
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+body.dark-mode .gallery-item {
+  filter: brightness(0.9);
+}
+
+/* ======================== RESPONSIVE ======================== */
 @media (max-width: 1024px) {
-  .sultech-card { width: calc(33.33% - 0.8rem); }
-  .choose-card { width: calc(50% - 0.66rem); }
-  .about-grid { flex-direction: column; text-align: center; }
+  .sultech-card {
+    flex: 1 1 calc(33% - 1rem);
+    max-width: calc(33% - 1rem);
+  }
 }
+
 @media (max-width: 768px) {
-  .sultech-card { width: 100%; }
-  .choose-card { width: 100%; }
-  .gallery-grid { justify-content: center; }
+  .sultech-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .choose-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
