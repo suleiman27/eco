@@ -1,20 +1,8 @@
 /* =========================
-   PAGE LOADER
-========================= */
-window.addEventListener("load", () => {
-  const loader = document.getElementById("loader");
-  if (loader) {
-    loader.style.transition = "opacity 0.6s ease";
-    loader.style.opacity = "0";
-    setTimeout(() => loader.remove(), 600);
-  }
-});
-
-/* =========================
    MOBILE NAV TOGGLE
 ========================= */
 const navToggle = document.getElementById("nav-toggle");
-const navLinks = document.getElementById("nav-links");
+const navLinks = document.querySelector(".nav-links");
 
 if (navToggle && navLinks) {
   navToggle.addEventListener("click", () => {
@@ -28,12 +16,26 @@ if (navToggle && navLinks) {
    DROPDOWNS (DESKTOP)
 ========================= */
 document.querySelectorAll(".dropdown").forEach(dropdown => {
+  const button = dropdown.querySelector(".dropdown-btn");
+  const menu = dropdown.querySelector(".dropdown-menu");
+
+  // Desktop hover
   dropdown.addEventListener("mouseenter", () => {
-    if (window.innerWidth > 768) dropdown.querySelector(".dropdown-menu").style.display = "block";
+    if (window.innerWidth > 768) menu.style.display = "block";
   });
   dropdown.addEventListener("mouseleave", () => {
-    if (window.innerWidth > 768) dropdown.querySelector(".dropdown-menu").style.display = "none";
+    if (window.innerWidth > 768) menu.style.display = "none";
   });
+
+  // Mobile click toggle
+  if (button && menu) {
+    button.addEventListener("click", (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        menu.classList.toggle("active");
+      }
+    });
+  }
 });
 
 /* =========================
