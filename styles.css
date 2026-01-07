@@ -1,6 +1,4 @@
-/* ========================
-   RESET & BASE
-======================== */
+/* ======================== RESET & BASE ======================== */
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +14,7 @@ body {
 
 body.dark-mode {
   background: #1c1c1c;
-  color: #ededed;
+  color: #ffd700; /* colorful text in dark mode */
 }
 
 a {
@@ -27,11 +25,10 @@ a {
 img {
   max-width: 100%;
   display: block;
+  height: auto;
 }
 
-/* ========================
-   PAGE LOADER
-======================== */
+/* ======================== PAGE LOADER ======================== */
 #loader {
   position: fixed;
   inset: 0;
@@ -48,9 +45,7 @@ body.dark-mode #loader {
   background: #262626;
 }
 
-/* ========================
-   HEADER / NAV
-======================== */
+/* ======================== HEADER / NAV ======================== */
 .site-header {
   background: linear-gradient(90deg, #0f4c75, #3282b8);
   position: fixed;
@@ -82,7 +77,7 @@ body.dark-mode .site-header {
 }
 
 body.dark-mode .brand .accent {
-  color: #9e9e9e;
+  color: #ffd700;
 }
 
 .nav-links {
@@ -103,9 +98,11 @@ body.dark-mode .brand .accent {
   background: rgba(255,255,255,0.2);
 }
 
-/* ========================
-   DROPDOWNS
-======================== */
+/* ======================== DROPDOWNS ======================== */
+.dropdown {
+  position: relative;
+}
+
 .dropdown-menu,
 .submenu {
   display: none;
@@ -119,7 +116,8 @@ body.dark-mode .brand .accent {
 
 body.dark-mode .dropdown-menu,
 body.dark-mode .submenu {
-  background: #dcdcdc;
+  background: #2b2b2b;
+  color: #ffd700;
 }
 
 .dropdown:hover > .dropdown-menu {
@@ -147,6 +145,7 @@ body.dark-mode .submenu {
   border: none;
   cursor: pointer;
   text-align: left;
+  color: inherit;
 }
 
 .dropdown-menu button:hover,
@@ -156,12 +155,10 @@ body.dark-mode .submenu {
 
 body.dark-mode .dropdown-menu button:hover,
 body.dark-mode .submenu button:hover {
-  background: #cfcfcf;
+  background: #444;
 }
 
-/* ========================
-   MOBILE MENU
-======================== */
+/* ======================== MOBILE MENU ======================== */
 #nav-toggle {
   display: none;
   font-size: 28px;
@@ -198,9 +195,7 @@ body.dark-mode .submenu button:hover {
   }
 }
 
-/* ========================
-   HERO + SLIDESHOW
-======================== */
+/* ======================== HERO + SLIDESHOW ======================== */
 .hero {
   height: 80vh;
   margin-top: 80px;
@@ -267,9 +262,7 @@ body.dark-mode .hero-overlay {
   font-size: 1.1rem;
 }
 
-/* ========================
-   SECTIONS
-======================== */
+/* ======================== SECTIONS ======================== */
 .section {
   padding: 4rem 2rem;
 }
@@ -285,12 +278,10 @@ body.dark-mode .hero-overlay {
 }
 
 body.dark-mode .section::after {
-  background: #9e9e9e;
+  background: #ffd700;
 }
 
-/* ========================
-   SCROLL REVEAL
-======================== */
+/* ======================== SCROLL REVEAL ======================== */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -302,15 +293,14 @@ body.dark-mode .section::after {
   transform: translateY(0);
 }
 
-/* ========================
-   SERVICES / CARDS
-======================== */
+/* ======================== SERVICES / CARDS ======================== */
 .sultech-grid,
 .choose-grid,
 .stats-grid {
   display: flex;
-  gap: 1.2rem;
-  justify-content: space-between;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .sultech-card,
@@ -319,44 +309,45 @@ body.dark-mode .section::after {
 .testimonial {
   background: #fff;
   border-radius: 14px;
-  padding: 1.5rem;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  flex: 0 1 150px;
 }
 
-body.dark-mode
-.sultech-card,
-body.dark-mode
-.choose-card,
-body.dark-mode
-.stat-box,
-body.dark-mode
-.testimonial {
-  background: #dcdcdc;
+body.dark-mode .sultech-card,
+body.dark-mode .choose-card,
+body.dark-mode .stat-box,
+body.dark-mode .testimonial {
+  background: #2b2b2b;
+  color: #ffd700;
+}
+
+.sultech-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
 }
 
 .sultech-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
 }
 
-/* ========================
-   STATS COUNTERS
-======================== */
+/* ======================== STATS COUNTERS ======================== */
 .stat-box {
   text-align: center;
 }
 
 .stat-box h2 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #0f4c75;
 }
 
 body.dark-mode .stat-box h2 {
-  color: #1e1e1e;
+  color: #ffd700;
 }
 
-/* ========================
-   TESTIMONIALS
-======================== */
+/* ======================== TESTIMONIALS ======================== */
 #testimonials {
   text-align: center;
 }
@@ -371,28 +362,24 @@ body.dark-mode .stat-box h2 {
   display: block;
 }
 
-/* ========================
-   ABOUT
-======================== */
+/* ======================== ABOUT ======================== */
 .about-grid {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 1.5rem;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1rem;
   align-items: center;
 }
 
 .about-img {
-  max-width: 280px;
-  border-radius: 14px;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+  max-width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* ========================
-   BUTTONS
-======================== */
+/* ======================== BUTTONS ======================== */
 .btn {
-  padding: 12px 22px;
-  border-radius: 30px;
+  padding: 10px 20px;
+  border-radius: 25px;
   font-weight: 600;
 }
 
@@ -405,45 +392,43 @@ body.dark-mode .btn-primary {
   background: #3a3a3a;
 }
 
-/* ========================
-   DARK MODE TOGGLE
-======================== */
+/* ======================== DARK MODE TOGGLE ======================== */
 #dark-mode-toggle {
-  font-size: 20px;
-  padding: 12px 16px;
-  border-radius: 8px;
+  position: fixed;
+  bottom: 110px;
+  right: 25px;
+  font-size: 22px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
   background: #fff;
   color: #0f4c75;
-  cursor: pointer;
+  z-index: 9999;
 }
 
 body.dark-mode #dark-mode-toggle {
-  background: #3a3a3a;
-  color: #fff;
+  background: #333;
+  color: #ffd700;
 }
 
-/* ========================
-   WHATSAPP FLOAT
-======================== */
+/* ======================== WHATSAPP FLOAT ======================== */
 .float {
   position: fixed;
-  width: 75px;
-  height: 75px;
   bottom: 25px;
   right: 25px;
+  width: 70px;
+  height: 70px;
+  font-size: 36px;
   background: #25d366;
   color: #fff;
   border-radius: 50%;
-  font-size: 38px;
-  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
 }
 
-/* ========================
-   FOOTER
-======================== */
+/* ======================== FOOTER ======================== */
 .site-footer {
   background: #0f4c75;
   color: #fff;
@@ -453,16 +438,16 @@ body.dark-mode #dark-mode-toggle {
 
 body.dark-mode .site-footer {
   background: #262626;
+  color: #ffd700;
 }
 
-/* ========================
-   RESPONSIVE
-======================== */
+/* ======================== RESPONSIVE ======================== */
 @media (max-width: 768px) {
   .sultech-grid,
   .choose-grid,
   .stats-grid {
     flex-direction: column;
+    align-items: center;
   }
 
   .about-grid {
