@@ -474,3 +474,41 @@ body.dark-mode .site-footer {
     font-size: 1.6rem;
   }
 }
+/* ========================
+   DARK MODE – COLORFUL CARDS
+======================== */
+body.dark-mode .sultech-card,
+body.dark-mode .choose-card,
+body.dark-mode .stat-box,
+body.dark-mode .testimonial {
+  background: linear-gradient(
+    135deg,
+    #0f4c75,
+    #1b6ca8,
+    #3282b8
+  );
+  color: #ffffff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+}
+
+/* Headings inside cards */
+body.dark-mode .sultech-card h3,
+body.dark-mode .choose-card h3,
+body.dark-mode .stat-box h2 {
+  color: #4fd1c5;
+}
+
+/* Paragraph text */
+body.dark-mode .sultech-card p,
+body.dark-mode .choose-card p,
+body.dark-mode .testimonial p {
+  color: #e6f4ff;
+}
+
+/* Hover effect (subtle glow) */
+body.dark-mode .sultech-card:hover,
+body.dark-mode .choose-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 34px rgba(79, 209, 197, 0.45);
+}
+
