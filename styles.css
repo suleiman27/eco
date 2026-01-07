@@ -96,6 +96,7 @@ body.dark-mode .brand .accent {
   color: #fff;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .nav-links a:hover,
@@ -122,23 +123,6 @@ body.dark-mode .submenu {
   background: #dcdcdc;
 }
 
-.dropdown:hover > .dropdown-menu {
-  display: block;
-}
-
-.dropdown-submenu {
-  position: relative;
-}
-
-.submenu {
-  top: 0;
-  left: 100%;
-}
-
-.dropdown-submenu:hover > .submenu {
-  display: block;
-}
-
 .dropdown-menu button,
 .submenu button {
   width: 100%;
@@ -157,6 +141,32 @@ body.dark-mode .submenu {
 body.dark-mode .dropdown-menu button:hover,
 body.dark-mode .submenu button:hover {
   background: #cfcfcf;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.submenu {
+  top: 0;
+  left: 100%;
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block; /* Desktop hover */
+}
+
+.dropdown-submenu:hover > .submenu {
+  display: block; /* Desktop hover */
+}
+
+/* Mobile click toggle */
+.nav-links.active .dropdown-menu {
+  display: block !important;
+}
+
+.nav-links .dropdown.active > .dropdown-menu {
+  display: block;
 }
 
 /* ========================
@@ -226,19 +236,7 @@ body.dark-mode .submenu button:hover {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  animation: heroSlide 15s infinite;
-}
-
-.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
-.hero-slideshow .slide:nth-child(2) { animation-delay: 5s; }
-.hero-slideshow .slide:nth-child(3) { animation-delay: 10s; }
-
-@keyframes heroSlide {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  30% { opacity: 1; }
-  40% { opacity: 0; }
-  100% { opacity: 0; }
+  transition: opacity 1s ease-in-out;
 }
 
 .hero-overlay {
@@ -311,6 +309,7 @@ body.dark-mode .section::after {
   display: flex;
   gap: 1.2rem;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .sultech-card,
@@ -321,17 +320,14 @@ body.dark-mode .section::after {
   border-radius: 14px;
   padding: 1.5rem;
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
 }
 
-body.dark-mode
-.sultech-card,
-body.dark-mode
-.choose-card,
-body.dark-mode
-.stat-box,
-body.dark-mode
-.testimonial {
-  background: #dcdcdc;
+body.dark-mode .sultech-card,
+body.dark-mode .choose-card,
+body.dark-mode .stat-box,
+body.dark-mode .testimonial {
+  background: #2c2c2c;
 }
 
 .sultech-card:hover {
@@ -351,7 +347,7 @@ body.dark-mode
 }
 
 body.dark-mode .stat-box h2 {
-  color: #1e1e1e;
+  color: #4fd1c5;
 }
 
 /* ========================
@@ -394,6 +390,7 @@ body.dark-mode .stat-box h2 {
   padding: 12px 22px;
   border-radius: 30px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -414,7 +411,6 @@ body.dark-mode .btn-primary {
   border-radius: 8px;
   background: #fff;
   color: #0f4c75;
-  cursor: pointer;
 }
 
 body.dark-mode #dark-mode-toggle {
@@ -463,6 +459,7 @@ body.dark-mode .site-footer {
   .choose-grid,
   .stats-grid {
     flex-direction: column;
+    align-items: center;
   }
 
   .about-grid {
