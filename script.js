@@ -1,4 +1,34 @@
 /* =========================
+   PAGE LOADER
+========================= */
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  if (loader) loader.style.display = "none";
+});
+
+/* =========================
+   HERO SLIDESHOW
+========================= */
+const slides = document.querySelectorAll(".hero-slideshow .slide");
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.style.opacity = i === index ? "1" : "0";
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+if (slides.length) {
+  showSlide(currentSlide);
+  setInterval(nextSlide, 5000);
+}
+
+/* =========================
    MOBILE NAV TOGGLE
 ========================= */
 const navToggle = document.getElementById("nav-toggle");
@@ -13,14 +43,41 @@ if (navToggle && navLinks) {
 }
 
 /* =========================
-   DROPDOWNS (DESKTOP)
+   DROPDOWNS (DESKTOP + MOBILE)
 ========================= */
 document.querySelectorAll(".dropdown").forEach(dropdown => {
+  const btn = dropdown.querySelector(".dropdown-btn");
+  const menu = dropdown.querySelector(".dropdown-menu");
+
+  // Desktop hover
   dropdown.addEventListener("mouseenter", () => {
-    if (window.innerWidth > 768) dropdown.querySelector(".dropdown-menu").style.display = "block";
+    if (window.innerWidth > 768) menu.style.display = "block";
   });
   dropdown.addEventListener("mouseleave", () => {
-    if (window.innerWidth > 768) dropdown.querySelector(".dropdown-menu").style.display = "none";
+    if (window.innerWidth > 768) menu.style.display = "none";
+  });
+
+  // Mobile click
+  if (btn) {
+    btn.addEventListener("click", e => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        dropdown.classList.toggle("active");
+      }
+    });
+  }
+
+  // Submenu toggles
+  dropdown.querySelectorAll(".submenu-btn").forEach(subBtn => {
+    const subMenu = subBtn.nextElementSibling;
+    if (subMenu) {
+      subBtn.addEventListener("click", e => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          subMenu.style.display = subMenu.style.display === "block" ? "none" : "block";
+        }
+      });
+    }
   });
 });
 
@@ -131,3 +188,13 @@ if (galleryImages.length) {
     }
   });
 }
+
+/* =========================
+   SERVICES PAGE LINKS
+========================= */
+document.querySelectorAll("#venue-menu button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const serviceName = btn.innerText.replace(/\s+/g, "-").toLowerCase();
+    window.open(`services-pages/${serviceName}.html`, "_blank");
+  });
+});
