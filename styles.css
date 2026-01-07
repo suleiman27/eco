@@ -15,8 +15,8 @@ body {
 }
 
 body.dark-mode {
-  background: #ededed;
-  color: #1e1e1e;
+  background: #1c1c1c;
+  color: #ededed;
 }
 
 a {
@@ -39,12 +39,9 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999999;
+  z-index: 99999;
   color: #fff;
-}
-
-#loader h1 span {
-  color: #4fd1c5;
+  font-size: 2rem;
 }
 
 body.dark-mode #loader {
@@ -165,7 +162,7 @@ body.dark-mode .submenu button:hover {
 /* ========================
    MOBILE MENU
 ======================== */
-.menu-toggle {
+#nav-toggle {
   display: none;
   font-size: 28px;
   background: none;
@@ -175,7 +172,7 @@ body.dark-mode .submenu button:hover {
 }
 
 @media (max-width: 768px) {
-  .menu-toggle {
+  #nav-toggle {
     display: block;
   }
 
