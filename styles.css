@@ -26,6 +26,7 @@ a {
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -104,22 +105,21 @@ body.dark-mode .brand .accent {
 }
 
 /* ========================
-   DROPDOWNS
+   DROPDOWNS (FIXED)
 ======================== */
+.dropdown {
+  position: relative;
+}
+
 .dropdown-menu,
 .submenu {
   display: none;
   position: absolute;
-  background: #fff;
+  background: #ffffff;
   border-radius: 10px;
-  min-width: 180px;
+  min-width: 200px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.18);
   z-index: 9999;
-}
-
-body.dark-mode .dropdown-menu,
-body.dark-mode .submenu {
-  background: #dcdcdc;
 }
 
 .dropdown:hover > .dropdown-menu {
@@ -139,7 +139,10 @@ body.dark-mode .submenu {
   display: block;
 }
 
+/* TEXT VISIBILITY FIX (LIGHT MODE) */
+.dropdown-menu a,
 .dropdown-menu button,
+.submenu a,
 .submenu button {
   width: 100%;
   padding: 10px 14px;
@@ -147,16 +150,33 @@ body.dark-mode .submenu {
   border: none;
   cursor: pointer;
   text-align: left;
+  color: #1e293b;
+  font-weight: 500;
 }
 
+.dropdown-menu a:hover,
 .dropdown-menu button:hover,
+.submenu a:hover,
 .submenu button:hover {
   background: #eef4ff;
+  color: #0f4c75;
 }
 
-body.dark-mode .dropdown-menu button:hover,
-body.dark-mode .submenu button:hover {
-  background: #cfcfcf;
+/* DARK MODE DROPDOWN */
+body.dark-mode .dropdown-menu,
+body.dark-mode .submenu {
+  background: #1f2933;
+}
+
+body.dark-mode .dropdown-menu a,
+body.dark-mode .submenu a {
+  color: #ffffff;
+}
+
+body.dark-mode .dropdown-menu a:hover,
+body.dark-mode .submenu a:hover {
+  background: #2c3e50;
+  color: #4fd1c5;
 }
 
 /* ========================
@@ -248,197 +268,47 @@ body.dark-mode .submenu button:hover {
   z-index: 2;
 }
 
-body.dark-mode .hero-overlay {
-  background: rgba(0,0,0,0.65);
-}
-
 .hero-content {
   position: relative;
   z-index: 3;
-  max-width: 850px;
-}
-
-.hero h1 {
-  font-size: 2.3rem;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.1rem;
 }
 
 /* ========================
-   SECTIONS
-======================== */
-.section {
-  padding: 4rem 2rem;
-}
-
-.section::after {
-  content: "";
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #0f4c75, #4fd1c5);
-  display: block;
-  margin: 2rem auto 0;
-  border-radius: 10px;
-}
-
-body.dark-mode .section::after {
-  background: #9e9e9e;
-}
-
-/* ========================
-   SCROLL REVEAL
-======================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ========================
-   SERVICES / CARDS
+   CARDS
 ======================== */
 .sultech-grid,
 .choose-grid,
 .stats-grid {
   display: flex;
   gap: 1.2rem;
-  justify-content: space-between;
 }
 
 .sultech-card,
 .choose-card,
 .stat-box,
 .testimonial {
-  background: #fff;
+  background: #ffffff;
   border-radius: 14px;
   padding: 1.5rem;
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-body.dark-mode
-.sultech-card,
-body.dark-mode
-.choose-card,
-body.dark-mode
-.stat-box,
-body.dark-mode
-.testimonial {
-  background: #dcdcdc;
-}
-
-.sultech-card:hover {
-  transform: translateY(-6px);
-}
-
-/* ========================
-   STATS COUNTERS
-======================== */
-.stat-box {
-  text-align: center;
-}
-
-.stat-box h2 {
-  font-size: 2.2rem;
-  color: #0f4c75;
-}
-
-body.dark-mode .stat-box h2 {
-  color: #1e1e1e;
-}
-
-/* ========================
-   TESTIMONIALS
-======================== */
-#testimonials {
-  text-align: center;
-}
-
-.testimonial {
-  display: none;
-  max-width: 700px;
-  margin: auto;
-}
-
-.testimonial.active {
-  display: block;
-}
-
-/* ========================
-   ABOUT
-======================== */
-.about-grid {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.about-img {
-  max-width: 280px;
-  border-radius: 14px;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.25);
+body.dark-mode .sultech-card,
+body.dark-mode .choose-card,
+body.dark-mode .stat-box,
+body.dark-mode .testimonial {
+  background: linear-gradient(135deg, #0f4c75, #1b6ca8, #3282b8);
+  color: #ffffff;
 }
 
 /* ========================
    BUTTONS
 ======================== */
-.btn {
-  padding: 12px 22px;
-  border-radius: 30px;
-  font-weight: 600;
-}
-
 .btn-primary {
   background: linear-gradient(90deg, #0f4c75, #3282b8);
   color: #fff;
-}
-
-body.dark-mode .btn-primary {
-  background: #3a3a3a;
-}
-
-/* ========================
-   DARK MODE TOGGLE
-======================== */
-#dark-mode-toggle {
-  font-size: 20px;
-  padding: 12px 16px;
-  border-radius: 8px;
-  background: #fff;
-  color: #0f4c75;
-  cursor: pointer;
-}
-
-body.dark-mode #dark-mode-toggle {
-  background: #3a3a3a;
-  color: #fff;
-}
-
-/* ========================
-   WHATSAPP FLOAT
-======================== */
-.float {
-  position: fixed;
-  width: 75px;
-  height: 75px;
-  bottom: 25px;
-  right: 25px;
-  background: #25d366;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 38px;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 30px;
 }
 
 /* ========================
@@ -454,61 +324,3 @@ body.dark-mode #dark-mode-toggle {
 body.dark-mode .site-footer {
   background: #262626;
 }
-
-/* ========================
-   RESPONSIVE
-======================== */
-@media (max-width: 768px) {
-  .sultech-grid,
-  .choose-grid,
-  .stats-grid {
-    flex-direction: column;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 1.6rem;
-  }
-}
-/* ========================
-   DARK MODE – COLORFUL CARDS
-======================== */
-body.dark-mode .sultech-card,
-body.dark-mode .choose-card,
-body.dark-mode .stat-box,
-body.dark-mode .testimonial {
-  background: linear-gradient(
-    135deg,
-    #0f4c75,
-    #1b6ca8,
-    #3282b8
-  );
-  color: #ffffff;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
-}
-
-/* Headings inside cards */
-body.dark-mode .sultech-card h3,
-body.dark-mode .choose-card h3,
-body.dark-mode .stat-box h2 {
-  color: #4fd1c5;
-}
-
-/* Paragraph text */
-body.dark-mode .sultech-card p,
-body.dark-mode .choose-card p,
-body.dark-mode .testimonial p {
-  color: #e6f4ff;
-}
-
-/* Hover effect (subtle glow) */
-body.dark-mode .sultech-card:hover,
-body.dark-mode .choose-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 34px rgba(79, 209, 197, 0.45);
-}
-
