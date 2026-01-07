@@ -14,7 +14,7 @@ body {
 
 body.dark-mode {
   background: #1c1c1c;
-  color: #ffd700; /* colorful text in dark mode */
+  color: #ffd700; /* colorful details in dark mode */
 }
 
 a {
@@ -25,7 +25,6 @@ a {
 img {
   max-width: 100%;
   display: block;
-  height: auto;
 }
 
 /* ======================== PAGE LOADER ======================== */
@@ -53,17 +52,14 @@ body.dark-mode #loader {
   width: 100%;
   z-index: 1000;
   box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
 }
 
 body.dark-mode .site-header {
   background: #262626;
-}
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
 }
 
 .brand {
@@ -99,10 +95,6 @@ body.dark-mode .brand .accent {
 }
 
 /* ======================== DROPDOWNS ======================== */
-.dropdown {
-  position: relative;
-}
-
 .dropdown-menu,
 .submenu {
   display: none;
@@ -116,7 +108,7 @@ body.dark-mode .brand .accent {
 
 body.dark-mode .dropdown-menu,
 body.dark-mode .submenu {
-  background: #2b2b2b;
+  background: #333;
   color: #ffd700;
 }
 
@@ -145,7 +137,6 @@ body.dark-mode .submenu {
   border: none;
   cursor: pointer;
   text-align: left;
-  color: inherit;
 }
 
 .dropdown-menu button:hover,
@@ -161,7 +152,7 @@ body.dark-mode .submenu button:hover {
 /* ======================== MOBILE MENU ======================== */
 #nav-toggle {
   display: none;
-  font-size: 28px;
+  font-size: 32px;
   background: none;
   border: none;
   color: #fff;
@@ -293,139 +284,88 @@ body.dark-mode .section::after {
   transform: translateY(0);
 }
 
-/* ======================== SERVICES / CARDS ======================== */
-.sultech-grid,
-.choose-grid,
-.stats-grid {
+/* ======================== SERVICES / CARDS (FIT 5 IN ROW) ======================== */
+.sultech-grid {
   display: flex;
-  gap: 1rem;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: nowrap; /* force in one line */
 }
 
-.sultech-card,
-.choose-card,
-.stat-box,
-.testimonial {
+.sultech-card {
   background: #fff;
-  border-radius: 14px;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
-  flex: 0 1 150px;
-}
-
-body.dark-mode .sultech-card,
-body.dark-mode .choose-card,
-body.dark-mode .stat-box,
-body.dark-mode .testimonial {
-  background: #2b2b2b;
-  color: #ffd700;
+  width: calc(20% - 8px); /* 5 cards in one row with small gaps */
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .sultech-card img {
-  width: 100%;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
+  margin-bottom: 6px;
 }
 
-.sultech-card:hover {
-  transform: translateY(-4px);
-}
-
-/* ======================== STATS COUNTERS ======================== */
-.stat-box {
-  text-align: center;
-}
-
-.stat-box h2 {
-  font-size: 2rem;
-  color: #0f4c75;
-}
-
-body.dark-mode .stat-box h2 {
+body.dark-mode .sultech-card {
+  background: #2b2b2b;
   color: #ffd700;
-}
-
-/* ======================== TESTIMONIALS ======================== */
-#testimonials {
-  text-align: center;
-}
-
-.testimonial {
-  display: none;
-  max-width: 700px;
-  margin: auto;
-}
-
-.testimonial.active {
-  display: block;
 }
 
 /* ======================== ABOUT ======================== */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 1rem;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 1.5rem;
   align-items: center;
 }
 
 .about-img {
-  max-width: 220px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  max-width: 200px;
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.25);
 }
 
-/* ======================== BUTTONS ======================== */
-.btn {
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-weight: 600;
+body.dark-mode .about-img {
+  border: 2px solid #ffd700;
 }
 
-.btn-primary {
-  background: linear-gradient(90deg, #0f4c75, #3282b8);
-  color: #fff;
-}
-
-body.dark-mode .btn-primary {
-  background: #3a3a3a;
-}
-
-/* ======================== DARK MODE TOGGLE ======================== */
+/* ======================== DARK MODE TOGGLE ON HEADER ======================== */
 #dark-mode-toggle {
-  position: fixed;
-  bottom: 110px;
-  right: 25px;
-  font-size: 22px;
-  padding: 12px 18px;
-  border-radius: 10px;
-  cursor: pointer;
+  font-size: 26px;
+  padding: 10px 14px;
+  border-radius: 8px;
   background: #fff;
   color: #0f4c75;
-  z-index: 9999;
+  cursor: pointer;
 }
 
 body.dark-mode #dark-mode-toggle {
-  background: #333;
+  background: #3a3a3a;
   color: #ffd700;
 }
 
 /* ======================== WHATSAPP FLOAT ======================== */
 .float {
   position: fixed;
+  width: 80px;
+  height: 80px;
   bottom: 25px;
   right: 25px;
-  width: 70px;
-  height: 70px;
-  font-size: 36px;
   background: #25d366;
   color: #fff;
   border-radius: 50%;
+  font-size: 38px;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
 }
 
 /* ======================== FOOTER ======================== */
@@ -438,24 +378,30 @@ body.dark-mode #dark-mode-toggle {
 
 body.dark-mode .site-footer {
   background: #262626;
-  color: #ffd700;
 }
 
 /* ======================== RESPONSIVE ======================== */
+@media (max-width: 1024px) {
+  .sultech-grid {
+    flex-wrap: wrap;
+  }
+  .sultech-card {
+    width: calc(50% - 10px);
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width: 768px) {
-  .sultech-grid,
-  .choose-grid,
-  .stats-grid {
-    flex-direction: column;
-    align-items: center;
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .sultech-card {
+    width: 100%;
   }
 
   .about-grid {
     grid-template-columns: 1fr;
     text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 1.6rem;
   }
 }
