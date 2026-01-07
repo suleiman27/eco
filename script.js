@@ -1,166 +1,169 @@
-// ========================
-// HERO SLIDESHOW
-// ========================
-const slides = document.querySelectorAll('.hero-slideshow .slide');
-let currentSlide = 0;
+/* =========================
+   PAGE LOADER
+========================= */
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.opacity = "0";
+    setTimeout(() => loader.remove(), 600);
+  }
+});
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
+/* =========================
+   MOBILE NAV TOGGLE
+========================= */
+const navToggle = document.getElementById("nav-toggle") || document.getElementById("menuToggle");
+const navLinks = document.getElementById("nav-links");
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    const expanded = navToggle.getAttribute("aria-expanded") === "true";
+    navToggle.setAttribute("aria-expanded", !expanded);
   });
 }
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-}
-
-// Start slideshow
-showSlide(currentSlide);
-setInterval(nextSlide, 5000); // Change slide every 5 seconds
-
-// ========================
-// NAVIGATION TOGGLE (MOBILE)
-// ========================
-const navToggle = document.getElementById('nav-toggle');
-const navLinks = document.getElementById('nav-links');
-
-navToggle.addEventListener('click', () => {
-  const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-  navToggle.setAttribute('aria-expanded', !expanded);
-  navLinks.classList.toggle('active');
-});
-
-// ========================
-// DROPDOWN MENUS
-// ========================
-const dropdowns = document.querySelectorAll('.dropdown');
+/* =========================
+   DROPDOWNS (DESKTOP ONLY)
+========================= */
+const dropdowns = document.querySelectorAll(".dropdown");
 
 dropdowns.forEach(dropdown => {
-  const btn = dropdown.querySelector('.dropdown-btn');
-  const menu = dropdown.querySelector('.dropdown-menu');
-
-  dropdown.addEventListener('mouseenter', () => {
-    menu.style.display = 'block';
+  dropdown.addEventListener("mouseenter", () => {
+    if (window.innerWidth > 768) {
+      dropdown.querySelector(".dropdown-menu").style.display = "block";
+    }
   });
 
-  dropdown.addEventListener('mouseleave', () => {
-    menu.style.display = 'none';
-  });
-});
-
-// ========================
-// DARK MODE TOGGLE
-// ========================
-const darkModeBtn = document.getElementById('dark-mode-toggle');
-
-darkModeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-
-  if (document.body.classList.contains('dark-mode')) {
-    darkModeBtn.textContent = '☀️';
-  } else {
-    darkModeBtn.textContent = '🌙';
-  }
-});
-
-// Dark mode styles
-const darkModeStyles = document.createElement('style');
-darkModeStyles.innerHTML = `
-  .dark-mode {
-    background-color: #1e2b20;
-    color: #e0f0d9;
-  }
-  .dark-mode .site-header {
-    background-color: #13301f;
-  }
-  .dark-mode .btn-primary {
-    background-color: #4d9c2e;
-    color: #fff;
-  }
-  .dark-mode .btn-outline {
-    border-color: #fff;
-    color: #fff;
-  }
-  .dark-mode .safari-card, 
-  .dark-mode .choose-card, 
-  .dark-mode .booking-form, 
-  .dark-mode blockquote {
-    background-color: #25412b;
-    color: #e0f0d9;
-  }
-`;
-document.head.appendChild(darkModeStyles);
-
-// ========================
-// BOOKING FORM CITIZENSHIP TOGGLE
-// ========================
-const citizenship = document.getElementById('citizenship');
-const idInput = document.getElementById('idNumber');
-const passportInput = document.getElementById('passportNumber');
-
-citizenship.addEventListener('change', () => {
-  const value = citizenship.value;
-  if (value === 'citizen') {
-    idInput.style.display = 'block';
-    passportInput.style.display = 'none';
-  } else if (value === 'non-citizen') {
-    idInput.style.display = 'none';
-    passportInput.style.display = 'block';
-  } else {
-    idInput.style.display = 'none';
-    passportInput.style.display = 'none';
-  }
-});
-
-// ========================
-// FOOTER YEAR
-// ========================
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// ========================
-// GALLERY LIGHTBOX
-// ========================
-const galleryImages = document.querySelectorAll('.gallery-item');
-
-const lightbox = document.createElement('div');
-lightbox.id = 'lightbox';
-document.body.appendChild(lightbox);
-
-lightbox.style.cssText = `
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.9);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  visibility:hidden;
-  transition: opacity 0.3s ease;
-  z-index:1000;
-`;
-
-const lightboxImg = document.createElement('img');
-lightboxImg.style.maxWidth = '90%';
-lightboxImg.style.maxHeight = '90%';
-lightbox.appendChild(lightboxImg);
-
-galleryImages.forEach(image => {
-  image.addEventListener('click', () => {
-    lightboxImg.src = image.src;
-    lightbox.style.visibility = 'visible';
-    lightbox.style.opacity = '1';
+  dropdown.addEventListener("mouseleave", () => {
+    if (window.innerWidth > 768) {
+      dropdown.querySelector(".dropdown-menu").style.display = "none";
+    }
   });
 });
 
-lightbox.addEventListener('click', e => {
-  if (e.target !== lightboxImg) {
-    lightbox.style.opacity = '0';
-    setTimeout(() => {
-      lightbox.style.visibility = 'hidden';
-    }, 300);
-  }
+/* =========================
+   DARK MODE TOGGLE (CSS BASED)
+========================= */
+const darkModeBtn = document.getElementById("dark-mode-toggle");
+
+if (darkModeBtn) {
+  darkModeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    darkModeBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+  });
+}
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 120) {
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+/* =========================
+   STATS COUNTER
+========================= */
+const counters = document.querySelectorAll(".counter");
+
+counters.forEach(counter => {
+  counter.innerText = "0";
+  const updateCounter = () => {
+    const target = +counter.getAttribute("data-target");
+    const current = +counter.innerText;
+    const increment = target / 200;
+
+    if (current < target) {
+      counter.innerText = Math.ceil(current + increment);
+      setTimeout(updateCounter, 20);
+    } else {
+      counter.innerText = target;
+    }
+  };
+
+  updateCounter();
 });
+
+/* =========================
+   TESTIMONIALS CAROUSEL
+========================= */
+const testimonials = document.querySelectorAll(".testimonial");
+let testimonialIndex = 0;
+
+function showTestimonial(index) {
+  testimonials.forEach((t, i) => {
+    t.classList.toggle("active", i === index);
+  });
+}
+
+if (testimonials.length > 0) {
+  showTestimonial(testimonialIndex);
+  setInterval(() => {
+    testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+    showTestimonial(testimonialIndex);
+  }, 5000);
+}
+
+/* =========================
+   FOOTER YEAR
+========================= */
+const yearSpan = document.getElementById("year");
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}
+
+/* =========================
+   GALLERY LIGHTBOX
+========================= */
+const galleryImages = document.querySelectorAll(".gallery-item");
+
+if (galleryImages.length) {
+  const lightbox = document.createElement("div");
+  lightbox.id = "lightbox";
+  document.body.appendChild(lightbox);
+
+  Object.assign(lightbox.style, {
+    position: "fixed",
+    inset: "0",
+    background: "rgba(0,0,0,0.9)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    opacity: "0",
+    visibility: "hidden",
+    transition: "0.3s",
+    zIndex: "10000"
+  });
+
+  const img = document.createElement("img");
+  img.style.maxWidth = "90%";
+  img.style.maxHeight = "90%";
+  img.style.borderRadius = "10px";
+  lightbox.appendChild(img);
+
+  galleryImages.forEach(image => {
+    image.addEventListener("click", () => {
+      img.src = image.src;
+      lightbox.style.opacity = "1";
+      lightbox.style.visibility = "visible";
+    });
+  });
+
+  lightbox.addEventListener("click", e => {
+    if (e.target !== img) {
+      lightbox.style.opacity = "0";
+      setTimeout(() => (lightbox.style.visibility = "hidden"), 300);
+    }
+  });
+}
