@@ -312,7 +312,7 @@ body.dark-mode .sultech-card {
 }
 
 .sultech-card img {
-  height: 120px; /* smaller image */
+  height: 140px; /* smaller image */
   object-fit: contain;
   margin-bottom: 0.5rem;
 }
