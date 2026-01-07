@@ -9,9 +9,15 @@
 }
 
 body {
-  background: linear-gradient(180deg, #f4f8ff, #eef3f9);
-  color: #1e1e1e;
+  background: linear-gradient(180deg, #f5f9ff, #eef6ff);
+  color: #1e293b;
   line-height: 1.6;
+}
+
+/* DARK MODE (GREY THEME) */
+body.dark-mode {
+  background: #ededed;
+  color: #1e1e1e;
 }
 
 a {
@@ -28,13 +34,17 @@ img {
    HEADER / NAVIGATION
 ======================== */
 .site-header {
-  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(90deg, #0f4c75, #3282b8);
   color: #fff;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+
+body.dark-mode .site-header {
+  background: #262626;
 }
 
 .nav {
@@ -53,6 +63,10 @@ img {
   color: #4fd1c5;
 }
 
+body.dark-mode .brand .accent {
+  color: #9e9e9e;
+}
+
 .nav-links {
   list-style: none;
   display: flex;
@@ -67,12 +81,12 @@ img {
 .dropdown-btn {
   color: #fff;
   padding: 0.5rem 0.75rem;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
 .nav-links a:hover,
 .dropdown-btn:hover {
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255,255,255,0.2);
 }
 
 /* ========================
@@ -83,11 +97,15 @@ img {
   display: none;
   position: absolute;
   background: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  border-radius: 10px;
   min-width: 180px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
   z-index: 9999;
+}
+
+body.dark-mode .dropdown-menu,
+body.dark-mode .submenu {
+  background: #dcdcdc;
 }
 
 .dropdown:hover > .dropdown-menu {
@@ -115,12 +133,16 @@ img {
   border: none;
   text-align: left;
   cursor: pointer;
-  font-size: 0.95rem;
 }
 
 .dropdown-menu button:hover,
 .submenu button:hover {
-  background-color: #f0f6ff;
+  background: #eef4ff;
+}
+
+body.dark-mode .dropdown-menu button:hover,
+body.dark-mode .submenu button:hover {
+  background: #cfcfcf;
 }
 
 /* ========================
@@ -138,46 +160,27 @@ img {
   color: #fff;
 }
 
-.hero-slideshow {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.hero-slideshow .slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.hero-slideshow .slide.active {
-  opacity: 1;
-}
-
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    rgba(0,0,0,0.65),
-    rgba(0,0,0,0.75)
+    rgba(15, 76, 117, 0.6),
+    rgba(0, 0, 0, 0.7)
   );
-  z-index: 2;
+}
+
+body.dark-mode .hero-overlay {
+  background: rgba(0,0,0,0.65);
 }
 
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   max-width: 850px;
-  padding: 1rem;
 }
 
 .hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
+  font-size: 2.3rem;
 }
 
 .hero p.lead {
@@ -197,34 +200,32 @@ img {
 .sultech-grid {
   display: flex;
   gap: 1.2rem;
-  justify-content: space-between;
 }
 
 .sultech-card {
   background: #ffffff;
-  border-radius: 12px;
-  flex: 1;
+  border-radius: 14px;
   max-width: 220px;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .sultech-card {
+  background: #dcdcdc;
 }
 
 .sultech-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.18);
-}
-
-.sultech-card img {
-  height: 130px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 12px 12px 0 0;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
 }
 
 .sultech-card h3 {
-  margin: 0.6rem 0;
-  color: #2c5364;
+  color: #0f4c75;
+}
+
+body.dark-mode .sultech-card h3 {
+  color: #1e1e1e;
 }
 
 /* ========================
@@ -233,87 +234,69 @@ img {
 .choose-grid {
   display: flex;
   gap: 1.2rem;
-  justify-content: space-between;
 }
 
 .choose-card {
-  background: linear-gradient(180deg, #ffffff, #f2f7ff);
+  background: linear-gradient(180deg, #ffffff, #edf4ff);
   padding: 1rem;
-  border-radius: 10px;
-  flex: 1;
-  max-width: 300px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
 }
 
-.choose-card h3 {
-  color: #0f4c75;
-  margin-bottom: 0.4rem;
+body.dark-mode .choose-card {
+  background: #dcdcdc;
 }
 
 /* ========================
    GALLERY
 ======================== */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-}
-
 .gallery-item {
-  height: 170px;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
 }
 
 /* ========================
-   ABOUT US
+   ABOUT
 ======================== */
-.about-grid {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 1.5rem;
-  align-items: center;
-}
-
 .about-img {
   max-width: 280px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.25);
 }
 
 #about h3 {
-  color: #2c5364;
+  color: #0f4c75;
 }
 
-#about p,
-#about h4 {
-  font-size: 0.95rem;
-}
-
-.half-section {
-  padding: 2.8rem 2rem;
+body.dark-mode #about h3 {
+  color: #1e1e1e;
 }
 
 /* ========================
-   BOOKING / REVIEWS
+   FORMS / REVIEWS
 ======================== */
 .booking-form,
 blockquote {
   background: #ffffff;
-  padding: 1.2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.14);
+}
+
+body.dark-mode .booking-form,
+body.dark-mode blockquote {
+  background: #dcdcdc;
 }
 
 /* ========================
    FOOTER
 ======================== */
 .site-footer {
-  background: #1b262c;
+  background: #0f4c75;
   color: #fff;
-  padding: 1.2rem 2rem;
-  text-align: center;
+}
+
+body.dark-mode .site-footer {
+  background: #262626;
 }
 
 /* ========================
@@ -323,9 +306,13 @@ blockquote {
   font-size: 20px;
   padding: 12px 16px;
   border-radius: 8px;
-  background-color: #3a3a3a;
+  background: #ffffff;
+  color: #0f4c75;
+}
+
+body.dark-mode #dark-mode-toggle {
+  background: #3a3a3a;
   color: #fff;
-  cursor: pointer;
 }
 
 /* ========================
@@ -345,8 +332,7 @@ blockquote {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.4);
 }
 
 .float:hover {
@@ -361,15 +347,6 @@ blockquote {
   .choose-grid {
     flex-direction: column;
     align-items: center;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .about-img {
-    margin: 0 auto;
   }
 
   .hero h1 {
