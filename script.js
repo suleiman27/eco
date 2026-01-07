@@ -1,63 +1,47 @@
-/* =========================
+/* ========================
    PAGE LOADER
-========================= */
+======================== */
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
-  if (loader) loader.style.display = "none";
+  if (loader) {
+    loader.style.display = "none";
+  }
 });
 
-/* =========================
+/* ========================
    HERO SLIDESHOW
-========================= */
+======================== */
 const slides = document.querySelectorAll(".hero-slideshow .slide");
 let currentSlide = 0;
 
 function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.style.opacity = i === index ? "1" : "0";
-  });
-}
-
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
+  slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
 }
 
 if (slides.length) {
   showSlide(currentSlide);
-  setInterval(nextSlide, 5000);
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }, 5000);
 }
 
-/* =========================
+/* ========================
    MOBILE NAV TOGGLE
-========================= */
+======================== */
 const navToggle = document.getElementById("nav-toggle");
 const navLinks = document.getElementById("nav-links");
-
 if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-    const expanded = navToggle.getAttribute("aria-expanded") === "true";
-    navToggle.setAttribute("aria-expanded", !expanded);
-  });
+  navToggle.addEventListener("click", () => navLinks.classList.toggle("active"));
 }
 
-/* =========================
-   DROPDOWNS (DESKTOP + MOBILE)
-========================= */
+/* ========================
+   DROPDOWNS
+======================== */
 document.querySelectorAll(".dropdown").forEach(dropdown => {
   const btn = dropdown.querySelector(".dropdown-btn");
-  const menu = dropdown.querySelector(".dropdown-menu");
 
-  // Desktop hover
-  dropdown.addEventListener("mouseenter", () => {
-    if (window.innerWidth > 768) menu.style.display = "block";
-  });
-  dropdown.addEventListener("mouseleave", () => {
-    if (window.innerWidth > 768) menu.style.display = "none";
-  });
-
-  // Mobile click
+  // Mobile click toggle
   if (btn) {
     btn.addEventListener("click", e => {
       if (window.innerWidth <= 768) {
@@ -67,23 +51,29 @@ document.querySelectorAll(".dropdown").forEach(dropdown => {
     });
   }
 
-  // Submenu toggles
-  dropdown.querySelectorAll(".submenu-btn").forEach(subBtn => {
-    const subMenu = subBtn.nextElementSibling;
-    if (subMenu) {
-      subBtn.addEventListener("click", e => {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          subMenu.style.display = subMenu.style.display === "block" ? "none" : "block";
-        }
-      });
+  // Desktop hover
+  dropdown.addEventListener("mouseenter", () => {
+    if (window.innerWidth > 768) dropdown.classList.add("active");
+  });
+  dropdown.addEventListener("mouseleave", () => {
+    if (window.innerWidth > 768) dropdown.classList.remove("active");
+  });
+});
+
+/* Submenus toggle */
+document.querySelectorAll(".submenu-btn").forEach(btn => {
+  const subMenu = btn.nextElementSibling;
+  btn.addEventListener("click", e => {
+    if (window.innerWidth <= 768 && subMenu) {
+      e.preventDefault();
+      subMenu.style.display = subMenu.style.display === "block" ? "none" : "block";
     }
   });
 });
 
-/* =========================
+/* ========================
    DARK MODE TOGGLE
-========================= */
+======================== */
 const darkModeBtn = document.getElementById("dark-mode-toggle");
 if (darkModeBtn) {
   darkModeBtn.addEventListener("click", () => {
@@ -92,9 +82,9 @@ if (darkModeBtn) {
   });
 }
 
-/* =========================
+/* ========================
    SCROLL REVEAL
-========================= */
+======================== */
 const reveals = document.querySelectorAll(".reveal");
 function revealOnScroll() {
   reveals.forEach(el => {
@@ -106,9 +96,9 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
-/* =========================
+/* ========================
    STATS COUNTER
-========================= */
+======================== */
 document.querySelectorAll(".counter").forEach(counter => {
   counter.innerText = "0";
   const updateCounter = () => {
@@ -123,9 +113,9 @@ document.querySelectorAll(".counter").forEach(counter => {
   updateCounter();
 });
 
-/* =========================
+/* ========================
    TESTIMONIALS
-========================= */
+======================== */
 const testimonials = document.querySelectorAll(".testimonial");
 let testimonialIndex = 0;
 function showTestimonial(index) {
@@ -139,15 +129,15 @@ if (testimonials.length > 0) {
   }, 5000);
 }
 
-/* =========================
+/* ========================
    FOOTER YEAR
-========================= */
+======================== */
 const yearSpan = document.getElementById("year");
 if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-/* =========================
+/* ========================
    GALLERY LIGHTBOX
-========================= */
+======================== */
 const galleryImages = document.querySelectorAll(".gallery-item");
 if (galleryImages.length) {
   const lightbox = document.createElement("div");
@@ -189,12 +179,12 @@ if (galleryImages.length) {
   });
 }
 
-/* =========================
-   SERVICES PAGE LINKS
-========================= */
+/* ========================
+   OPEN SERVICES IN NEW TAB
+======================== */
 document.querySelectorAll("#venue-menu button").forEach(btn => {
   btn.addEventListener("click", () => {
-    const serviceName = btn.innerText.replace(/\s+/g, "-").toLowerCase();
-    window.open(`services-pages/${serviceName}.html`, "_blank");
+    const page = btn.textContent.trim().replace(/\s+/g, "-").toLowerCase();
+    window.open(`services-pages/${page}.html`, "_blank");
   });
 });
