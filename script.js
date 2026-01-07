@@ -4,6 +4,7 @@
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
   if (loader) {
+    loader.style.transition = "opacity 0.6s ease";
     loader.style.opacity = "0";
     setTimeout(() => loader.remove(), 600);
   }
@@ -12,7 +13,7 @@ window.addEventListener("load", () => {
 /* =========================
    MOBILE NAV TOGGLE
 ========================= */
-const navToggle = document.getElementById("nav-toggle") || document.getElementById("menuToggle");
+const navToggle = document.getElementById("nav-toggle");
 const navLinks = document.getElementById("nav-links");
 
 if (navToggle && navLinks) {
@@ -24,29 +25,21 @@ if (navToggle && navLinks) {
 }
 
 /* =========================
-   DROPDOWNS (DESKTOP ONLY)
+   DROPDOWNS (DESKTOP)
 ========================= */
-const dropdowns = document.querySelectorAll(".dropdown");
-
-dropdowns.forEach(dropdown => {
+document.querySelectorAll(".dropdown").forEach(dropdown => {
   dropdown.addEventListener("mouseenter", () => {
-    if (window.innerWidth > 768) {
-      dropdown.querySelector(".dropdown-menu").style.display = "block";
-    }
+    if (window.innerWidth > 768) dropdown.querySelector(".dropdown-menu").style.display = "block";
   });
-
   dropdown.addEventListener("mouseleave", () => {
-    if (window.innerWidth > 768) {
-      dropdown.querySelector(".dropdown-menu").style.display = "none";
-    }
+    if (window.innerWidth > 768) dropdown.querySelector(".dropdown-menu").style.display = "none";
   });
 });
 
 /* =========================
-   DARK MODE TOGGLE (CSS BASED)
+   DARK MODE TOGGLE
 ========================= */
 const darkModeBtn = document.getElementById("dark-mode-toggle");
-
 if (darkModeBtn) {
   darkModeBtn.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
@@ -58,55 +51,41 @@ if (darkModeBtn) {
    SCROLL REVEAL
 ========================= */
 const reveals = document.querySelectorAll(".reveal");
-
 function revealOnScroll() {
   reveals.forEach(el => {
     const windowHeight = window.innerHeight;
     const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 120) {
-      el.classList.add("active");
-    }
+    if (elementTop < windowHeight - 120) el.classList.add("active");
   });
 }
-
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
 /* =========================
    STATS COUNTER
 ========================= */
-const counters = document.querySelectorAll(".counter");
-
-counters.forEach(counter => {
+document.querySelectorAll(".counter").forEach(counter => {
   counter.innerText = "0";
   const updateCounter = () => {
     const target = +counter.getAttribute("data-target");
     const current = +counter.innerText;
     const increment = target / 200;
-
     if (current < target) {
       counter.innerText = Math.ceil(current + increment);
       setTimeout(updateCounter, 20);
-    } else {
-      counter.innerText = target;
-    }
+    } else counter.innerText = target;
   };
-
   updateCounter();
 });
 
 /* =========================
-   TESTIMONIALS CAROUSEL
+   TESTIMONIALS
 ========================= */
 const testimonials = document.querySelectorAll(".testimonial");
 let testimonialIndex = 0;
-
 function showTestimonial(index) {
-  testimonials.forEach((t, i) => {
-    t.classList.toggle("active", i === index);
-  });
+  testimonials.forEach((t, i) => t.classList.toggle("active", i === index));
 }
-
 if (testimonials.length > 0) {
   showTestimonial(testimonialIndex);
   setInterval(() => {
@@ -119,15 +98,12 @@ if (testimonials.length > 0) {
    FOOTER YEAR
 ========================= */
 const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
+if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
 /* =========================
    GALLERY LIGHTBOX
 ========================= */
 const galleryImages = document.querySelectorAll(".gallery-item");
-
 if (galleryImages.length) {
   const lightbox = document.createElement("div");
   lightbox.id = "lightbox";
