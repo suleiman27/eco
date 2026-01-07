@@ -5,339 +5,262 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-  background: linear-gradient(180deg, #f4f9ff, #eaf2ff);
-  color: #1e293b;
-  line-height: 1.6;
-}
-
-body.dark-mode {
-  background: #1c1c1c;
-  color: #ededed;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  font-family: Arial, sans-serif;
+  background: #f6f9fc;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* ========================
-   HEADER / NAV
+   LIGHT MODE COLORS
 ======================== */
-.site-header {
-  background: linear-gradient(90deg, #0f4c75, #3282b8);
-  position: fixed;
+:root {
+  --primary: #0d6efd;
+  --secondary: #20c997;
+  --bg-light: #f6f9fc;
+  --card-light: #ffffff;
+  --text-light: #222;
+}
+
+/* ========================
+   DARK MODE
+======================== */
+body.dark-mode {
+  background: #2b2b2b;
+  color: #eaeaea;
+}
+
+body.dark-mode .card,
+body.dark-mode .dropdown-menu,
+body.dark-mode section {
+  background: #3a3a3a;
+  color: #eaeaea;
+}
+
+/* ========================
+   NAVBAR
+======================== */
+header {
+  background: var(--primary);
+  padding: 15px 20px;
+  position: sticky;
   top: 0;
-  width: 100%;
-  z-index: 1000;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  z-index: 999;
 }
 
-body.dark-mode .site-header {
-  background: #262626;
-}
-
-.nav {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
 }
 
-.brand {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #fff;
-}
-
-.brand .accent {
-  color: #4fd1c5;
-}
-
-/* ========================
-   DARK MODE BUTTON (FIXED SIZE)
-======================== */
-#dark-mode-toggle {
-  font-size: 26px;
-  padding: 14px 18px;
-  border-radius: 10px;
-  background: #ffffff;
-  color: #0f4c75;
-  cursor: pointer;
-  border: none;
-}
-
-body.dark-mode #dark-mode-toggle {
-  background: #3a3a3a;
-  color: #ffffff;
-}
-
-/* ========================
-   NAV LINKS
-======================== */
-.nav-links {
-  list-style: none;
+#nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 20px;
 }
 
-.nav-links a,
-.dropdown-btn {
-  color: #ffffff;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
+#nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#nav-toggle {
+  display: none;
 }
 
 /* ========================
-   DROPDOWNS (FIXED)
+   DROPDOWN
 ======================== */
 .dropdown {
   position: relative;
 }
 
-.dropdown-menu,
-.submenu {
-  display: none;
+.dropdown-menu {
   position: absolute;
-  background: #ffffff;
-  border-radius: 10px;
+  top: 100%;
+  left: 0;
+  background: white;
   min-width: 200px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-  z-index: 9999;
+  display: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border-radius: 8px;
 }
 
-.dropdown:hover > .dropdown-menu {
+.dropdown-menu a {
   display: block;
+  padding: 12px 15px;
+  color: #222;
 }
 
-.dropdown-submenu {
-  position: relative;
-}
-
-.submenu {
-  top: 0;
-  left: 100%;
-}
-
-.dropdown-submenu:hover > .submenu {
+.dropdown:hover .dropdown-menu {
   display: block;
-}
-
-.dropdown-menu button,
-.submenu button {
-  width: 100%;
-  padding: 12px 16px;
-  border: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  color: #1e293b;
-}
-
-.dropdown-menu button:hover,
-.submenu button:hover {
-  background: #eef4ff;
-}
-
-/* DARK MODE DROPDOWN */
-body.dark-mode .dropdown-menu,
-body.dark-mode .submenu {
-  background: #1f2933;
-}
-
-body.dark-mode .dropdown-menu button,
-body.dark-mode .submenu button {
-  color: #ffffff;
-}
-
-body.dark-mode .dropdown-menu button:hover,
-body.dark-mode .submenu button:hover {
-  background: #2c3e50;
 }
 
 /* ========================
-   HERO
+   HERO SLIDESHOW
 ======================== */
 .hero {
-  height: 80vh;
-  margin-top: 80px;
+  height: 70vh;
   position: relative;
   overflow: hidden;
-  text-align: center;
-  color: #ffffff;
 }
 
 .hero-slideshow {
-  position: absolute;
-  inset: 0;
+  height: 100%;
+  width: 100%;
 }
 
-.hero-slideshow .slide {
-  position: absolute;
-  inset: 0;
+.hero-slideshow img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  animation: heroSlide 15s infinite;
-}
-
-.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
-.hero-slideshow .slide:nth-child(2) { animation-delay: 5s; }
-.hero-slideshow .slide:nth-child(3) { animation-delay: 10s; }
-
-@keyframes heroSlide {
-  0%,100% { opacity: 0; }
-  10%,30% { opacity: 1; }
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding-top: 6rem;
 }
 
 /* ========================
    SECTIONS
 ======================== */
-.section {
-  padding: 4rem 2rem;
+section {
+  padding: 60px 20px;
 }
 
 /* ========================
-   SERVICES
+   SERVICES – IMAGES ONE LINE
 ======================== */
-.sultech-grid {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.sultech-card {
-  width: calc(33.333% - 1rem);
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 1.5rem;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-body.dark-mode .sultech-card {
-  background: #2b2b2b;
-  color: #ffffff;
-}
-
-/* ========================
-   ABOUT US (RESTORED)
-======================== */
-.about-grid {
+.services-grid {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 2rem;
-  align-items: center;
-}
-
-.about-img {
-  width: 100%;
-  max-width: 350px;
-  border-radius: 14px;
-}
-
-/* ========================
-   STATS
-======================== */
-.stats-grid {
-  display: flex;
-  gap: 1.5rem;
-  text-align: center;
-}
-
-.stat-box {
-  flex: 1;
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 14px;
-}
-
-body.dark-mode .stat-box {
-  background: #2b2b2b;
-}
-
-/* ========================
-   TESTIMONIALS
-======================== */
-.testimonial {
-  display: none;
-  max-width: 700px;
+  grid-template-columns: repeat(4, 1fr); /* FORCE ONE LINE */
+  gap: 15px;
+  max-width: 1200px;
   margin: auto;
 }
 
-.testimonial.active {
-  display: block;
+.service-card {
+  background: var(--card-light);
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* 🔥 IMAGE SIZE FIX */
+.service-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 /* ========================
-   WHATSAPP BUTTON (BIG + FIXED)
+   ABOUT US
 ======================== */
-.float {
-  position: fixed;
-  width: 85px;
-  height: 85px;
-  bottom: 25px;
-  right: 25px;
-  background: #25d366;
-  color: #ffffff;
-  border-radius: 50%;
-  font-size: 42px;
+.about-container {
   display: flex;
+  gap: 30px;
   align-items: center;
-  justify-content: center;
-  z-index: 99999;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  max-width: 1100px;
+  margin: auto;
+}
+
+.about-img {
+  max-width: 280px;
+}
+
+.about-img img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+/* ========================
+   GALLERY – ONE LINE NO SCROLL
+======================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ========================
+   WHATSAPP BUTTON
+======================== */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  font-size: 28px;
+  padding: 16px 18px;
+  border-radius: 50%;
+  z-index: 9999;
+}
+
+/* ========================
+   DARK MODE BUTTON
+======================== */
+#dark-mode-toggle {
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 /* ========================
    FOOTER
 ======================== */
-.site-footer {
-  background: #0f4c75;
-  color: #ffffff;
+footer {
+  background: #111;
+  color: white;
   text-align: center;
-  padding: 1.5rem;
-}
-
-body.dark-mode .site-footer {
-  background: #262626;
+  padding: 20px;
 }
 
 /* ========================
-   RESPONSIVE
+   MOBILE FIXES
 ======================== */
-@media (max-width: 768px) {
-  .sultech-card {
-    width: 100%;
+@media (max-width: 900px) {
+  .services-grid,
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .about-grid {
-    grid-template-columns: 1fr;
+  .about-container {
+    flex-direction: column;
     text-align: center;
   }
+}
 
-  .stats-grid {
+@media (max-width: 600px) {
+  #nav-toggle {
+    display: block;
+  }
+
+  #nav-links {
+    display: none;
     flex-direction: column;
+    background: var(--primary);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+  }
+
+  #nav-links.active {
+    display: flex;
+  }
+
+  .services-grid,
+  .gallery {
+    grid-template-columns: 1fr;
   }
 }
