@@ -1,4 +1,4 @@
-/* =========================
+/* ========================= 
    MOBILE NAV TOGGLE
 ========================= */
 const navToggle = document.getElementById("nav-toggle");
@@ -130,4 +130,4 @@ if (galleryImages.length) {
       setTimeout(() => (lightbox.style.visibility = "hidden"), 300);
     }
   });
-});
+}
