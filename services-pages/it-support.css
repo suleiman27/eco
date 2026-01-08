@@ -1,0 +1,251 @@
+/* ======================== IT SUPPORT MINI PAGE CSS ======================== */
+
+/* RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f4f9ff, #eaf2ff);
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+body.dark-mode {
+  background: #1c1c1c;
+  color: #ededed;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ======================== HEADER / NAV ======================== */
+.site-header {
+  background: linear-gradient(90deg, #0f4c75, #3282b8);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+
+body.dark-mode .site-header {
+  background: #262626;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.brand {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.brand .accent {
+  color: #4fd1c5;
+}
+
+body.dark-mode .brand .accent {
+  color: #9e9e9e;
+}
+
+.nav a.btn-outline {
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav a.btn-outline:hover {
+  background: #fff;
+  color: #0f4c75;
+}
+
+/* ======================== HERO ======================== */
+.hero {
+  height: 50vh;
+  margin-top: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(15,76,117,0.6), rgba(0,0,0,0.7));
+  z-index: 1;
+}
+
+body.dark-mode .hero-overlay {
+  background: rgba(0,0,0,0.65);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content .btn-primary {
+  background: linear-gradient(90deg, #0f4c75, #3282b8);
+  color: #fff;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hero-content .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ======================== MAIN SECTION ======================== */
+.section {
+  padding: 4rem 2rem;
+}
+
+.section h2, .section h3 {
+  font-size: 2rem;
+  color: #0f4c75;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+body.dark-mode .section h2,
+body.dark-mode .section h3 {
+  color: #9e9e9e;
+}
+
+.section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+/* ======================== SERVICE IMAGE ======================== */
+.service-image {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.service-image img {
+  max-width: 600px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-image img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* ======================== LIST / FEATURES ======================== */
+.section ul {
+  list-style-type: disc;
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+  line-height: 1.7;
+}
+
+.section ul li {
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+body.dark-mode .section ul li {
+  color: #ededed;
+}
+
+/* ======================== BUTTONS ======================== */
+.section a.btn-primary {
+  display: inline-block;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* ======================== FOOTER ======================== */
+.site-footer {
+  background: #0f4c75;
+  color: #fff;
+  padding: 1rem 2rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+body.dark-mode .site-footer {
+  background: #262626;
+}
+
+/* ======================== FADE-IN ANIMATION ======================== */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.fade-in-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================== RESPONSIVE ======================== */
+@media (max-width: 1024px) {
+  .section h2, .section h3 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1.5rem;
+  }
+
+  .service-image img {
+    max-width: 100%;
+  }
+}
