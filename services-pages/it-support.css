@@ -1,164 +1,158 @@
-/* ======================== IT SUPPORT MINI PAGE CSS ======================== */
+/* ========================
+   IT SUPPORT MINI PAGE — PREMIUM UI
+======================== */
 
-/* RESET & BASE */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+/* BASE */
 body {
-  background: linear-gradient(180deg, #f4f9ff, #eaf2ff);
+  background: radial-gradient(circle at top, #f6fbff, #e7f1ff);
   color: #1e293b;
-  line-height: 1.6;
+  line-height: 1.75;
+  min-height: 100vh;
 }
 
-body.dark-mode {
-  background: #1c1c1c;
-  color: #ededed;
-}
-
+/* LINKS */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-  border-radius: 12px;
-}
-
-/* ======================== HEADER / NAV ======================== */
+/* HEADER */
 .site-header {
-  background: linear-gradient(90deg, #0f4c75, #3282b8);
   position: fixed;
   top: 0;
   width: 100%;
+  background: linear-gradient(90deg, #0f4c75, #3282b8);
   z-index: 1000;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-}
-
-body.dark-mode .site-header {
-  background: #262626;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
 }
 
 .nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1.2rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
 }
 
 .brand {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.4px;
 }
 
 .brand .accent {
   color: #4fd1c5;
 }
 
-body.dark-mode .brand .accent {
-  color: #9e9e9e;
-}
-
-.nav a.btn-outline {
+/* BACK BUTTON */
+.btn-outline {
   color: #fff;
-  border: 2px solid #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: background 0.3s, color 0.3s;
+  border: 2px solid rgba(255,255,255,0.8);
+  padding: 0.55rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.nav a.btn-outline:hover {
+.btn-outline:hover {
   background: #fff;
   color: #0f4c75;
+  transform: translateY(-2px);
 }
 
-/* ======================== MAIN SECTION ======================== */
+/* MAIN SECTION */
 .section {
-  padding: 6rem 2rem 4rem;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: auto;
+  padding: 8rem 2rem 5rem;
 }
 
+/* TITLE */
 .section h1 {
-  font-size: 2.2rem;
-  color: #0f4c75;
-  margin-bottom: 1rem;
+  font-size: 3rem;
   text-align: center;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #0f4c75, #4fd1c5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-body.dark-mode .section h1 {
-  color: #9e9e9e;
-}
-
+/* DESCRIPTION CARD */
 .section p {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  border-radius: 22px;
   font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-  text-align: justify;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+  animation: fadeUp 1s ease forwards;
 }
 
-/* ======================== SERVICE IMAGE ======================== */
+/* IMAGE CONTAINER */
 .service-image {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 3.5rem;
 }
 
+/* IMAGE */
 .service-image img {
-  max-width: 600px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 650px;
+  border-radius: 22px;
+  box-shadow:
+    0 25px 50px rgba(15,76,117,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.4);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
+/* IMAGE HOVER */
 .service-image img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  transform: scale(1.04);
+  box-shadow:
+    0 35px 70px rgba(15,76,117,0.55),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
 }
 
-/* ======================== FOOTER ======================== */
+/* FOOTER */
 .site-footer {
-  background: #0f4c75;
+  background: linear-gradient(90deg, #0f4c75, #3282b8);
   color: #fff;
-  padding: 1rem 2rem;
   text-align: center;
-  margin-top: 4rem;
+  padding: 1.3rem;
+  font-size: 0.95rem;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.35);
 }
 
-body.dark-mode .site-footer {
-  background: #262626;
-}
-
-/* ======================== FADE-IN ANIMATION ======================== */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
-
-.fade-in-up.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ======================== RESPONSIVE ======================== */
-@media (max-width: 1024px) {
-  .section h1 {
-    font-size: 2rem;
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-
-  .service-image img {
-    max-width: 100%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .section {
-    padding: 4rem 1.5rem 2rem;
+  .section h1 {
+    font-size: 2.2rem;
+  }
+
+  .section p {
+    padding: 2rem;
+    font-size: 1.05rem;
   }
 }
