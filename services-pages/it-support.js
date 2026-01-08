@@ -1,32 +1,29 @@
-// ======================== IT SUPPORT MINI PAGE JS ========================
+// ========================
+// IT SUPPORT MINI PAGE JS
+// ========================
 
-// Dark Mode Toggle (Optional)
-const darkModeBtn = document.createElement("button");
-darkModeBtn.id = "dark-mode-toggle";
-darkModeBtn.textContent = "🌓";
-document.body.appendChild(darkModeBtn);
+// Auto year
+const year = document.getElementById("year");
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
-darkModeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
+// Smooth reveal on load
+window.addEventListener("load", () => {
+  document.body.style.opacity = "1";
 });
 
-// Update footer year automatically
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
+// Subtle image parallax on mouse move
+const img = document.querySelector(".service-image img");
 
-// Fade-in on scroll
-const fadeInElements = document.querySelectorAll(".fade-in-up");
+if (img) {
+  document.addEventListener("mousemove", (e) => {
+    const x = (window.innerWidth / 2 - e.clientX) / 60;
+    const y = (window.innerHeight / 2 - e.clientY) / 60;
+    img.style.transform = `scale(1.03) rotateX(${y}deg) rotateY(${x}deg)`;
+  });
 
-function handleScroll() {
-  fadeInElements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      el.classList.add("active");
-    }
+  document.addEventListener("mouseleave", () => {
+    img.style.transform = "scale(1)";
   });
 }
-
-window.addEventListener("scroll", handleScroll);
-window.addEventListener("load", handleScroll);
