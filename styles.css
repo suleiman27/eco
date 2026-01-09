@@ -1,153 +1,56 @@
-/* ========================
-   RESET & BASE
-======================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+// ========================
+// HERO SLIDESHOW
+// ========================
+const slides = document.querySelectorAll('.hero-slideshow .slide');
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if(i === index) slide.classList.add('active');
+  });
 }
 
-body {
-  background-color: #f0f4f8;
-  color: #1a1a1a;
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
 }
 
-a { text-decoration: none; color: inherit; }
+showSlide(currentSlide);
+setInterval(nextSlide, 4000); // 4 seconds per slide
 
-.container { max-width: 1200px; margin: auto; padding: 0 1rem; }
+// ========================
+// NAV TOGGLE
+// ========================
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
 
-.section { padding: 3rem 0; }
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
 
-/* ========================
-   HEADER / NAV
-======================== */
-.site-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #0f4c75;
-  z-index: 1000;
-}
+// ========================
+// SUBMENU TOGGLE
+// ========================
+const submenuBtns = document.querySelectorAll('.submenu-btn');
 
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
-}
+submenuBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    const submenu = btn.nextElementSibling;
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+  });
+});
 
-.brand { color: #fff; font-size: 1.5rem; }
-.accent { color: #4fd1c5; }
+// ========================
+// DARK MODE TOGGLE
+// ========================
+const darkModeBtn = document.getElementById('dark-mode-toggle');
+darkModeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+});
 
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 1rem;
-}
-
-.nav-links li { position: relative; }
-.nav-links a { color: #fff; padding: 0.5rem; display: block; }
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.btn-primary { background: #3282b8; color: #fff; padding: 0.5rem 1rem; border-radius: 5px; }
-.btn-outline { border: 1px solid #fff; background: transparent; color: #fff; padding: 0.5rem 1rem; border-radius: 5px; }
-
-/* ========================
-   DROPDOWNS
-======================== */
-.dropdown-menu,
-.submenu { display: none; position: absolute; top: 100%; left: 0; background: #fff; border-radius: 5px; min-width: 200px; z-index: 100; }
-
-.submenu { left: 100%; top: 0; }
-
-.dropdown-menu li a { color: #000; padding: 0.5rem 1rem; }
-
-.submenu-btn { width: 100%; background: none; border: none; padding: 0.5rem 1rem; text-align: left; cursor: pointer; }
-
-/* ========================
-   HERO
-======================== */
-.hero { margin-top: 80px; position: relative; height: 80vh; overflow: hidden; }
-.hero-slideshow { position: relative; height: 100%; }
-.hero-slideshow .slide { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s; }
-.hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
-.hero-content { position: relative; text-align: center; color: #fff; top: 50%; transform: translateY(-50%); }
-.ctas { margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-/* ========================
-   SERVICES GRID
-======================== */
-.sultech-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-.sultech-card { flex: 1 1 30%; background: #fff; border-radius: 10px; overflow: hidden; padding: 1rem; text-align: center; transition: transform 0.3s; }
-.sultech-card:hover { transform: translateY(-5px); }
-.sultech-card img { width: 100%; border-radius: 10px; }
-
-/* ========================
-   WHY CHOOSE US
-======================== */
-.choose-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-.choose-card { flex: 1 1 30%; background: #f1f5f9; border-radius: 10px; padding: 1rem; text-align: center; }
-
-/* ========================
-   GALLERY
-======================== */
-.gallery-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
-.gallery-item { width: 32%; border-radius: 8px; cursor: pointer; transition: transform 0.3s; }
-.gallery-item:hover { transform: scale(1.05); }
-
-/* ========================
-   ABOUT
-======================== */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-top: 2rem; }
-.about-img { width: 100%; border-radius: 10px; }
-
-/* ========================
-   BOOKING FORM
-======================== */
-.booking-form { display: flex; flex-direction: column; gap: 1rem; }
-.booking-form .row.two { display: flex; gap: 1rem; flex-wrap: wrap; }
-.booking-form input, .booking-form textarea { flex: 1 1 100%; padding: 0.8rem; border-radius: 5px; border: 1px solid #ccc; }
-
-/* ========================
-   REVIEWS
-======================== */
-.reviews-list blockquote { background: #f1f5f9; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; }
-
-/* ========================
-   FOOTER
-======================== */
-.site-footer { text-align: center; padding: 2rem 0; background: #0f4c75; color: #fff; margin-top: 2rem; }
-
-/* ========================
-   WHATSAPP FLOATING BUTTON
-======================== */
-.float { position: fixed; bottom: 20px; right: 20px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; font-size: 28px; z-index: 1000; }
-.my-float { line-height: 1; }
-
-/* ========================
-   FADE-IN-UP
-======================== */
-.fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.fade-in-up.active { opacity: 1; transform: translateY(0); }
-
-/* ========================
-   MEDIA QUERIES
-======================== */
-@media(max-width:768px){
-  #nav-toggle { display: block; font-size: 30px; background:none; border:none; color:#fff; }
-  .nav-links { display: none; flex-direction: column; width: 100%; background: #0f4c75; }
-  .nav-links.active { display: flex; }
-  .nav-links li { width: 100%; }
-  .dropdown-menu, .submenu { position: relative; background: #f0f4f8; min-width: auto; }
-  .submenu { margin-left: 1rem; }
-  .hero { height: auto; padding: 5rem 1rem; }
-  .sultech-card, .gallery-item { width: 100%; }
-  .about-grid { grid-template-columns: 1fr; }
-  .ctas { flex-direction: column; gap: 0.5rem; }
-}
+// ========================
+// SET YEAR IN FOOTER
+// ========================
+document.getElementById('year').textContent = new Date().getFullYear();
