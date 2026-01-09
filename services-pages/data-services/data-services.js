@@ -1,13 +1,14 @@
-// Scroll animation for each service card
-const cards = document.querySelectorAll('.service-card');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
+<script>
+const reveals = document.querySelectorAll(".fade-in-up");
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if(elementTop < windowHeight - 50){
+      el.classList.add("active");
     }
   });
-}, { threshold: 0.2 });
-
-cards.forEach(card => observer.observe(card));
-
+}
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+</script>
