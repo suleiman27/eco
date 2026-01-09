@@ -1,4 +1,6 @@
-/* ======================== RESET & BASE ======================== */
+/* ========================
+   RESET & BASE
+======================== */
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +29,9 @@ img {
   display: block;
 }
 
-/* ======================== HEADER / NAV ======================== */
+/* ========================
+   HEADER / NAV
+======================== */
 .site-header {
   background: linear-gradient(90deg, #0f4c75, #3282b8);
   position: fixed;
@@ -68,18 +72,25 @@ body.dark-mode .brand .accent {
   gap: 1.5rem;
 }
 
-.nav-links a, .dropdown-btn, .submenu button {
+.nav-links a,
+.dropdown-btn,
+.submenu button {
   color: #fff;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
 }
 
-.nav-links a:hover, .dropdown-btn:hover, .submenu button:hover {
+.nav-links a:hover,
+.dropdown-btn:hover,
+.submenu button:hover {
   background: rgba(255,255,255,0.2);
 }
 
-/* ======================== DROPDOWNS ======================== */
-.dropdown-menu, .submenu {
+/* ========================
+   DROPDOWNS
+======================== */
+.dropdown-menu,
+.submenu {
   display: none;
   position: absolute;
   background: #fff;
@@ -89,12 +100,14 @@ body.dark-mode .brand .accent {
   z-index: 9999;
 }
 
-body.dark-mode .dropdown-menu, body.dark-mode .submenu {
+body.dark-mode .dropdown-menu,
+body.dark-mode .submenu {
   background: #dcdcdc;
 }
 
-/* Purple details for light mode submenu */
-.dropdown-menu button, .submenu button {
+/* purple submenu text in light mode */
+.dropdown-menu button,
+.submenu button {
   color: purple;
 }
 
@@ -107,11 +120,17 @@ body.dark-mode .dropdown-menu, body.dark-mode .submenu {
   left: 100%;
 }
 
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
 .dropdown-submenu:hover > .submenu {
   display: block;
 }
 
-/* ======================== MOBILE MENU ======================== */
+/* ========================
+   MOBILE MENU
+======================== */
 #nav-toggle {
   display: none;
   font-size: 32px;
@@ -125,6 +144,7 @@ body.dark-mode .dropdown-menu, body.dark-mode .submenu {
   #nav-toggle {
     display: block;
   }
+
   .nav-links {
     position: absolute;
     top: 100%;
@@ -137,15 +157,19 @@ body.dark-mode .dropdown-menu, body.dark-mode .submenu {
     padding: 1.2rem 0;
     display: none;
   }
+
   body.dark-mode .nav-links {
     background: #262626;
   }
+
   .nav-links.active {
     display: flex;
   }
 }
 
-/* ======================== HERO ======================== */
+/* ========================
+   HERO
+======================== */
 .hero {
   height: 80vh;
   margin-top: 80px;
@@ -191,7 +215,9 @@ body.dark-mode .hero-overlay {
   max-width: 850px;
 }
 
-/* ======================== SECTIONS ======================== */
+/* ========================
+   SECTIONS
+======================== */
 .section {
   padding: 4rem 2rem;
 }
@@ -210,7 +236,9 @@ body.dark-mode .section::after {
   background: #9e9e9e;
 }
 
-/* ======================== SCROLL REVEAL ======================== */
+/* ========================
+   SCROLL ANIMATIONS
+======================== */
 .fade-in-up {
   opacity: 0;
   transform: translateY(40px);
@@ -222,12 +250,14 @@ body.dark-mode .section::after {
   transform: translateY(0);
 }
 
-/* ======================== SERVICES / CARDS ======================== */
+/* ========================
+   SERVICE CARDS
+======================== */
 .sultech-grid {
   display: flex;
-  justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .sultech-card {
@@ -235,7 +265,7 @@ body.dark-mode .section::after {
   border-radius: 14px;
   padding: 1rem;
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  flex: 1 1 calc(20% - 1rem); /* 5 cards per row */
+  flex: 1 1 calc(20% - 1rem);
   max-width: calc(20% - 1rem);
   text-align: center;
   transition: transform 0.3s;
@@ -255,11 +285,12 @@ body.dark-mode .sultech-card {
   background: #dcdcdc;
 }
 
-/* ======================== WHY CHOOSE US ======================== */
+/* ========================
+   WHY CHOOSE US
+======================== */
 .choose-grid {
   display: flex;
   gap: 1rem;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -275,18 +306,9 @@ body.dark-mode .choose-card {
   background: #dcdcdc;
 }
 
-/* ======================== TESTIMONIALS ======================== */
-.testimonial {
-  display: none;
-  max-width: 700px;
-  margin: auto;
-}
-
-.testimonial.active {
-  display: block;
-}
-
-/* ======================== ABOUT ======================== */
+/* ========================
+   ABOUT
+======================== */
 .about-grid {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -300,7 +322,9 @@ body.dark-mode .choose-card {
   box-shadow: 0 6px 22px rgba(0,0,0,0.25);
 }
 
-/* ======================== BUTTONS ======================== */
+/* ========================
+   BUTTONS
+======================== */
 #dark-mode-toggle {
   font-size: 24px;
   padding: 10px 16px;
@@ -327,7 +351,9 @@ body.dark-mode #dark-mode-toggle {
   font-weight: 600;
 }
 
-/* ======================== WHATSAPP FLOAT ======================== */
+/* ========================
+   WHATSAPP FLOAT (FIXED)
+======================== */
 .float {
   position: fixed;
   width: 80px;
@@ -342,9 +368,13 @@ body.dark-mode #dark-mode-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
 }
 
-/* ======================== GALLERY ======================== */
+/* ========================
+   GALLERY
+======================== */
 .gallery-grid {
   display: flex;
   flex-wrap: wrap;
@@ -363,7 +393,9 @@ body.dark-mode .gallery-item {
   filter: brightness(0.9);
 }
 
-/* ======================== RESPONSIVE ======================== */
+/* ========================
+   RESPONSIVE
+======================== */
 @media (max-width: 1024px) {
   .sultech-card {
     flex: 1 1 calc(33% - 1rem);
@@ -372,11 +404,7 @@ body.dark-mode .gallery-item {
 }
 
 @media (max-width: 768px) {
-  .sultech-card {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-
+  .sultech-card,
   .choose-card {
     flex: 1 1 100%;
     max-width: 100%;
