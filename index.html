@@ -3,57 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eco | Vue Converted</title>
+  <title>Eco</title>
 
-  <!-- Your existing CSS -->
+  <!-- YOUR EXISTING CSS -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Vue 3 CDN (Global Build) -->
+  <!-- VUE 3 CDN -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
+
 <body>
-  <!-- This is the Vue mounting point -->
+  <!-- ========================
+       VUE APP ROOT
+  ========================= -->
   <div id="app">
-    <!-- Place your original HTML here (converted only where needed) -->
-    
-    <!-- Example: Header -->
-    <header class="main-header">
-      <h1>{{ title }}</h1>
+
+    <!-- ========================
+         NAVBAR
+    ========================= -->
+    <header>
+      <button
+        id="nav-toggle"
+        @click="toggleNav"
+        :aria-expanded="navOpen"
+      >
+        ☰
+      </button>
+
+      <nav>
+        <ul id="nav-links" :class="{ active: navOpen }">
+          <li><a href="#">Home</a></li>
+
+          <li>
+            <button class="submenu-btn" @click="toggleSubmenu(0)">
+              Services
+            </button>
+            <ul v-show="openSubmenus[0]">
+              <li><a href="#">Service 1</a></li>
+              <li><a href="#">Service 2</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button id="dark-mode-toggle" @click="toggleDarkMode">
+        {{ darkMode ? "☀️" : "🌙" }}
+      </button>
     </header>
 
-    <!-- Your index content -->
+    <!-- ========================
+         HERO SLIDESHOW
+    ========================= -->
+    <section class="hero-slideshow">
+      <div
+        class="slide"
+        v-for="(slide, index) in slides"
+        :key="index"
+        :class="{ active: index === currentSlide }"
+      >
+        <h1>{{ slide.title }}</h1>
+        <p>{{ slide.text }}</p>
+      </div>
+    </section>
+
+    <!-- ========================
+         MAIN CONTENT
+    ========================= -->
     <main>
-      <!-- Original static content stays, or you convert later to Vue reactive parts -->
-      <section class="hero">
-        <h2>{{ heroText }}</h2>
-        <p>{{ description }}</p>
+      <section>
+        <h2>Welcome to Eco</h2>
+        <p>Sustainable solutions for a better future.</p>
       </section>
-      <!-- Add more content from your current index.html here -->
     </main>
 
-    <!-- Footer -->
+    <!-- ========================
+         FOOTER
+    ========================= -->
     <footer>
-      <p>{{ footerText }}</p>
+      <p>© {{ year }} Eco. All rights reserved.</p>
     </footer>
+
   </div>
 
-  <!-- Vue App Script -->
+  <!-- ========================
+       VUE APP SCRIPT
+  ========================= -->
   <script>
     const { createApp } = Vue;
 
     createApp({
       data() {
         return {
-          title: "Welcome to Eco",
-          heroText: "Eco – Sustainable Solutions",
-          description: "This is your Vue-powered homepage!",
-          footerText: "© 2026 Eco — All Rights Reserved"
+          // HERO SLIDES
+          slides: [
+            { title: "Eco Solutions", text: "Building a greener future" },
+            { title: "Sustainability", text: "Smart environmental choices" },
+            { title: "Innovation", text: "Technology for nature" }
+          ],
+          currentSlide: 0,
+          slideInterval: null,
+
+          // NAV
+          navOpen: false,
+
+          // SUBMENUS
+          openSubmenus: {},
+
+          // DARK MODE
+          darkMode: false,
+
+          // FOOTER YEAR
+          year: new Date().getFullYear()
         };
       },
+
+      mounted() {
+        // START SLIDESHOW
+        this.slideInterval = setInterval(() => {
+          this.currentSlide =
+            (this.currentSlide + 1) % this.slides.length;
+        }, 4000);
+      },
+
       methods: {
-        // future methods go here
+        // NAV TOGGLE
+        toggleNav() {
+          this.navOpen = !this.navOpen;
+        },
+
+        // SUBMENU TOGGLE
+        toggleSubmenu(index) {
+          this.openSubmenus[index] = !this.openSubmenus[index];
+        },
+
+        // DARK MODE
+        toggleDarkMode() {
+          this.darkMode = !this.darkMode;
+          document.body.classList.toggle("dark-mode", this.darkMode);
+        }
       }
     }).mount("#app");
   </script>
+
 </body>
 </html>
